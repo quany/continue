@@ -16,9 +16,15 @@ plugins {
 group = properties("pluginGroup").get()
 version = properties("pluginVersion").get()
 
-// Configure project's dependencies
+// Configure project"s dependencies
 repositories {
+    mavenLocal()
+    maven("https://maven.aliyun.com/repository/public")
     mavenCentral()
+//    maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+//    maven { url "https://maven.aliyun.com/repository/public" }
+//    maven { url "https://maven.aliyun.com/repository/google" }
+//    maven { url "https://maven.aliyun.com/repository/jcenter" }
 }
 
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
@@ -52,7 +58,7 @@ intellij {
     type = properties("platformType")
 
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
-    plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
+    plugins = properties("platformPlugins").map { it.split(",").map(String::trim).filter(String::isNotEmpty) }
 }
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
@@ -94,7 +100,7 @@ tasks {
         sinceBuild = properties("pluginSinceBuild")
         untilBuild = properties("pluginUntilBuild")
 
-        // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
+        // Extract the <!-- Plugin description --> section from README.md and provide for the plugin"s manifest
         pluginDescription = providers.fileContents(layout.projectDirectory.file("README.md")).asText.map {
             val start = "<!-- Plugin description -->"
             val end = "<!-- Plugin description end -->"
@@ -142,6 +148,6 @@ tasks {
         // The pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-        channels = properties("pluginVersion").map { listOf(it.split('-').getOrElse(1) { "default" }.split('.').first()) }
+        channels = properties("pluginVersion").map { listOf(it.split("-").getOrElse(1) { "default" }.split(".").first()) }
     }
 }

@@ -3,6 +3,9 @@
 # Start developing with:
 # - Run Task -> Install Dependencies
 # - Debug -> Extension
+# 切换你的 VPN 代理服务
+# export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+
 set -e
 echo "Installing Core extension dependencies..."
 pushd core

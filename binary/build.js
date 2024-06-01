@@ -16,11 +16,11 @@ fs.mkdirSync(out);
 
 const esbuildOutputFile = "out/index.js";
 let targets = [
-  "darwin-x64",
+  // "darwin-x64",
   "darwin-arm64",
-  "linux-x64",
-  "linux-arm64",
-  "win32-x64",
+  // "linux-x64",
+  // "linux-arm64",
+  // "win32-x64",
 ];
 
 const assetBackups = [
@@ -40,11 +40,11 @@ for (let i = 2; i < process.argv.length; i++) {
 
 const targetToLanceDb = {
   "darwin-arm64": "@lancedb/vectordb-darwin-arm64",
-  "darwin-x64": "@lancedb/vectordb-darwin-x64",
-  "linux-arm64": "@lancedb/vectordb-linux-arm64-gnu",
-  "linux-x64": "@lancedb/vectordb-linux-x64-gnu",
-  "win32-x64": "@lancedb/vectordb-win32-x64-msvc",
-  "win32-arm64": "@lancedb/vectordb-win32-x64-msvc", // they don't have a win32-arm64 build
+  // "darwin-x64": "@lancedb/vectordb-darwin-x64",
+  // "linux-arm64": "@lancedb/vectordb-linux-arm64-gnu",
+  // "linux-x64": "@lancedb/vectordb-linux-x64-gnu",
+  // "win32-x64": "@lancedb/vectordb-win32-x64-msvc",
+  // "win32-arm64": "@lancedb/vectordb-win32-x64-msvc", // they don't have a win32-arm64 build
 };
 
 async function installNodeModuleInTempDirAndCopyToCurrent(packageName, toCopy) {
@@ -228,7 +228,7 @@ async function installNodeModuleInTempDirAndCopyToCurrent(packageName, toCopy) {
     );
     execCmdSync(`tar -xzvf ${targetDir}/esbuild.tgz -C ${targetDir}`);
     if (target.startsWith("win32")) {
-      fs.cpSync(`${targetDir}/package/esbuild.exe`, `${targetDir}/esbuild.exe`);
+      fs.cpSync(`${targetDir}/s/esbuild.exe`, `${targetDir}/esbuild.exe`);
     } else {
       fs.cpSync(`${targetDir}/package/bin/esbuild`, `${targetDir}/esbuild`);
     }

@@ -19,7 +19,7 @@ const sidebars = {
     "how-to-use-continue",
     {
       type: "category",
-      label: "🌉 Setup",
+      label: "🌉 设置",
       collapsible: true,
       collapsed: true,
       items: [
