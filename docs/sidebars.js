@@ -19,6 +19,13 @@ const sidebars = {
     "how-to-use-continue",
     {
       type: "category",
+      label: "🐔 开发指南",
+      collapsible: true,
+      collapsed: true,
+      items: ["dev/install"],
+    },
+    {
+      type: "category",
       label: "🌉 设置",
       collapsible: true,
       collapsed: true,

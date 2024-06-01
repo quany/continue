@@ -48,4 +48,5 @@ Learn more about the models and providers [here](https://continue.dev/docs/setup
 
 [Apache 2.0 © 2023 Continue Dev, Inc.](./LICENSE)
 
+
 <!-- Plugin description end -->

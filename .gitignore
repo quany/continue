@@ -147,7 +147,8 @@ codeql
 **/**/.qodana
 **/**/build
 
-**/.idea/**/*
+**/**/.idea
+**/**/.idea/**/*
 !**/.idea/.name
 !**/.idea/compiler.xml
 !**/.idea/gradle.xml
@@ -156,6 +157,8 @@ codeql
 !**/.idea/vcs.xml
 !**/.idea/jarRepositories.xml
 core/.idea
+
+extensions/intellij/.idea
 
 continue_server.build
 continue_server.dist

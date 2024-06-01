@@ -1,5 +1,5 @@
 ---
-title: 💻 Introduction
+title: 💻 介绍
 description: Continue is the open-source autopilot for software development
 keywords: [introduction, intro, continue, autopilot, chatgpt]
 ---
