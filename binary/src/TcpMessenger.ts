@@ -6,8 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 export class TcpMessenger<
   ToProtocol extends IProtocol,
   FromProtocol extends IProtocol,
-> implements IMessenger<ToProtocol, FromProtocol>
-{
+> implements IMessenger<ToProtocol, FromProtocol> {
   private port: number = 3000;
   private socket: net.Socket | null = null;
 
@@ -18,6 +17,7 @@ export class TcpMessenger<
     const server = net.createServer((socket) => {
       this.socket = socket;
       socket.on("data", (data: Buffer) => {
+        console.log('data', data.toString());
         this._handleData(data);
       });
 

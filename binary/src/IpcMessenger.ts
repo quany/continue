@@ -6,13 +6,13 @@ import { v4 as uuidv4 } from "uuid";
 export class IpcMessenger<
   ToProtocol extends IProtocol,
   FromProtocol extends IProtocol,
-> implements IMessenger<ToProtocol, FromProtocol>
-{
+> implements IMessenger<ToProtocol, FromProtocol> {
   typeListeners = new Map<keyof ToProtocol, ((message: Message) => any)[]>();
   idListeners = new Map<string, (message: Message) => any>();
 
   constructor() {
     process.stdin.on("data", (data) => {
+      console.log('ipc', data)
       this._handleData(data);
     });
     process.stdout.on("close", () => {

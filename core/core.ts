@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { ContextItemId, IDE } from ".";
+import { ContextItemId, IDE, IndexingProgressUpdate } from ".";
 import { CompletionProvider } from "./autocomplete/completionProvider";
 import { ConfigHandler } from "./config/handler";
 import {
@@ -25,7 +25,6 @@ import type { IMessenger, Message } from "./util/messenger";
 import { editConfigJson, getConfigJsonPath } from "./util/paths";
 import { Telemetry } from "./util/posthog";
 import { streamDiffLines } from "./util/verticalEdit";
-import { IndexingProgressUpdate } from ".";
 
 export class Core {
   // implements IMessenger<ToCoreProtocol, FromCoreProtocol>
@@ -59,9 +58,9 @@ export class Core {
   constructor(
     private readonly messenger: IMessenger<ToCoreProtocol, FromCoreProtocol>,
     private readonly ide: IDE,
-    private readonly onWrite: (text: string) => Promise<void> = async () => {},
+    private readonly onWrite: (text: string) => Promise<void> = async () => { },
   ) {
-    this.indexingState = { status:"loading", desc: 'loading', progress: 0 }
+    this.indexingState = { status: "loading", desc: 'loading', progress: 0 }
     const ideSettingsPromise = messenger.request("getIdeSettings", undefined);
     this.configHandler = new ConfigHandler(
       this.ide,
@@ -114,7 +113,7 @@ export class Core {
       this.configHandler,
       ide,
       getLlm,
-      (e) => {},
+      (e) => { },
       (..._) => Promise.resolve([]),
     );
 
@@ -127,6 +126,7 @@ export class Core {
 
     // New
     on("update/modelChange", (msg) => {
+      console.log('update/modelChange', msg);
       this.selectedModelTitle = msg.data;
     });
 
@@ -136,6 +136,7 @@ export class Core {
     });
 
     on("ping", (msg) => {
+      console.log('ping', msg);
       if (msg.data !== "ping") {
         throw new Error("ping message incorrect");
       }
@@ -197,18 +198,22 @@ export class Core {
       }
     });
     on("config/addOpenAiKey", (msg) => {
+      console.log('addOpenAiKey', msg);
       addOpenAIKey(msg.data);
       this.configHandler.reloadConfig();
     });
     on("config/deleteModel", (msg) => {
+      console.log('deleteModel', msg);
       deleteModel(msg.data.title);
       this.configHandler.reloadConfig();
     });
     on("config/reload", (msg) => {
+      console.log('reload', msg);
       this.configHandler.reloadConfig();
       return this.configHandler.getSerializedConfig();
     });
     on("config/ideSettingsUpdate", (msg) => {
+      console.log('ideSettingsUpdate', msg);
       this.configHandler.updateIdeSettings(msg.data);
     });
 
@@ -235,6 +240,7 @@ export class Core {
       return items || [];
     });
     on("context/getContextItems", async (msg) => {
+      console.log('getContextItems', msg);
       const { name, query, fullInput, selectedCode } = msg.data;
       const config = await this.config();
       const llm = await this.getSelectedModel();
@@ -439,7 +445,7 @@ export class Core {
         );
       return outcome ? [outcome.completion] : [];
     });
-    on("autocomplete/accept", async (msg) => {});
+    on("autocomplete/accept", async (msg) => { });
     on("autocomplete/cancel", async (msg) => {
       this.completionProvider.cancel();
     });

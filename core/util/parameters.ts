@@ -31,5 +31,6 @@ export const RETRIEVAL_PARAMS = {
   bm25Threshold: -2.5,
 };
 
-// export const SERVER_URL = "http://localhost:3000";
-export const SERVER_URL = "https://proxy-server-blue-l6vsfbzhba-uw.a.run.app";
+export const SERVER_URL = "http://172.16.21.109:3000";
+// export const SERVER_URL = "https://proxy-server-blue-l6vsfbzhba-uw.a.run.app";
+console.log('SERVER_URL', SERVER_URL);
