@@ -13,7 +13,7 @@ const TopDiv = styled.div`
 
   scrollbar-width: none; /* Firefox */
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
+  /* 隐藏Chrome, Safari和Opera的滚动条 */
   &::-webkit-scrollbar {
     display: none;
   }
@@ -33,10 +33,9 @@ function ExistingUserOnboarding() {
   return (
     <TopDiv>
       <div className="m-auto p-2 max-w-96 mt-16 overflow-y-scroll">
-        <h1 className="text-center">Use Improved Models?</h1>
+        <h1 className="text-center">使用改进的模型？</h1>
         <p className="text-center pb-2">
-          Continue now integrates with higher quality cloud models for
-          autocomplete and codebase retrieval.
+          Continue现在集成了更高质量的云模型用于自动补全和代码库检索。
         </p>
         <Div
           color={greenButtonColor}
@@ -49,11 +48,8 @@ function ExistingUserOnboarding() {
           onMouseEnter={() => setHovered1(true)}
           onMouseLeave={() => setHovered1(false)}
         >
-          <h3>🔒 Keep existing setup</h3>
-          <p>
-            Continue using fully local autocomplete + embeddings, or whichever
-            options you have configured.
-          </p>
+          <h3>🔒 保持现有设置</h3>
+          <p>继续使用完全本地的自动补全和嵌入，或任何您已配置的选项。</p>
         </Div>
         <br></br>
         <Div
@@ -67,37 +63,35 @@ function ExistingUserOnboarding() {
           onMouseEnter={() => setHovered2(true)}
           onMouseLeave={() => setHovered2(false)}
         >
-          <h3>✨ Use cloud models</h3>
+          <h3>✨ 使用云模型</h3>
           <p>
-            Continue's autocomplete and codebase retrieval will feel
-            significantly improved. API calls are made to Fireworks/Voyage, but
-            code is only ever stored locally.
+            Continue的自动补全和代码库检索将显著改善。API调用将发送至Fireworks/Voyage，但代码只会存储在本地。
           </p>
         </Div>
         {selected === 1 && (
           <>
             <StyledMarkdownPreview
-              source={`The following will be written to \`config.json\`:
+              source={`以下内容将写入 \`config.json\`:
 \`\`\`json
 {
-  // Starcoder 7b on Fireworks AI
+  // Fireworks AI上的Starcoder 7b
   "tabAutocompleteModel": {
     "title": "Tab Autocomplete",
     "provider": "free-trial",
     "model": "${TRIAL_FIM_MODEL}"
   },
-  // Voyage AI's voyage-code-2
+  // Voyage AI的voyage-code-2
   "embeddingsProvider": {
     "provider": "free-trial"
   },
-  // Voyage AI's rerank-lite-1
+  // Voyage AI的rerank-lite-1
   "reranker": {
     "name": "free-trial"
   }
 }
 \`\`\`
 
-Alternatively, you can enter your own API keys:
+或者，您可以输入自己的API密钥:
 \`\`\`json
 {
   "tabAutocompleteModel": {
@@ -139,7 +133,7 @@ Alternatively, you can enter your own API keys:
               navigate("/");
             }}
           >
-            Continue
+            继续
           </StyledButton>
         </div>
       </div>

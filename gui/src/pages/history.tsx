@@ -102,7 +102,7 @@ function TableRow({
       <div className="flex justify-between items-center w-full">
         <TdDiv
           onClick={async () => {
-            // Save current session
+            // 保存当前会话
             saveSession();
 
             await loadSession(session.sessionId);
@@ -129,7 +129,7 @@ function TableRow({
         {hovered && (
           <HeaderButtonWithText
             className="mr-2"
-            text="Delete"
+            text="删除"
             onClick={async () => {
               deleteSession(session.sessionId);
               onDelete(session.sessionId);
@@ -216,7 +216,7 @@ function History() {
           }
           return workspacePaths.includes(session.workspaceDirectory);
         })
-        // Filter by search term
+        // 按搜索词过滤
         .filter((session) => {
           return searchTerm === "" || sessionIds.includes(session.sessionId);
         })
@@ -256,30 +256,30 @@ function History() {
             onClick={() => navigate("/")}
             className="inline-block ml-4 cursor-pointer"
           />
-          <h3 className="text-lg font-bold m-2 inline-block">History</h3>
+          <h3 className="text-lg font-bold m-2 inline-block">历史记录</h3>
         </div>
         {/* {workspacePaths && workspacePaths.length > 0 && (
           <CheckDiv
             checked={filteringByWorkspace}
             onClick={() => setFilteringByWorkspace((prev) => !prev)}
-            title={`Show only sessions from ${lastPartOfPath(
+            title={`仅显示来自 ${lastPartOfPath(
               workspacePaths[workspacePaths.length - 1]
-            )}/`}
+            )}/ 的会话`}
           />
         )} */}
       </div>
 
       <div>
         <SearchBar
-          placeholder="Search past sessions"
+          placeholder="搜索过去的会话"
           type="text"
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
         {filteredAndSortedSessions.length === 0 && (
           <div className="text-center m-4">
-            No past sessions found. To start a new session, either click the "+"
-            button or use the keyboard shortcut: <b>Option + Command + N</b>
+            找不到过去的会话。要开始新会话，请点击“+”按钮或使用键盘快捷键：
+            <b>Option + Command + N</b>
           </div>
         )}
 
@@ -295,21 +295,21 @@ function History() {
                 <Fragment key={index}>
                   {index === 0 && date > yesterday && (
                     <SectionHeader style={{ top: `${headerHeight - 1}px` }}>
-                      Today
+                      今天
                     </SectionHeader>
                   )}
                   {date < yesterday &&
                     date > lastWeek &&
                     prevDate > yesterday && (
                       <SectionHeader style={{ top: `${headerHeight - 1}px` }}>
-                        This Week
+                        本周
                       </SectionHeader>
                     )}
                   {date < lastWeek &&
                     date > lastMonth &&
                     prevDate > lastWeek && (
                       <SectionHeader style={{ top: `${headerHeight - 1}px` }}>
-                        This Month
+                        本月
                       </SectionHeader>
                     )}
 
@@ -327,7 +327,7 @@ function History() {
         </table>
         <br />
         <i className="text-sm ml-4">
-          All session data is saved in ~/.continue/sessions
+          所有会话数据都保存在 ~/.continue/sessions
         </i>
       </div>
     </div>

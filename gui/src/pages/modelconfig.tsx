@@ -101,9 +101,7 @@ function ModelConfig() {
             onClick={() => navigate("/models")}
             className="inline-block ml-4 cursor-pointer"
           />
-          <h3 className="text-lg font-bold m-2 inline-block">
-            Configure Model
-          </h3>
+          <h3 className="text-lg font-bold m-2 inline-block">配置模型</h3>
         </div>
 
         <div className="px-2">
@@ -142,7 +140,7 @@ function ModelConfig() {
           {(modelInfo?.collectInputFor?.filter((d) => d.required).length || 0) >
             0 && (
             <>
-              <h3 className="mb-2">Enter required parameters</h3>
+              <h3 className="mb-2">输入所需参数</h3>
 
               {modelInfo?.collectInputFor
                 ?.filter((d) => d.required)
@@ -173,7 +171,7 @@ function ModelConfig() {
             0) > 0 && (
             <details>
               <summary className="mb-2 cursor-pointer">
-                <b>Advanced (optional)</b>
+                <b>高级（可选）</b>
               </summary>
 
               {modelInfo?.collectInputFor?.map((d, idx) => {
@@ -204,7 +202,7 @@ function ModelConfig() {
             </details>
           )}
 
-          <h3 className="mb-2">Select a model preset</h3>
+          <h3 className="mb-2">选择模型预设</h3>
         </div>
         <GridDiv>
           {modelInfo?.packages.map((pkg, idx) => {
@@ -260,7 +258,7 @@ function ModelConfig() {
               style={{ color: lightGray, border: `1px solid ${lightGray}` }}
             />
             <p style={{ color: lightGray }}>
-              OR choose from other providers / models by editing config.json.
+              或者通过编辑 config.json 从其他提供商/模型中选择。
             </p>
             <CustomModelButton
               disabled={false}
@@ -268,7 +266,7 @@ function ModelConfig() {
                 ideMessenger.post("openConfigJson", undefined);
               }}
             >
-              <h3 className="text-center my-2">Open config.json</h3>
+              <h3 className="text-center my-2">打开 config.json</h3>
             </CustomModelButton>
           </div>
         </GridDiv>

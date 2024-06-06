@@ -274,7 +274,7 @@ export class Core {
           id,
         }));
       } catch (e) {
-        this.ide.errorPopup(`Error getting context items from ${name}: ${e}`);
+        this.ide.errorPopup(`从获取上下文项时出错 ${name}: ${e}`);
         return [];
       }
     });

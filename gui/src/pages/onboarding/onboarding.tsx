@@ -21,18 +21,15 @@ function Onboarding() {
     <div className="p-2 max-w-96 mt-16 mx-auto">
       {getLocalStorage("ftc") > ftl() ? (
         <>
-          <h1 className="text-center">Free trial limit reached</h1>
+          <h1 className="text-center">免费试用次数已达上限</h1>
           <p className="text-center pb-2">
-            To keep using Continue, please enter an API key or set up a local
-            model
+            要继续使用Continue，请输入API密钥或设置本地模型
           </p>
         </>
       ) : (
         <>
-          <h1 className="text-center">Welcome to Continue</h1>
-          <p className="text-center pb-2">
-            Let's find the setup that works best for you
-          </p>
+          <h1 className="text-center">欢迎使用Continue</h1>
+          <p className="text-center pb-2">让我们找到最适合您的设置</p>
         </>
       )}
 
@@ -47,22 +44,20 @@ function Onboarding() {
         onMouseEnter={() => setHovered0(true)}
         onMouseLeave={() => setHovered0(false)}
       >
-        <h3>✨ Use your API key</h3>
+        <h3>✨ 使用您的API密钥</h3>
         <p>
-          Enter an OpenAI or other API key for the best experience. Continue
-          will use the best available commercial models to index code. Code is
-          only ever stored locally.
+          输入一个OpenAI或其他API密钥以获得最佳体验。Continue将使用最好的商用模型来索引代码。代码只会存储在本地。
         </p>
       </Div>
       {selected === 0 && (
         <p className="px-3">
-          <b>Chat:</b> Whichever model you choose
+          <b>聊天:</b> 您选择的任何模型
           <br />
           <br />
-          <b>Embeddings:</b> Voyage Code 2
+          <b>嵌入:</b> Voyage Code 2
           <br />
           <br />
-          <b>Autocomplete:</b> Starcoder 7B via Fireworks AI
+          <b>自动补全:</b> Starcoder 7B via Fireworks AI
         </p>
       )}
       <br></br>
@@ -77,21 +72,21 @@ function Onboarding() {
         onMouseEnter={() => setHovered1(true)}
         onMouseLeave={() => setHovered1(false)}
       >
-        <h3>🔒 Local models</h3>
+        <h3>🔒 本地模型</h3>
         <p>
-          No code will leave your computer, but less powerful models are used.
-          Works with Ollama, LM Studio and others.
+          没有代码会离开您的计算机，但使用的模型较弱。适用于Ollama，LM
+          Studio等。
         </p>
       </Div>
       {selected === 1 && (
         <p className="px-3">
-          <b>Chat:</b> Llama 3 with Ollama, LM Studio, etc.
+          <b>聊天:</b> 使用Ollama，LM Studio等的Llama 3
           <br />
           <br />
-          <b>Embeddings:</b> Nomic Embed
+          <b>嵌入:</b> Nomic Embed
           <br />
           <br />
-          <b>Autocomplete:</b> Starcoder2 3B
+          <b>自动补全:</b> Starcoder2 3B
         </p>
       )}
       <br></br>
@@ -102,8 +97,8 @@ function Onboarding() {
             selected === 0
               ? "#be841b"
               : selected === 1
-                ? greenButtonColor
-                : "#1b84be"
+              ? greenButtonColor
+              : "#1b84be"
           }
           disabled={selected < 0}
           onClick={() => {
@@ -115,13 +110,13 @@ function Onboarding() {
             if (selected === 1) {
               navigate("/localOnboarding");
             } else {
-              // Only needed when we switch from the default (local) embeddings provider
+              // 只有在我们从默认（本地）嵌入提供程序切换时才需要
               ideMessenger.post("index/forceReIndex", undefined);
               navigate("/apiKeyOnboarding");
             }
           }}
         >
-          Continue
+          继续
         </StyledButton>
       </div>
 
@@ -129,9 +124,7 @@ function Onboarding() {
         <>
           <hr className="w-full my-12"></hr>
 
-          <p className="text-center">
-            OR sign in with GitHub to try 25 free requests
-          </p>
+          <p className="text-center">或使用GitHub登录以试用25次免费请求</p>
           <GitHubSignInButton
             onComplete={async (token) => {
               setLocalStorage("onboardingComplete", true);

@@ -36,17 +36,11 @@ function QuickModelSetup(props: QuickModelSetupProps) {
   return (
     <FormProvider {...formMethods}>
       <div className="p-4">
-        {/* <h1>
-          {getLocalStorage("ftc") > ftl()
-            ? "Set up your own model"
-            : "Add a new model"}
-        </h1> */}
-
         {!props.hideFreeTrialLimitMessage && getLocalStorage("ftc") > ftl() && (
           <p className="text-sm text-gray-500">
-            You've reached the free trial limit of {ftl()} free inputs. To keep
-            using Continue, you can either use your own API key, or use a local
-            LLM. To read more about the options, see our{" "}
+            您已达到 {ftl()} 次免费输入的免费试用限制。要继续使用
+            Continue，您可以使用自己的 API
+            密钥，或者使用本地大语言模型。要了解更多选项，请查看我们的
             <a
               href="https://docs.continue.dev/setup/overview"
               target="_blank"
@@ -57,13 +51,13 @@ function QuickModelSetup(props: QuickModelSetupProps) {
                 )
               }
             >
-              documentation
+              文档
             </a>
-            .
+            。
           </p>
         )}
 
-        <h4>1. Select a provider</h4>
+        <h4>1. 选择一个提供商</h4>
         <QuickSetupListBox
           selectedProvider={selectedProvider}
           setSelectedProvider={setSelectedProvider}
@@ -72,7 +66,7 @@ function QuickModelSetup(props: QuickModelSetupProps) {
             .map(([, provider]) => provider)}
         ></QuickSetupListBox>
 
-        <h4>2. Select a model</h4>
+        <h4>2. 选择一个模型</h4>
         <QuickSetupListBox
           selectedProvider={selectedModel}
           setSelectedProvider={setSelectedModel}
@@ -85,12 +79,9 @@ function QuickModelSetup(props: QuickModelSetupProps) {
 
         {selectedProvider.apiKeyUrl && (
           <>
-            <h4>3. Paste your API key</h4>
+            <h4>3. 粘贴您的 API 密钥</h4>
             {selectedModel.params.model.startsWith("codestral") && (
-              <i>
-                Note: Codestral requires a different API key from other Mistral
-                models
-              </i>
+              <i>注意：Codestral 需要与其他 Mistral 模型不同的 API 密钥</i>
             )}
             <SecondaryButton
               className="w-full border-2 border-solid"
@@ -102,26 +93,26 @@ function QuickModelSetup(props: QuickModelSetupProps) {
                 ideMessenger.post("openUrl", apiKeyUrl);
               }}
             >
-              Get API Key
+              获取 API 密钥
             </SecondaryButton>
             <Input
               id="apiKey"
               className="w-full"
-              placeholder="Enter API Key"
+              placeholder="输入 API 密钥"
               {...formMethods.register("apiKey", { required: true })}
             />
           </>
         )}
         {selectedProvider.downloadUrl && (
           <>
-            <h4>3. Download {selectedProvider.title}</h4>
+            <h4>3. 下载 {selectedProvider.title}</h4>
             <SecondaryButton
               className="w-full border-2 border-solid"
               onClick={() => {
                 ideMessenger.post("openUrl", selectedProvider.downloadUrl);
               }}
             >
-              Download {selectedProvider.title}
+              下载 {selectedProvider.title}
             </SecondaryButton>
           </>
         )}
@@ -145,14 +136,14 @@ function QuickModelSetup(props: QuickModelSetupProps) {
             }}
             className="w-full"
           >
-            Add Model
+            添加模型
           </Button>
           <Button
             onClick={props.onDone}
             className="w-full"
             disabled={!hasAddedModel}
           >
-            Done
+            完成
           </Button>
         </div>
       </div>

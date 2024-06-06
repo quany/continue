@@ -49,22 +49,22 @@ function ModelSettings(props: { llm: any | undefined; role: string }) {
           <form>
             {typeof modelOptions.apiKey !== undefined && (
               <>
-                <Label fontSize={getFontSize()}>API Key</Label>
+                <Label fontSize={getFontSize()}>API密钥</Label>
                 <Input
                   type="text"
                   defaultValue={props.llm.apiKey}
-                  placeholder="API Key"
+                  placeholder="API密钥"
                   {...register(`models.${props.role}.apiKey`)}
                 />
               </>
             )}
             {modelOptions.model && (
               <>
-                <Label fontSize={getFontSize()}>Model</Label>
+                <Label fontSize={getFontSize()}>模型</Label>
                 <Input
                   type="text"
                   defaultValue={props.llm.model}
-                  placeholder="Model"
+                  placeholder="模型"
                   {...register(`models.${props.role}.model`)}
                 />
               </>
@@ -73,7 +73,7 @@ function ModelSettings(props: { llm: any | undefined; role: string }) {
         </>
       ) : (
         <div>
-          <b>Add Model</b>
+          <b>添加模型</b>
           <div className="my-4">
             <Select
               defaultValue=""
@@ -84,11 +84,11 @@ function ModelSettings(props: { llm: any | undefined; role: string }) {
               }}
             >
               <option disabled value="">
-                Select Model Type
+                选择模型类型
               </option>
-              <option value="newModel1">New Model 1</option>
-              <option value="newModel2">New Model 2</option>
-              <option value="newModel3">New Model 3</option>
+              <option value="newModel1">新模型 1</option>
+              <option value="newModel2">新模型 2</option>
+              <option value="newModel3">新模型 3</option>
             </Select>
           </div>
         </div>

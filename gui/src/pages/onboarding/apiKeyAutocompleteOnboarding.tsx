@@ -23,7 +23,7 @@ interface AutocompleteOption {
 const AUTOCOMPLETE_PROVIDER_OPTIONS: AutocompleteOption[] = [
   {
     provider: "free-trial",
-    title: "Free Trial (Codestral)",
+    title: "免费试用 (Codestral)",
     // icon: "fireworks.png",
   },
   {
@@ -125,11 +125,9 @@ function ApiKeyAutocompleteOnboarding() {
 
   return (
     <div className="p-2 max-w-96 mt-16 mx-auto">
-      <h1 className="text-center">Autocomplete Model</h1>
+      <h1 className="text-center">自动补全模型</h1>
       <p className="text-center">
-        Tab autocomplete requires a separate model. Currently we are supporting
-        free usage by signing in with GitHub. Alternatively, select another
-        option from the dropdown.
+        Tab自动补全需要一个单独的模型。目前我们支持通过GitHub登录免费使用。或者，从下拉列表中选择其他选项。
       </p>
       <br />
       <br />
@@ -148,18 +146,18 @@ function ApiKeyAutocompleteOnboarding() {
               navigate("/localOnboarding");
             }}
           >
-            Set up Ollama
+            设置Ollama
           </Button>
         </div>
       )}
       {selectedProvider.provider === "free-trial" && (
         <div className="text-center">
-          <p>Sign in to GitHub to try autocomplete for free</p>
+          <p>登录GitHub以免费试用自动补全</p>
           <GitHubSignInButton
             onComplete={async (token) => {
               await ideMessenger.request("addAutocompleteModel", {
                 model: {
-                  title: "Autocomplete Trial",
+                  title: "自动补全试用",
                   provider: "free-trial",
                   model: TRIAL_FIM_MODEL,
                 },
@@ -171,19 +169,19 @@ function ApiKeyAutocompleteOnboarding() {
       )}
       {selectedProvider.provider === "fireworks" && (
         <div className="text-center">
-          <h4>Paste your API key</h4>
+          <h4>粘贴您的API密钥</h4>
           <SecondaryButton
             className="w-full border-2 border-solid"
             onClick={() => {
               ideMessenger.post("openUrl", "https://fireworks.ai/api-keys");
             }}
           >
-            Get API Key
+            获取API密钥
           </SecondaryButton>
           <Input
             id="apiKey"
             className="w-full"
-            placeholder="Enter API Key"
+            placeholder="输入API密钥"
             value={apiKeyValue}
             onChange={(e) => {
               setApiKeyValue(e.target.value);
@@ -193,7 +191,7 @@ function ApiKeyAutocompleteOnboarding() {
             onClick={async () => {
               await ideMessenger.request("addAutocompleteModel", {
                 model: {
-                  title: "Fireworks Autocomplete",
+                  title: "Fireworks自动补全",
                   provider: "fireworks",
                   model: "starcoder-7b",
                   apiKey: apiKeyValue,
@@ -202,7 +200,7 @@ function ApiKeyAutocompleteOnboarding() {
               navigate("/");
             }}
           >
-            Save
+            保存
           </Button>
         </div>
       )}

@@ -10,15 +10,14 @@ function ApiKeyOnboarding() {
   const navigate = useNavigate();
   return (
     <div className="p-2 max-w-96 mt-16 mx-auto">
-      <h1 className="text-center">Model Setup</h1>
+      <h1 className="text-center">模型设置</h1>
       <p className="text-center">
-        To get started, choose a model and enter your API key. You can always
-        reconfigure later by clicking the{" "}
+        要开始，请选择一个模型并输入您的API密钥。您可以随时通过点击{" "}
         <Cog6ToothIcon
           className="inline-block h-5 w-5 align-middle cursor-pointer"
           onClick={() => ideMessenger.post("openConfigJson", undefined)}
         />{" "}
-        icon in the bottom right.
+        图标在右下角重新配置。
       </p>
 
       <QuickModelSetup

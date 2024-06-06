@@ -6,33 +6,27 @@ function MigrationPage() {
   return (
     <div className="p-8">
       <h1>
-        Migration to <code>config.json</code>
+        迁移到 <code>config.json</code>
       </h1>
 
       <p>
-        Continue now uses a .json config file. We hope that this takes the
-        guesswork out of setting up.
+        Continue 现在使用一个 .json 配置文件。我们希望这能消除设置过程中的猜测。
       </p>
 
       <p>
-        Your configuration should have been automatically migrated, but we
-        recommend double-checking that everything looks correct.
+        您的配置应该已经自动迁移，但我们建议再次检查以确保一切看起来都是正确的。
       </p>
 
       <p>
-        For a summary of what changed and examples of <code>config.json</code>,
-        please see the{" "}
+        有关变更摘要和 <code>config.json</code> 的示例，请参见{" "}
         <a href="https://docs.continue.dev/walkthroughs/config-file-migration">
-          migration walkthrough
+          迁移教程
         </a>
-        , and if you have any questions please reach out to us on{" "}
-        <a href="https://discord.gg/Y83xkG3uUW">Discord</a>.
+        ，如果您有任何问题，请通过{" "}
+        <a href="https://discord.gg/Y83xkG3uUW">Discord</a>与我们联系。
       </p>
 
-      <i>
-        Note: If you are running the server manually and have not updated the
-        server, this message does not apply.
-      </i>
+      <i>注意：如果您手动运行服务器并且没有更新服务器，此消息不适用。</i>
 
       <ContinueButton
         showStop={false}

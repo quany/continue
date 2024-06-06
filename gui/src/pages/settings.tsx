@@ -104,21 +104,6 @@ function Settings() {
 
   const submitChanges = () => {
     // TODO
-    // if (!client) return;
-    // const systemMessage = formMethods.watch("system_message") as
-    //   | string
-    //   | undefined;
-    // const temperature = formMethods.watch("temperature") as number | undefined;
-    // // const models = formMethods.watch("models");
-    // client.setSystemMessage(systemMessage || "");
-    // if (temperature) client.setTemperature(temperature);
-    // if (models) {
-    //   for (const role of ALL_MODEL_ROLES) {
-    //     if (models[role]) {
-    //       client.setModelForRole(role, models[role] as string, models[role]);
-    //     }
-    //   }
-    // }
   };
 
   const submitAndLeave = () => {
@@ -152,7 +137,7 @@ function Settings() {
             onClick={submitAndLeave}
             className="inline-block ml-4 cursor-pointer"
           />
-          <h3 className="text-lg font-bold m-2 inline-block">Settings</h3>
+          <h3 className="text-lg font-bold m-2 inline-block">设置</h3>
           <ConfigJsonButton
             onClick={() => {
               ideMessenger.post("showFile", {
@@ -163,32 +148,28 @@ function Settings() {
               });
             }}
           >
-            Open config.json
+            打开 config.json
           </ConfigJsonButton>
         </div>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
           {config ? (
             <div className="p-2">
               <h3 className="flex gap-1">
-                System Message
+                系统消息
                 <InfoHover
-                  msg={`Set a system message with information that the LLM should always
-              keep in mind (e.g. "Please give concise answers. Always respond in
-              Spanish.")`}
+                  msg={`设置一个系统消息，包含LLM始终需要记住的信息（例如：“请给出简洁的回答。始终用西班牙语回应。”）`}
                 />
               </h3>
               <TextArea
-                placeholder="Enter a system message (e.g. 'Always respond in German')"
+                placeholder="输入系统消息（例如：‘始终用德语回答’）"
                 {...formMethods.register("systemMessage")}
               />
 
               <Hr />
               <h3 className="flex gap-1">
-                Temperature
+                温度
                 <InfoHover
-                  msg={`Set temperature to any value between 0 and 1. Higher values will
-            make the LLM more creative, while lower values will make it more
-            predictable.`}
+                  msg={`设置温度值在0到1之间。较高的值将使LLM更具创造力，而较低的值将使其更可预测。`}
                 />
               </h3>
               <div className="flex justify-between mx-16 gap-1">
@@ -213,41 +194,7 @@ function Settings() {
               </div>
               <Hr />
 
-              {/**
-              <h3 className="flex gap-1">Models</h3>
-              {ALL_MODEL_ROLES.map((role) => {
-                return (
-                  <>
-                    <h4>{role}</h4>
-
-                    <ModelSettings
-                      role={role}
-                      llm={(config.models as any)[role]}
-                    />
-                  </>
-                );
-              })}
-
-              <Hr />
-
-              <h3 className="flex gap-1">
-                Custom Commands
-                <InfoHover
-                  msg={`Custom commands let you map a prompt to a shortened slash command.
-            They are like slash commands, but more easily defined - write just a
-            prompt instead of a Step class. Their output will always be in chat
-            form`}
-                />
-              </h3>
-              <Hr />
-
-              <h3 className="flex gap-1">
-                Context Providers
-                <InfoHover
-                  msg={`Context Providers let you type '@' and quickly reference sources of information, like files, GitHub Issues, webpages, and more.`}
-                />
-              </h3>
-            */}
+              {/* 其他设置项 */}
             </div>
           ) : (
             <Loader />
@@ -257,9 +204,9 @@ function Settings() {
         <hr />
 
         <div className="px-2">
-          <h3>Appearance</h3>
+          <h3>外观</h3>
 
-          <p>Font Size</p>
+          <p>字体大小</p>
           <NumberInput
             type="number"
             min="8"
@@ -278,9 +225,9 @@ function Settings() {
               navigate("/");
             }}
           >
-            Cancel
+            取消
           </CancelButton>
-          <SaveButton onClick={submitAndLeave}>Save</SaveButton>
+          <SaveButton onClick={submitAndLeave}>保存</SaveButton>
         </div>
       </div>
     </FormProvider>

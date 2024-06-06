@@ -53,29 +53,26 @@ function Models() {
           onClick={() => navigate("/")}
           className="inline-block ml-4 cursor-pointer"
         />
-        <h3 className="text-lg font-bold m-2 inline-block">Add new model</h3>
+        <h3 className="text-lg font-bold m-2 inline-block">添加新模型</h3>
       </div>
       <br />
       <Toggle
         selected={providersSelected}
-        optionOne={"Providers"}
-        optionTwo={"Models"}
+        optionOne={"提供商"}
+        optionTwo={"模型"}
         onClick={() => {
           setProvidersSelected((prev) => !prev);
         }}
       ></Toggle>
       <IntroDiv>
-        To set up an LLM you will choose
+        要设置一个LLM，您需要选择
         <ul>
-          <li>
-            a provider (the service used to run the LLM, e.g. Ollama,
-            TogetherAI) and
-          </li>
-          <li>a model (the LLM being run, e.g. GPT-4, CodeLlama).</li>
+          <li>一个提供商（用于运行LLM的服务，例如Ollama、TogetherAI）和</li>
+          <li>一个模型（正在运行的LLM，例如GPT-4、CodeLlama）。</li>
         </ul>
-        To read more about the options, check out our{" "}
-        <a href="https://docs.continue.dev/model-setup/overview">overview</a> in
-        the docs.
+        要了解更多选项，请查看我们的
+        <a href="https://docs.continue.dev/model-setup/overview">概述</a>{" "}
+        在文档中。
       </IntroDiv>
       {providersSelected ? (
         <GridDiv>
@@ -152,7 +149,7 @@ function Models() {
       <div style={{ padding: "8px" }}>
         <hr style={{ color: lightGray, border: `1px solid ${lightGray}` }} />
         <p style={{ color: lightGray }}>
-          OR choose from other providers / models by editing config.json.
+          或者通过编辑config.json从其他提供商/模型中选择。
         </p>
         <CustomModelButton
           disabled={false}
@@ -160,7 +157,7 @@ function Models() {
             ideMessenger.post("openConfigJson", undefined);
           }}
         >
-          <h3 className="text-center my-2">Open config.json</h3>
+          <h3 className="text-center my-2">打开config.json</h3>
         </CustomModelButton>
       </div>
     </div>
