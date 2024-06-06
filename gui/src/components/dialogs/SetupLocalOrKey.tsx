@@ -23,10 +23,10 @@ function SetupLocalOrKeyDialog() {
 
   return (
     <div className="p-4">
-      <h3>Set up your own model</h3>
+      <h3>设置您自己的模型</h3>
       <p>
-        To keep using Continue after your free inputs, you can either use your
-        own API key, or use a local LLM. To read more about the options, see our{" "}
+        要在免费输入后继续使用 Continue，您可以使用自己的 API
+        密钥，或者使用本地大语言模型。要了解更多选项，请查看我们的
         <a
           className="cursor-pointer"
           onClick={() =>
@@ -36,14 +36,14 @@ function SetupLocalOrKeyDialog() {
             )
           }
         >
-          documentation
+          文档
         </a>
-        .
+        。
       </p>
 
       <Input
         type="text"
-        placeholder="Enter your OpenAI API key"
+        placeholder="输入您的 OpenAI API 密钥"
         value={apiKey}
         onChange={(e) => setApiKey(e.target.value)}
       />
@@ -56,9 +56,9 @@ function SetupLocalOrKeyDialog() {
           dispatch(setDefaultModel({ title: "GPT-4" }));
         }}
       >
-        Use my OpenAI API key
+        使用我的 OpenAI API 密钥
       </Button>
-      <div className="text-center">— OR —</div>
+      <div className="text-center">— 或者 —</div>
       <GridDiv>
         <Button
           onClick={() => {
@@ -69,7 +69,7 @@ function SetupLocalOrKeyDialog() {
             navigate("/localOnboarding");
           }}
         >
-          Use local model
+          使用本地模型
         </Button>
         <Button
           onClick={() => {
@@ -77,7 +77,7 @@ function SetupLocalOrKeyDialog() {
             navigate("/models");
           }}
         >
-          View all options
+          查看所有选项
         </Button>
       </GridDiv>
     </div>

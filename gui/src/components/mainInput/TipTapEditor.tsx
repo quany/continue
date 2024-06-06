@@ -238,8 +238,7 @@ function TipTapEditor(props: TipTapEditorProps) {
       });
     } else {
       ideMessenger.post("errorPopup", {
-        message:
-          "Images need to be in jpg or png format and less than 10MB in size.",
+        message: "图片需要是 JPG 或 PNG 格式，并且大小不超过 10MB。",
       });
     }
     return undefined;
@@ -259,8 +258,8 @@ function TipTapEditor(props: TipTapEditorProps) {
       Placeholder.configure({
         placeholder: () =>
           historyLengthRef.current === 0
-            ? "Ask anything, '/' for slash commands, '@' to add context"
-            : "Ask a follow-up",
+            ? "提问任何问题，使用‘/’来使用命令，‘@’添加上下文"
+            : "提出后续问题",
       }),
       Paragraph.extend({
         addKeyboardShortcuts() {
@@ -769,7 +768,7 @@ function TipTapEditor(props: TipTapEditorProps) {
         ) && (
           <>
             <HoverDiv></HoverDiv>
-            <HoverTextDiv>Hold ⇧ to drop image</HoverTextDiv>
+            <HoverTextDiv>按住 Shift 键以拖放图片</HoverTextDiv>
           </>
         )}
     </InputBoxDiv>

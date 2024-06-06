@@ -9,7 +9,7 @@ class OpenAIEmbeddingsProvider extends BaseEmbeddingsProvider {
   static maxBatchSize = 128;
 
   static defaultOptions: Partial<EmbedOptions> | undefined = {
-    apiBase: "https://api.openai.com/v1/",
+    apiBase: "https://zhiyou.farcloud.com/api/proxy/v1/",
     model: "text-embedding-3-small",
   };
 

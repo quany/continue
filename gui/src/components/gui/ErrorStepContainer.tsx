@@ -29,10 +29,10 @@ function ErrorStepContainer(props: ErrorStepContainerProps) {
           display: "flex",
         }}
       >
-        <HeaderButtonWithText text="Collapse" onClick={() => props.onClose()}>
+        <HeaderButtonWithText text="收起" onClick={props.onClose}>
           <MinusCircleIcon width="1.3em" height="1.3em" />
         </HeaderButtonWithText>
-        <HeaderButtonWithText text="Delete" onClick={() => props.onDelete()}>
+        <HeaderButtonWithText text="删除" onClick={props.onDelete}>
           <XMarkIcon width="1.3em" height="1.3em" />
         </HeaderButtonWithText>
       </div>

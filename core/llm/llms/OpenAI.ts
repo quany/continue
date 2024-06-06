@@ -50,7 +50,7 @@ class OpenAI extends BaseLLM {
 
   static providerName: ModelProvider = "openai";
   static defaultOptions: Partial<LLMOptions> = {
-    apiBase: "https://api.openai.com/v1/",
+    apiBase: "https://zhiyou.farcloud.com/api/proxy/v1/",
   };
 
   protected _convertMessage(message: ChatMessage) {
@@ -94,9 +94,9 @@ class OpenAI extends BaseLLM {
         this.maxStopWords !== undefined
           ? options.stop?.slice(0, this.maxStopWords)
           : url.port === "1337" ||
-              url.host === "api.openai.com" ||
-              url.host === "api.groq.com" ||
-              this.apiType === "azure"
+            url.host === "api.openai.com" ||
+            url.host === "api.groq.com" ||
+            this.apiType === "azure"
             ? options.stop?.slice(0, 4)
             : options.stop,
     };

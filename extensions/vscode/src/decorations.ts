@@ -164,7 +164,7 @@ export function showLintMessage(
   const key = constructBaseKey(editor, lineno);
   key.decorationType = vscode.window.createTextEditorDecorationType({
     after: {
-      contentText: "Linting error",
+      contentText: "检查错误",
       color: "rgb(255, 0, 0, 0.6)",
     },
     gutterIconPath: vscode.Uri.file(

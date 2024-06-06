@@ -1,5 +1,5 @@
 /**
- * This is the entry point for the extension.
+ * 这是扩展的入口点。
  */
 
 import { Telemetry } from "core/util/posthog";
@@ -11,18 +11,18 @@ async function dynamicImportAndActivate(context: vscode.ExtensionContext) {
   try {
     return activateExtension(context);
   } catch (e) {
-    console.log("Error activating extension: ", e);
+    console.log("激活扩展时出错: ", e);
     vscode.window
       .showInformationMessage(
-        "Error activating the Continue extension.",
-        "View Logs",
-        "Retry",
+        "激活 Continue 扩展时发生错误。",
+        "查看日志",
+        "重试",
       )
       .then((selection) => {
-        if (selection === "View Logs") {
+        if (selection === "查看日志") {
           vscode.commands.executeCommand("continue.viewLogs");
-        } else if (selection === "Retry") {
-          // Reload VS Code window
+        } else if (selection === "重试") {
+          // 重新加载 VS Code 窗口
           vscode.commands.executeCommand("workbench.action.reloadWindow");
         }
       });

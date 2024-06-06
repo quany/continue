@@ -81,7 +81,7 @@ function GitHubSignInButton(props: GitHubSignInButtonProps) {
             fill={vscForeground}
           />
         </svg>
-        Sign in with GitHub
+        通过GitHub登录
       </SecondaryButton>
     </div>
   );

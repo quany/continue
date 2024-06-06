@@ -18,14 +18,14 @@ function AddContextGroupDialog({
   const handleCreate = () => {
     dispatch(setDialogMessage(undefined));
     dispatch(setShowDialog(false));
-    const title = inputElement ? inputElement.value : "My Context Group";
+    const title = inputElement ? inputElement.value : "我的上下文组";
     // TODO
   };
 
   return (
     <div className="p-4">
       <Input
-        defaultValue="My Context Group"
+        defaultValue="我的上下文组"
         type="text"
         ref={(input) => {
           inputElement = input;
@@ -38,7 +38,7 @@ function AddContextGroupDialog({
       />
       <br />
       <Button className="ml-auto" onClick={handleCreate}>
-        Create
+        创建
       </Button>
     </div>
   );

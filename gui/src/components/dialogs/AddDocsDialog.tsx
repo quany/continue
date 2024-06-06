@@ -1,5 +1,5 @@
 import { usePostHog } from "posthog-js/react";
-import React, { useContext, useLayoutEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Button, Input } from "..";
@@ -15,9 +15,9 @@ const GridDiv = styled.div`
 `;
 
 function AddDocsDialog() {
-  const [docsUrl, setDocsUrl] = React.useState("");
-  const [docsTitle, setDocsTitle] = React.useState("");
-  const [urlValid, setUrlValid] = React.useState(false);
+  const [docsUrl, setDocsUrl] = useState("");
+  const [docsTitle, setDocsTitle] = useState("");
+  const [urlValid, setUrlValid] = useState(false);
   const dispatch = useDispatch();
 
   const ideMessenger = useContext(IdeMessengerContext);
@@ -26,23 +26,20 @@ function AddDocsDialog() {
   const ref = React.useRef<HTMLInputElement>(null);
   const posthog = usePostHog();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       if (ref.current) {
         ref.current.focus();
       }
     }, 100);
-  }, [ref]);
+  }, []);
 
   return (
     <div className="p-4">
-      <h3>Add Docs</h3>
+      <h3>添加文档</h3>
 
       <p>
-        Continue pre-indexes many common documentation sites, but if there's one
-        you don't see in the dropdown, enter the URL here. Continue's indexing
-        engine will crawl the site and generate embeddings so that you can ask
-        questions.
+        继续预索引许多常见文档网站，但如果在下拉列表中没有看到您需要的，可以在这里输入URL。继续的索引引擎将爬取网站并生成嵌入，以便您可以提问。
       </p>
 
       <Input
@@ -57,7 +54,7 @@ function AddDocsDialog() {
       />
       <Input
         type="text"
-        placeholder="Title"
+        placeholder="标题"
         value={docsTitle}
         onChange={(e) => setDocsTitle(e.target.value)}
       />
@@ -81,7 +78,7 @@ function AddDocsDialog() {
           posthog.capture("add_docs", { url: docsUrl });
         }}
       >
-        Done
+        完成
       </Button>
     </div>
   );

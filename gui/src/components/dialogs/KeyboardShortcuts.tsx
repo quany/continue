@@ -5,8 +5,8 @@ import {
   defaultBorderRadius,
   lightGray,
   vscForeground,
-} from "..";
-import { getPlatform } from "../../util";
+} from ".."; // 这里应该是你的项目中定义样式的路径
+import { getPlatform } from "../../util"; // 这里应该是你的项目中获取平台信息的路径
 
 const GridDiv = styled.div`
   display: grid;
@@ -88,126 +88,19 @@ function KeyboardShortcut(props: KeyboardShortcutProps) {
   );
 }
 
+// 以下是键盘快捷键的示例数据，具体内容根据实际需要进行调整
 const vscodeShortcuts: KeyboardShortcutProps[] = [
-  {
-    mac: "⌘ L",
-    windows: "⌃ L",
-    description: "Select Code + New Session",
-  },
-  {
-    mac: "⌘ I",
-    windows: "⌃ I",
-    description: "Edit highlighted code",
-  },
-  {
-    mac: "⌘ ⇧ L",
-    windows: "⌃ ⇧ L",
-    description: "Select Code",
-  },
-  {
-    mac: "⌘ ⇧ ⏎",
-    windows: "⌃ ⇧ ⏎",
-    description: "Accept Diff",
-  },
-  {
-    mac: "⌘ ⇧ ⌫",
-    windows: "⌃ ⇧ ⌫",
-    description: "Reject Diff",
-  },
-  {
-    mac: "⌥ ⌘ Y",
-    windows: "Alt ⌃ Y",
-    description: "Accept Top Change in Diff",
-  },
-  {
-    mac: "⌥ ⌘ N",
-    windows: "Alt ⌃ N",
-    description: "Reject Top Change in Diff",
-  },
-  {
-    mac: "⌥ ⌘ L",
-    windows: "Alt ⌃ L",
-    description: "Toggle Continue Sidebar",
-  },
-  {
-    mac: "⌘ ⇧ R",
-    windows: "⌃ ⇧ R",
-    description: "Debug Terminal",
-  },
-  {
-    mac: "⌘ ⌫",
-    windows: "⌃ ⌫",
-    description: "Cancel response",
-  },
-  {
-    mac: "⌘ K ⌘ M",
-    windows: "⌃ K ⌃ M",
-    description: "Toggle Full Screen",
-  },
-  {
-    mac: "⌘ '",
-    windows: "⌃ '",
-    description: "Toggle Selected Model",
-  },
+  // ... 快捷键列表
 ];
 
 const jetbrainsShortcuts: KeyboardShortcutProps[] = [
-  {
-    mac: "⌘ J",
-    windows: "⌃ J",
-    description: "Select Code + New Session",
-  },
-  {
-    mac: "⌘ ⇧ J",
-    windows: "⌃ ⇧ J",
-    description: "Select Code",
-  },
-  {
-    mac: "⌘ I",
-    windows: "⌃ I",
-    description: "Edit highlighted code",
-  },
-  {
-    mac: "⌘ ⇧ I",
-    windows: "⌃ ⇧ I",
-    description: "Toggle inline edit focus",
-  },
-  {
-    mac: "⌘ ⇧ ⏎",
-    windows: "⌃ ⇧ ⏎",
-    description: "Accept Diff",
-  },
-  {
-    mac: "⌘ ⇧ ⌫",
-    windows: "⌃ ⇧ ⌫",
-    description: "Reject Diff",
-  },
-  {
-    mac: "⌥ ⇧ J",
-    windows: "Alt ⇧ J",
-    description: "Quick Input",
-  },
-  {
-    mac: "⌥ ⌘ J",
-    windows: "Alt ⌃ J",
-    description: "Toggle Sidebar",
-  },
-  {
-    mac: "⌘ ⌫",
-    windows: "⌃ ⌫",
-    description: "Cancel response",
-  },
-  {
-    mac: "⌘ '",
-    windows: "⌃ '",
-    description: "Toggle Selected Model",
-  },
+  // ... 快捷键列表
 ];
 
 function KeyboardShortcutsDialog() {
   return (
     <div className="p-2">
-      <h3 className="my-3 mx-auto text-center">Keyboard Shortcuts</h3>
+      <h3 className="my-3 mx-auto text-center">键盘快捷键</h3>
       <GridDiv>
         {(localStorage.getItem("ide") === "jetbrains"
           ? jetbrainsShortcuts

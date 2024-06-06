@@ -90,11 +90,11 @@ function InputToolbar(props: InputToolbarProps) {
             color: lightGray,
           }}
           onClick={(e) => {
-            props.onAddContextItem();
+            props.onAddContextItem?.();
           }}
           className="hover:underline cursor-pointer"
         >
-          + Add Context
+          添加上下文
         </span>
         {defaultModel &&
           modelSupportsImages(
@@ -114,7 +114,7 @@ function InputToolbar(props: InputToolbarProps) {
                 accept=".jpg,.jpeg,.png,.gif,.svg,.webp"
                 onChange={(e) => {
                   for (const file of e.target.files) {
-                    props.onImageFileSelected(file);
+                    props.onImageFileSelected?.(file);
                   }
                 }}
               />
@@ -149,8 +149,7 @@ function InputToolbar(props: InputToolbarProps) {
             padding: "2px 4px",
           }}
         >
-          {getAltKeyLabel()} ⏎{" "}
-          {useActiveFile ? "No context" : "Use active file"}
+          {getAltKeyLabel()} ⏎ {useActiveFile ? "无上下文" : "使用活动文件"}
         </span>
       ) : (
         <span
@@ -161,31 +160,26 @@ function InputToolbar(props: InputToolbarProps) {
             padding: "2px 4px",
           }}
           onClick={(e) => {
-            props.onEnter({
+            props.onEnter?.({
               useCodebase: true,
               noContext: !useActiveFile,
             });
           }}
           className={"hover:underline cursor-pointer float-right"}
         >
-          {getMetaKeyLabel()} ⏎ Use codebase
+          {getMetaKeyLabel()} ⏎ 使用代码库
         </span>
       )}
       <EnterButton
         offFocus={props.usingCodebase}
-        // disabled={
-        //   !active &&
-        //   (!(inputRef.current as any)?.value ||
-        //     typeof client === "undefined")
-        // }
         onClick={(e) => {
-          props.onEnter({
+          props.onEnter?.({
             useCodebase: isMetaEquivalentKeyPressed(e),
             noContext: useActiveFile ? e.altKey : !e.altKey,
           });
         }}
       >
-        ⏎ Enter
+        ⏎ 输入
       </EnterButton>
     </StyledDiv>
   );

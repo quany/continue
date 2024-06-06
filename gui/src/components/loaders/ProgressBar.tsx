@@ -89,14 +89,14 @@ const ProgressBar = ({ completed, total }: ProgressBarProps) => {
           />
         </ProgressBarWrapper>
         <P>
-          Free Uses: {completed} / {total}
+          免费使用次数：{completed} / {total}
         </P>
       </GridDiv>
 
       {tooltipPortalDiv &&
         ReactDOM.createPortal(
           <StyledTooltip id="usage_progress_bar" place="top">
-            {`Click to use your own API key or local LLM (required after ${ftl()} inputs)`}
+            {`点击这里使用您自己的API密钥或本地大语言模型（在${ftl()}次输入后需要）`}
           </StyledTooltip>,
           tooltipPortalDiv,
         )}

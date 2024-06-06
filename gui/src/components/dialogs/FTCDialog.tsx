@@ -32,20 +32,19 @@ function FTCDialog() {
 
   return (
     <div className="p-4">
-      <h3>Free Trial Limit Reached</h3>
+      <h3>免费试用限制已达到</h3>
       <p>
-        You've reached the free trial limit of {ftl()} free inputs. To keep
-        using Continue, you can either use your own API key, or use a local LLM.
-        To read more about the options, see our{" "}
+        您已达到{ftl()}
+        次免费输入的免费试用限制。要继续使用Continue，您可以使用自己的API密钥，或使用本地大语言模型。要了解更多选项，请查看我们的
         <a href="https://docs.continue.dev/setup/overview" target="_blank">
-          documentation
+          文档
         </a>
-        .
+        。
       </p>
 
       <Input
         type="text"
-        placeholder="Enter your OpenAI API key"
+        placeholder="输入您的OpenAI API密钥"
         value={apiKey}
         onChange={(e) => setApiKey(e.target.value)}
       />
@@ -56,7 +55,7 @@ function FTCDialog() {
             navigate("/models");
           }}
         >
-          Select model
+          选择模型
         </Button>
         <Button
           disabled={!apiKey}
@@ -66,7 +65,7 @@ function FTCDialog() {
             dispatch(setDefaultModel({ title: "GPT-4" }));
           }}
         >
-          Use my API key
+          使用我的API密钥
         </Button>
       </GridDiv>
     </div>

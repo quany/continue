@@ -2,9 +2,9 @@ import { IndexingProgressUpdate } from "core";
 import { useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import { StyledTooltip, lightGray, vscForeground } from "..";
-import { IdeMessengerContext } from "../../context/IdeMessenger";
-import { getFontSize } from "../../util";
+import { StyledTooltip, lightGray, vscForeground } from ".."; // 确保这里的路径与项目结构相匹配
+import { IdeMessengerContext } from "../../context/IdeMessenger"; // 确保这里的路径与项目结构相匹配
+import { getFontSize } from "../../util"; // 确保这里的路径与项目结构相匹配
 
 const DIAMETER = 6;
 const CircleDiv = styled.div<{ color: string }>`
@@ -54,22 +54,24 @@ interface ProgressBarProps {
   indexingState?: IndexingProgressUpdate;
 }
 
-const IndexingProgressBar = ({ indexingState: indexingStateProp }: ProgressBarProps) => {
-  // If sidebar is opened before extension initiates, define a default indexingState
+const IndexingProgressBar = ({
+  indexingState: indexingStateProp,
+}: ProgressBarProps) => {
+  // 如果侧边栏在扩展启动之前打开，则定义一个默认的indexingState
   const defaultIndexingState: IndexingProgressUpdate = {
-    status: 'loading', 
-    progress: 0, 
-    desc: ''
+    status: "loading",
+    progress: 0,
+    desc: "",
   };
   const indexingState = indexingStateProp || defaultIndexingState;
 
-  // If sidebar is opened after extension initializes, retrieve saved states.
-  let initialized = false
+  // 如果侧边栏在扩展初始化后打开，则检索保存的状态。
+  let initialized = false;
   useEffect(() => {
     if (!initialized) {
-      // Triggers retrieval for possible non-default states set prior to IndexingProgressBar initialization
-      ideMessenger.post("index/indexingProgressBarInitialized", undefined)
-      initialized = true
+      // 触发检索可能在IndexingProgressBar初始化之前设置的非默认状态
+      ideMessenger.post("index/indexingProgressBarInitialized", undefined);
+      initialized = true;
     }
   }, []);
 
@@ -105,7 +107,7 @@ const IndexingProgressBar = ({ indexingState: indexingStateProp }: ProgressBarPr
       }}
       className="cursor-pointer"
     >
-      {indexingState.status === "loading" ? ( // ice-blue 'indexing loading' dot
+      {indexingState.status === "loading" ? ( // 冰蓝色 '索引加载中' 点
         <>
           <CircleDiv
             data-tooltip-id="indexingNotLoaded_dot"
@@ -114,12 +116,12 @@ const IndexingProgressBar = ({ indexingState: indexingStateProp }: ProgressBarPr
           {tooltipPortalDiv &&
             ReactDOM.createPortal(
               <StyledTooltip id="indexingNotLoaded_dot" place="top">
-                Continue is initializing
+                继续正在初始化
               </StyledTooltip>,
               tooltipPortalDiv,
             )}
         </>
-      ) : indexingState.status === "failed" ? ( //red 'failed' dot
+      ) : indexingState.status === "failed" ? ( // 红色 '失败' 点
         <>
           <CircleDiv
             data-tooltip-id="indexingFailed_dot"
@@ -128,25 +130,25 @@ const IndexingProgressBar = ({ indexingState: indexingStateProp }: ProgressBarPr
           {tooltipPortalDiv &&
             ReactDOM.createPortal(
               <StyledTooltip id="indexingFailed_dot" place="top">
-                Error indexing codebase: {indexingState.desc}
+                索引代码库错误：{indexingState.desc}
                 <br />
-                Click to retry
+                点击重试
               </StyledTooltip>,
               tooltipPortalDiv,
             )}
         </>
-      ) : indexingState.status === "done" ? ( //indexing complete green dot
+      ) : indexingState.status === "done" ? ( // 索引完成绿色点
         <>
           <CircleDiv data-tooltip-id="progress_dot" color="#090"></CircleDiv>
           {tooltipPortalDiv &&
             ReactDOM.createPortal(
               <StyledTooltip id="progress_dot" place="top">
-                Index up to date. Click to force re-indexing
+                索引已更新。点击强制重新索引
               </StyledTooltip>,
               tooltipPortalDiv,
             )}
         </>
-      ) : indexingState.status === "disabled" ? ( //gray disabled dot
+      ) : indexingState.status === "disabled" ? ( // 灰色禁用点
         <>
           <CircleDiv
             data-tooltip-id="progress_dot"
@@ -162,7 +164,7 @@ const IndexingProgressBar = ({ indexingState: indexingStateProp }: ProgressBarPr
         </>
       ) : indexingState.status === "paused" ||
         (paused && indexingState.status === "indexing") ? (
-        //yellow 'paused' dot
+        // 黄色 '已暂停' 点
         <>
           <CircleDiv
             data-tooltip-id="progress_dot"
@@ -174,13 +176,12 @@ const IndexingProgressBar = ({ indexingState: indexingStateProp }: ProgressBarPr
           {tooltipPortalDiv &&
             ReactDOM.createPortal(
               <StyledTooltip id="progress_dot" place="top">
-                Click to unpause indexing (
-                {Math.trunc(indexingState.progress * 100)}%)
+                点击继续索引 ({Math.trunc(indexingState.progress * 100)}%)
               </StyledTooltip>,
               tooltipPortalDiv,
             )}
         </>
-      ) : indexingState.status === "indexing" ? ( //progress bar
+      ) : indexingState.status === "indexing" ? ( // 进度条
         <>
           <GridDiv
             data-tooltip-id="usage_progress_bar"
@@ -195,8 +196,8 @@ const IndexingProgressBar = ({ indexingState: indexingStateProp }: ProgressBarPr
             </ProgressBarWrapper>
             <P>
               {hovered
-                ? "Click to pause"
-                : `Indexing (${Math.trunc(indexingState.progress * 100)}%)`}
+                ? "点击暂停"
+                : `索引中 (${Math.trunc(indexingState.progress * 100)}%)`}
             </P>
           </GridDiv>
           {tooltipPortalDiv &&

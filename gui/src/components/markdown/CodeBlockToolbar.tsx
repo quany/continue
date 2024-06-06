@@ -61,6 +61,7 @@ const commonTerminalCommands = [
   "ruby",
   "bundle",
 ];
+
 function isTerminalCodeBlock(language: string | undefined, text: string) {
   return (
     terminalLanguages.includes(language) ||
@@ -83,10 +84,10 @@ function CodeBlockToolBar(props: CodeBlockToolBarProps) {
           <HeaderButtonWithText
             text={
               isTerminalCodeBlock(props.language, props.text)
-                ? "Run in terminal"
+                ? "在终端中运行"
                 : applying
-                  ? "Applying..."
-                  : "Apply to current file"
+                ? "正在应用..."
+                : "应用于当前文件"
             }
             disabled={applying}
             style={{ backgroundColor: vscEditorBackground }}
@@ -116,7 +117,7 @@ function CodeBlockToolBar(props: CodeBlockToolBarProps) {
           </HeaderButtonWithText>
         )}
         <HeaderButtonWithText
-          text="Insert at cursor"
+          text="在光标处插入"
           style={{ backgroundColor: vscEditorBackground }}
           onClick={() => {
             ideMessenger.post("insertAtCursor", { text: props.text });
