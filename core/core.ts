@@ -225,7 +225,7 @@ export class Core {
         new TransformersJsEmbeddingsProvider(),
       )) {
       }
-      this.ide.infoPopup(`🎉 Successfully indexed ${msg.data.title}`);
+      this.ide.infoPopup(`🎉已成功索引${msg.data.title}`);
       this.messenger.send("refreshSubmenuItems", undefined);
     });
     on("context/loadSubmenuItems", async (msg) => {
