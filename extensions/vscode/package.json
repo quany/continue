@@ -17,9 +17,9 @@
   "homepage": "https://continue.dev",
   "qna": "https://github.com/continuedev/continue/issues/new/choose",
   "license": "Apache-2.0",
-  "displayName": "Continue - Codestral, GPT-4o, and more",
-  "pricing": "Free",
-  "description": "Open-source autopilot - build your own AI software development system",
+  "displayName": "Continue - Codestral、GPT-4o 及更多",
+  "pricing": "免费",
+  "description": "开源自动驾驶 - 构建您自己的 AI 软件开发系统",
   "publisher": "Continue",
   "engines": {
     "vscode": "^1.70.0",
@@ -31,10 +31,10 @@
     "theme": "dark"
   },
   "categories": [
-    "Programming Languages",
-    "Education",
-    "Machine Learning",
-    "Snippets"
+    "编程语言",
+    "教育",
+    "机器学习",
+    "代码片段"
   ],
   "keywords": [
     "chatgpt",
@@ -59,32 +59,32 @@
         "continue.telemetryEnabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Continue collects anonymous usage data, cleaned of PII, to help us improve the product for our users. Read more  at [continue.dev › Telemetry](https://docs.continue.dev/telemetry)."
+          "markdownDescription": "Continue 收集匿名的使用数据，去除个人身份信息，以帮助我们改进产品。了解更多信息请访问 [continue.dev › Telemetry](https://docs.continue.dev/telemetry)。"
         },
         "continue.showInlineTip": {
           "type": "boolean",
           "default": true,
-          "description": "Show inline suggestion to use the Continue keyboard shortcuts (e.g. \"Cmd/Ctrl L to select code, Cmd/Ctrl I to edit\")."
+          "description": "显示使用 Continue 键盘快捷键的内联建议（例如“Cmd/Ctrl L 选择代码，Cmd/Ctrl I 编辑”）。"
         },
         "continue.enableTabAutocomplete": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Enable Continue's tab autocomplete feature. Read our walkthrough to learn about configuration and how to share feedback: [continue.dev › Walkthrough: Tab Autocomplete](https://docs.continue.dev/walkthroughs/tab-autocomplete)"
+          "markdownDescription": "启用 Continue 的 Tab 自动补全功能。阅读我们的使用指南了解配置和反馈共享：[continue.dev › 使用指南：Tab 自动补全](https://docs.continue.dev/walkthroughs/tab-autocomplete)"
         },
         "continue.remoteConfigServerUrl": {
           "type": "string",
           "default": null,
-          "markdownDescription": "If your team is set up to use shared configuration, enter the server URL here and your user token below to enable automatic syncing."
+          "markdownDescription": "如果您的团队已设置共享配置，请在此处输入服务器 URL，并在下方输入用户令牌以启用自动同步。"
         },
         "continue.userToken": {
           "type": "string",
           "default": null,
-          "markdownDescription": "If your team is set up to use shared configuration, enter your user token here and your server URL above to enable automatic syncing."
+          "markdownDescription": "如果您的团队已设置共享配置，请在此处输入您的用户令牌，并在上方输入服务器 URL 以启用自动同步。"
         },
         "continue.remoteConfigSyncPeriod": {
           "type": "number",
           "default": 60,
-          "description": "The period of time in minutes between automatic syncs."
+          "description": "自动同步的时间间隔（分钟）。"
         }
       }
     },
@@ -92,131 +92,131 @@
       {
         "command": "continue.acceptDiff",
         "category": "Continue",
-        "title": "Accept Diff",
+        "title": "接受差异",
         "group": "Continue"
       },
       {
         "command": "continue.rejectDiff",
         "category": "Continue",
-        "title": "Reject Diff",
+        "title": "拒绝差异",
         "group": "Continue",
         "icon": "$(stop)"
       },
       {
         "command": "continue.acceptVerticalDiffBlock",
         "category": "Continue",
-        "title": "Accept Vertical Diff Block",
+        "title": "接受垂直差异块",
         "group": "Continue"
       },
       {
         "command": "continue.rejectVerticalDiffBlock",
         "category": "Continue",
-        "title": "Reject Vertical Diff Block",
+        "title": "拒绝垂直差异块",
         "group": "Continue"
       },
       {
         "command": "continue.quickEdit",
         "category": "Continue",
-        "title": "Generate Code",
+        "title": "生成代码",
         "group": "Continue"
       },
       {
         "command": "continue.toggleAuxiliaryBar",
         "category": "Continue",
-        "title": "Toggle Right Sidebar",
+        "title": "切换右侧边栏",
         "group": "Continue"
       },
       {
         "command": "continue.focusContinueInput",
         "category": "Continue",
-        "title": "Add Highlighted Code to Context",
+        "title": "将突出显示的代码添加到上下文",
         "group": "Continue"
       },
       {
         "command": "continue.focusContinueInputWithoutClear",
         "category": "Continue",
-        "title": "Add Highlighted Code to Context",
+        "title": "将突出显示的代码添加到上下文",
         "group": "Continue"
       },
       {
         "command": "continue.debugTerminal",
         "category": "Continue",
-        "title": "Continue: Debug Terminal",
+        "title": "Continue：调试终端",
         "group": "Continue"
       },
       {
         "command": "continue.toggleFullScreen",
         "category": "Continue",
-        "title": "Toggle Full Screen",
+        "title": "切换全屏",
         "icon": "$(fullscreen)",
         "group": "Continue"
       },
       {
         "command": "continue.openConfigJson",
         "category": "Continue",
-        "title": "Open config.json",
+        "title": "打开 config.json",
         "group": "Continue"
       },
       {
         "command": "continue.toggleTabAutocompleteEnabled",
         "category": "Continue",
-        "title": "Toggle Autocomplete Enabled",
+        "title": "切换自动补全启用",
         "group": "Continue"
       },
       {
         "command": "continue.shareSession",
         "category": "Continue",
-        "title": "Share Session",
+        "title": "分享会话",
         "group": "Continue"
       },
       {
         "command": "continue.selectFilesAsContext",
         "category": "Continue",
-        "title": "Continue: Select Files as Context",
+        "title": "Continue：选择文件作为上下文",
         "group": "Continue"
       },
       {
         "command": "continue.newSession",
         "category": "Continue",
-        "title": "New Session",
+        "title": "新会话",
         "icon": "$(add)",
         "group": "Continue"
       },
       {
         "command": "continue.viewHistory",
         "category": "Continue",
-        "title": "View History",
+        "title": "查看历史",
         "icon": "$(history)",
         "group": "Continue"
       },
       {
         "command": "continue.writeCommentsForCode",
         "category": "Continue",
-        "title": "Write Comments for this Code",
+        "title": "为此代码编写注释",
         "group": "Continue"
       },
       {
         "command": "continue.writeDocstringForCode",
         "category": "Continue",
-        "title": "Write a Docstring for this Code",
+        "title": "为此代码编写文档字符串",
         "group": "Continue"
       },
       {
         "command": "continue.fixCode",
         "category": "Continue",
-        "title": "Fix this Code",
+        "title": "修复此代码",
         "group": "Continue"
       },
       {
         "command": "continue.optimizeCode",
         "category": "Continue",
-        "title": "Optimize this Code",
+        "title": "优化此代码",
         "group": "Continue"
       },
       {
         "command": "continue.fixGrammar",
         "category": "Continue",
-        "title": "Fix Grammar / Spelling",
+        "title": "修复语法/拼写",
         "group": "Continue"
       }
     ],
@@ -418,36 +418,36 @@
     "walkthroughs": [
       {
         "id": "continue",
-        "title": "Getting Started",
-        "description": "Learn how to use Continue",
+        "title": "开始使用",
+        "description": "学习如何使用 Continue",
         "steps": [
           {
             "id": "edit",
-            "title": "Edit in natural language",
-            "description": "Highlight a section of code and instruct Continue to refactor it (e.g. `/edit rewrite this function to be async`)",
+            "title": "用自然语言编辑",
+            "description": "高亮选中一段代码并指示 Continue 进行重构（例如“/edit 将此函数重写为异步函数”）",
             "media": {
               "image": "media/edit.png",
-              "altText": "Empty image"
+              "altText": "空图片"
             },
             "completionEvents": []
           },
           {
             "id": "explain",
-            "title": "Get possible explanations",
-            "description": "Ask Continue about a part of your code to get another perspective (e.g. `where in the page should I be making this request to the backend?`)",
+            "title": "获取可能的解释",
+            "description": "询问 Continue 关于您代码的一部分以获取另一种观点（例如“我应该在页面的哪个位置向后端发送请求？”）",
             "media": {
               "image": "media/explain.png",
-              "altText": "Empty image"
+              "altText": "空图片"
             },
             "completionEvents": []
           },
           {
             "id": "generate",
-            "title": "Generate files from scratch",
-            "description": "Let Continue build the scaffolding of Python scripts, React components, and more (e.g. `/edit here is a connector for postgres, now write one for kafka`)",
+            "title": "从头生成文件",
+            "description": "让 Continue 构建 Python 脚本、React 组件等的脚手架（例如“/edit 这里是一个 postgres 的连接器，现在写一个 kafka 的连接器”）",
             "media": {
               "image": "media/generate.png",
-              "altText": "Empty image"
+              "altText": "空图片"
             },
             "completionEvents": []
           }

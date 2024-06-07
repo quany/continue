@@ -56,12 +56,13 @@ import {
 } from "../util";
 import { getLocalStorage, setLocalStorage } from "../util/localStorage";
 
+// 顶部 GUI 容器样式
 const TopGuiDiv = styled.div`
   overflow-y: scroll;
 
   scrollbar-width: none; /* Firefox */
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
+  /* 隐藏 Chrome, Safari 和 Opera 的滚动条 */
   &::-webkit-scrollbar {
     display: none;
   }
@@ -69,6 +70,7 @@ const TopGuiDiv = styled.div`
   height: 100%;
 `;
 
+// 停止按钮样式
 const StopButton = styled.div`
   width: fit-content;
   margin-right: auto;
@@ -84,6 +86,7 @@ const StopButton = styled.div`
   cursor: pointer;
 `;
 
+// 步骤容器样式
 const StepsDiv = styled.div`
   position: relative;
   background-color: transparent;
@@ -91,19 +94,9 @@ const StepsDiv = styled.div`
   & > * {
     position: relative;
   }
-
-  // Gray, vertical line on the left ("thread")
-  // &::before {
-  //   content: "";
-  //   position: absolute;
-  //   height: calc(100% - 12px);
-  //   border-left: 2px solid ${lightGray};
-  //   left: 28px;
-  //   z-index: 0;
-  //   bottom: 12px;
-  // }
 `;
 
+// 新会话按钮样式
 const NewSessionButton = styled.div`
   width: fit-content;
   margin-right: auto;
@@ -124,8 +117,9 @@ const NewSessionButton = styled.div`
   cursor: pointer;
 `;
 
+// 错误边界的回退渲染函数
 function fallbackRender({ error, resetErrorBoundary }) {
-  // Call resetErrorBoundary() to reset the error boundary and retry the render.
+  // 调用 resetErrorBoundary() 来重置错误边界并重试渲染。
 
   return (
     <div
@@ -133,36 +127,34 @@ function fallbackRender({ error, resetErrorBoundary }) {
       className="px-2"
       style={{ backgroundColor: vscBackground }}
     >
-      <p>Something went wrong:</p>
+      <p>出了点问题：</p>
       <pre style={{ color: "red" }}>{error.message}</pre>
 
       <div className="text-center">
-        <Button onClick={resetErrorBoundary}>Restart</Button>
+        <Button onClick={resetErrorBoundary}>重新启动</Button>
       </div>
     </div>
   );
 }
 
+// GUI 组件的属性接口定义
 interface GUIProps {
   firstObservation?: any;
 }
 
+// GUI 组件定义
 function GUI(props: GUIProps) {
   // #region Hooks
   const posthog = usePostHog();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const ideMessenger = useContext(IdeMessengerContext);
-
   // #endregion
 
   // #region Selectors
   const sessionState = useSelector((state: RootState) => state.state);
-
   const defaultModel = useSelector(defaultModelSelector);
-
   const active = useSelector((state: RootState) => state.state.active);
-
   // #endregion
 
   // #region State
@@ -174,7 +166,6 @@ function GUI(props: GUIProps) {
       setShowLoading(true);
     }, 5000);
   }, []);
-
   // #endregion
 
   const mainTextInputRef = useRef<HTMLInputElement>(null);
@@ -188,7 +179,7 @@ function GUI(props: GUIProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Scroll only if user is within 200 pixels of the bottom of the window.
+      // 仅当用户在窗口底部 200 像素范围内时滚动。
       const edgeOffset = -25;
       const scrollPosition = topGuiDivRef.current?.scrollTop || 0;
       const scrollHeight = topGuiDivRef.current?.scrollHeight || 0;
@@ -218,7 +209,7 @@ function GUI(props: GUIProps) {
   }, [topGuiDivRef.current?.scrollHeight, sessionState.history]);
 
   useEffect(() => {
-    // Cmd + Backspace to delete current step
+    // Cmd + Backspace 删除当前步骤
     const listener = (e: any) => {
       if (
         e.key === "Backspace" &&
@@ -234,7 +225,6 @@ function GUI(props: GUIProps) {
       window.removeEventListener("keydown", listener);
     };
   }, [active]);
-
   // #endregion
 
   const { streamResponse } = useChatHandler(dispatch, ideMessenger);
@@ -258,7 +248,7 @@ function GUI(props: GUIProps) {
 
       streamResponse(editorState, modifiers, ideMessenger);
 
-      // Increment localstorage counter for popup
+      // 增加弹出窗口的 localstorage 计数器
       const currentCount = getLocalStorage("mainTextEntryCounter");
       if (currentCount) {
         setLocalStorage("mainTextEntryCounter", currentCount + 1);
@@ -266,10 +256,8 @@ function GUI(props: GUIProps) {
           dispatch(
             setDialogMessage(
               <div className="text-center p-4">
-                👋 Thanks for using Continue. We are always trying to improve
-                and love hearing from users. If you're interested in speaking,
-                enter your name and email. We won't use this information for
-                anything other than reaching out.
+                👋 感谢使用
+                Continue。我们一直在努力改进，并且喜欢听取用户的意见。如果您有兴趣与我们交流，请输入您的姓名和电子邮件。我们不会将这些信息用于除联系您之外的其他用途。
                 <br />
                 <br />
                 <form
@@ -282,7 +270,7 @@ function GUI(props: GUIProps) {
                     dispatch(
                       setDialogMessage(
                         <div className="text-center p-4">
-                          Thanks! We'll be in touch soon.
+                          谢谢！我们会尽快与您联系。
                         </div>,
                       ),
                     );
@@ -297,14 +285,14 @@ function GUI(props: GUIProps) {
                     style={{ padding: "10px", borderRadius: "5px" }}
                     type="text"
                     name="name"
-                    placeholder="Name"
+                    placeholder="姓名"
                     required
                   />
                   <input
                     style={{ padding: "10px", borderRadius: "5px" }}
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder="电子邮件"
                     required
                   />
                   <button
@@ -315,7 +303,7 @@ function GUI(props: GUIProps) {
                     }}
                     type="submit"
                   >
-                    Submit
+                    提交
                   </button>
                 </form>
               </div>,
@@ -447,8 +435,7 @@ function GUI(props: GUIProps) {
                               {
                                 messageType: "userInput",
                                 data: {
-                                  input:
-                                    "Continue your response exactly where you left off:",
+                                  input: "继续你刚才的回应从你上次的地方开始:",
                                 },
                               },
                               "*",
@@ -485,7 +472,7 @@ function GUI(props: GUIProps) {
               }}
               className="mr-auto"
             >
-              New Session ({getMetaKeyLabel()} {isJetBrains() ? "J" : "L"})
+              新会话 ({getMetaKeyLabel()} {isJetBrains() ? "J" : "L"})
             </NewSessionButton>
           ) : getLastSessionId() ? (
             <NewSessionButton
@@ -495,7 +482,7 @@ function GUI(props: GUIProps) {
               className="mr-auto flex items-center gap-1"
             >
               <ArrowLeftIcon width="11px" height="11px" />
-              Last Session
+              上次会话
             </NewSessionButton>
           ) : null}
         </div>
@@ -513,7 +500,7 @@ function GUI(props: GUIProps) {
             }
           }}
         >
-          {getMetaKeyLabel()} ⌫ Cancel
+          {getMetaKeyLabel()} ⌫ 取消
         </StopButton>
       )}
     </>

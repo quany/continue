@@ -1,22 +1,157 @@
+import * as child_process from "node:child_process";
+import { exec } from "node:child_process";
+import * as path from "node:path";
 
 import type {
+  ContinueRcJson,
   FileType,
   IDE,
   IdeInfo,
   IndexTag,
   Problem,
-  Range,
-  Thread
+  Thread,
 } from "core";
+import { Range } from "core";
+import { defaultIgnoreFile } from "core/indexing/ignore";
 import { IdeSettings } from "core/protocol/ideWebview";
+import {
+  editConfigJson,
+  getConfigJsonPath,
+  getContinueGlobalPath,
+} from "core/util/paths";
 import * as vscode from "vscode";
+import { DiffManager } from "./diff/horizontal";
 import { Repository } from "./otherExtensions/git";
+import { VsCodeIdeUtils } from "./util/ideUtils";
+import { traverseDirectory } from "./util/traverseDirectory";
+import {
+  getExtensionUri,
+  openEditorAndRevealRange,
+  uriFromFilePath,
+} from "./util/vscode";
+import { VsCodeWebviewProtocol } from "./webviewProtocol";
 
 class VsCodeIde implements IDE {
-  // ... 类的实现部分保持不变
+  ideUtils: VsCodeIdeUtils;
+
+  constructor(
+    private readonly diffManager: DiffManager,
+    private readonly vscodeWebviewProtocolPromise: Promise<VsCodeWebviewProtocol>,
+  ) {
+    this.ideUtils = new VsCodeIdeUtils();
+  }
+
+  private authToken: string | undefined;
+  private askedForAuth = false;
 
   async getGitHubAuthToken(): Promise<string | undefined> {
-    // ... 获取 GitHub 授权令牌的方法实现
+    // Saved auth token
+    if (this.authToken) {
+      return this.authToken;
+    }
+
+    // Try to ask silently
+    const session = await vscode.authentication.getSession("github", [], {
+      silent: true,
+    });
+    if (session) {
+      this.authToken = session.accessToken;
+      return this.authToken;
+    }
+
+    try {
+      // If we haven't asked yet, give explanation of what is happening and why
+      // But don't wait to return this immediately
+      // We will use a callback to refresh the config
+      if (!this.askedForAuth) {
+        vscode.window
+          .showInformationMessage(
+            "Continue 将请求读取您的 GitHub 邮箱权限，以便我们能够防止免费试用的滥用。如果您不想登录，您可以使用您自己的 API 密钥或本地模型来使用 Continue。",
+            "登录",
+            "使用 API 密钥 / 本地模型",
+            "了解更多",
+          )
+          .then(async (selection) => {
+            if (selection === "使用 API 密钥 / 本地模型") {
+              await vscode.commands.executeCommand(
+                "continue.continueGUIView.focus",
+              );
+              (await this.vscodeWebviewProtocolPromise).request(
+                "openOnboarding",
+                undefined,
+              );
+
+              // Remove free trial models
+              editConfigJson((config) => {
+                const tabAutocompleteModel =
+                  config.tabAutocompleteModel?.provider === "free-trial"
+                    ? undefined
+                    : config.tabAutocompleteModel;
+                return {
+                  ...config,
+                  models: config.models.filter(
+                    (model) => model.provider !== "free-trial",
+                  ),
+                  tabAutocompleteModel,
+                };
+              });
+            } else if (selection === "了解更多") {
+              vscode.env.openExternal(
+                vscode.Uri.parse(
+                  "https://docs.continue.dev/reference/Model%20Providers/freetrial",
+                ),
+              );
+            } else if (selection === "登录") {
+              const session = await vscode.authentication.getSession(
+                "github",
+                [],
+                {
+                  createIfNone: true,
+                },
+              );
+              if (session) {
+                this.authToken = session.accessToken;
+              }
+            }
+          });
+        this.askedForAuth = true;
+        return undefined;
+      }
+
+      const session = await vscode.authentication.getSession("github", [], {
+        silent: this.askedForAuth,
+        createIfNone: !this.askedForAuth,
+      });
+      if (session) {
+        this.authToken = session.accessToken;
+        return session.accessToken;
+      } else if (!this.askedForAuth) {
+        // User cancelled the login prompt
+        // Explain that they can avoid the prompt by removing free trial models from config.json
+        vscode.window
+          .showInformationMessage(
+            "我们只会在使用免费试用时要求您登录。为了避免这个提示，请确保从您的 config.json 中移除免费试用模型。",
+            "替我移除",
+            "打开 config.json",
+          )
+          .then((selection) => {
+            if (selection === "替我移除") {
+              editConfigJson((configJson) => {
+                configJson.models = configJson.models.filter(
+                  (model) => model.provider !== "free-trial",
+                );
+                configJson.tabAutocompleteModel = undefined;
+                return configJson;
+              });
+            } else if (selection === "打开 config.json") {
+              this.openFile(getConfigJsonPath());
+            }
+          });
+      }
+    } catch (error) {
+      console.error("Failed to get GitHub authentication session:", error);
+    }
+    return undefined;
   }
 
   async infoPopup(message: string): Promise<void> {
@@ -28,90 +163,188 @@ class VsCodeIde implements IDE {
   }
 
   async getRepoName(dir: string): Promise<string | undefined> {
-    // ... 获取仓库名称的方法实现
+    const repo = await this.getRepo(vscode.Uri.file(dir));
+    const remotes = repo?.state.remotes;
+    if (!remotes) {
+      return undefined;
+    }
+    const remote =
+      remotes?.find((r: any) => r.name === "origin") ?? remotes?.[0];
+    if (!remote) {
+      return undefined;
+    }
+    const ownerAndRepo = remote.fetchUrl
+      ?.replace(".git", "")
+      .split("/")
+      .slice(-2);
+    return ownerAndRepo?.join("/");
   }
 
   async getTags(artifactId: string): Promise<IndexTag[]> {
-    // ... 获取标签的方法实现
-  }
+    const workspaceDirs = await this.getWorkspaceDirs();
 
+    const branches = await Promise.all(
+      workspaceDirs.map((dir) => this.getBranch(dir)),
+    );
+
+    const tags: IndexTag[] = workspaceDirs.map((directory, i) => ({
+      directory,
+      branch: branches[i],
+      artifactId,
+    }));
+
+    return tags;
+  }
   getIdeInfo(): Promise<IdeInfo> {
-    // ... 获取 IDE 信息的方法实现
+    return Promise.resolve({
+      ideType: "vscode",
+      name: vscode.env.appName,
+      version: vscode.version,
+      remoteName: vscode.env.remoteName || "local",
+      extensionVersion:
+        vscode.extensions.getExtension("continue.continue")?.packageJSON
+          .version,
+    });
   }
-
   readRangeInFile(filepath: string, range: Range): Promise<string> {
-    // ... 读取文件范围内内容的方法实现
+    return this.ideUtils.readRangeInFile(
+      filepath,
+      new vscode.Range(
+        new vscode.Position(range.start.line, range.start.character),
+        new vscode.Position(range.end.line, range.end.character),
+      ),
+    );
   }
 
   async getLastModified(files: string[]): Promise<{ [path: string]: number }> {
-    // ... 获取最后修改时间的方法实现
+    const pathToLastModified: { [path: string]: number } = {};
+    await Promise.all(
+      files.map(async (file) => {
+        const stat = await vscode.workspace.fs.stat(uriFromFilePath(file));
+        pathToLastModified[file] = stat.mtime;
+      }),
+    );
+
+    return pathToLastModified;
   }
 
   async getRepo(dir: vscode.Uri): Promise<Repository | undefined> {
-    // ... 获取仓库的方法实现
+    return this.ideUtils.getRepo(dir);
   }
 
   async isTelemetryEnabled(): Promise<boolean> {
-    // ... 检查是否启用了遥测的方法实现
+    return (
+      (await vscode.workspace
+        .getConfiguration("continue")
+        .get("telemetryEnabled")) ?? true
+    );
   }
-
   getUniqueId(): Promise<string> {
-    // ... 获取唯一标识的方法实现
+    return Promise.resolve(vscode.env.machineId);
   }
 
   async getDiff(): Promise<string> {
-    // ... 获取差异的方法实现
+    return await this.ideUtils.getDiff();
   }
 
   async getTerminalContents(): Promise<string> {
-    // ... 获取终端内容的方法实现
+    return await this.ideUtils.getTerminalContents(1);
   }
 
   async getDebugLocals(threadIndex: number): Promise<string> {
-    // ... 获取调试局部变量的方法实现
+    return await this.ideUtils.getDebugLocals(threadIndex);
   }
 
   async getTopLevelCallStackSources(
     threadIndex: number,
     stackDepth: number,
   ): Promise<string[]> {
-    // ... 获取顶级调用堆栈源的方法实现
+    return await this.ideUtils.getTopLevelCallStackSources(
+      threadIndex,
+      stackDepth,
+    );
   }
-
   async getAvailableThreads(): Promise<Thread[]> {
-    // ... 获取可用线程的方法实现
+    return await this.ideUtils.getAvailableThreads();
   }
 
-  async listWorkspaceContents(directory?: string): Promise<string[]> {
-    // ... 列出工作区内容的方法实现
+  async listWorkspaceContents(
+    directory?: string,
+    useGitIgnore?: boolean,
+  ): Promise<string[]> {
+    if (directory) {
+      return await this.ideUtils.getDirectoryContents(
+        directory,
+        true,
+      );
+    }
+    const contents = await Promise.all(
+      this.ideUtils
+        .getWorkspaceDirectories()
+        .map((dir) =>
+          this.ideUtils.getDirectoryContents(dir, true),
+        ),
+    );
+    return contents.flat();
   }
 
   async getWorkspaceConfigs() {
-    // ... 获取工作区配置的方法实现
+    const workspaceDirs =
+      vscode.workspace.workspaceFolders?.map((folder) => folder.uri) || [];
+    const configs: ContinueRcJson[] = [];
+    for (const workspaceDir of workspaceDirs) {
+      const files = await vscode.workspace.fs.readDirectory(workspaceDir);
+      for (const [filename, type] of files) {
+        if (type === vscode.FileType.File && filename === ".continuerc.json") {
+          const contents = await this.ideUtils.readFile(
+            vscode.Uri.joinPath(workspaceDir, filename).fsPath,
+          );
+          configs.push(JSON.parse(contents));
+        }
+      }
+    }
+    return configs;
   }
 
   async listFolders(): Promise<string[]> {
-    // ... 列出文件夹的方法实现
+    const allDirs: string[] = [];
+
+    const workspaceDirs = await this.getWorkspaceDirs();
+    for (const directory of workspaceDirs) {
+      for await (const dir of traverseDirectory(
+        directory,
+        [],
+        false,
+        undefined,
+      )) {
+        allDirs.push(dir);
+      }
+    }
+
+    return allDirs;
   }
 
   async getWorkspaceDirs(): Promise<string[]> {
-    // ... 获取工作区目录的方法实现
+    return this.ideUtils.getWorkspaceDirectories();
   }
 
   async getContinueDir(): Promise<string> {
-    // ... 获取 Continue 目录的方法实现
+    return getContinueGlobalPath();
   }
 
   async writeFile(path: string, contents: string): Promise<void> {
-    // ... 写文件的方法实现
+    await vscode.workspace.fs.writeFile(
+      vscode.Uri.file(path),
+      Buffer.from(contents),
+    );
   }
 
   async showVirtualFile(title: string, contents: string): Promise<void> {
-    // ... 显示虚拟文件的方法实现
+    this.ideUtils.showVirtualFile(title, contents);
   }
 
   async openFile(path: string): Promise<void> {
-    // ... 打开文件的方法实现
+    this.ideUtils.openFile(path);
   }
 
   async showLines(
@@ -119,67 +352,173 @@ class VsCodeIde implements IDE {
     startLine: number,
     endLine: number,
   ): Promise<void> {
-    // ... 显示行的方法实现
+    const range = new vscode.Range(
+      new vscode.Position(startLine, 0),
+      new vscode.Position(endLine, 0),
+    );
+    openEditorAndRevealRange(filepath, range).then(() => {
+      // TODO: Highlight lines
+      // this.ideUtils.highlightCode(
+      //   {
+      //     filepath,
+      //     range,
+      //   },
+      //   "#fff1"
+      // );
+    });
   }
 
   async runCommand(command: string): Promise<void> {
-    // ... 运行命令的方法实现
+    if (vscode.window.terminals.length) {
+      const terminal =
+        vscode.window.activeTerminal ?? vscode.window.terminals[0];
+      terminal.show();
+      terminal.sendText(command, false);
+    } else {
+      const terminal = vscode.window.createTerminal();
+      terminal.show();
+      terminal.sendText(command, false);
+    }
   }
 
   async saveFile(filepath: string): Promise<void> {
-    // ... 保存文件的方法实现
+    await this.ideUtils.saveFile(filepath);
   }
-
   async readFile(filepath: string): Promise<string> {
-    // ... 读取文件的方法实现
+    return await this.ideUtils.readFile(filepath);
   }
-
   async showDiff(
     filepath: string,
     newContents: string,
     stepIndex: number,
   ): Promise<void> {
-    // ... 显示差异的方法实现
+    await this.diffManager.writeDiff(filepath, newContents, stepIndex);
   }
 
   async getOpenFiles(): Promise<string[]> {
-    // ... 获取打开的文件的方法实现
+    return await this.ideUtils.getOpenFiles();
   }
 
   async getCurrentFile(): Promise<string | undefined> {
-    // ... 获取当前文件的方法实现
+    return vscode.window.activeTextEditor?.document.uri.fsPath;
   }
 
   async getPinnedFiles(): Promise<string[]> {
-    // ... 获取固定的文件的方法实现
+    const tabArray = vscode.window.tabGroups.all[0].tabs;
+
+    return tabArray
+      .filter((t) => t.isPinned)
+      .map((t) => (t.input as vscode.TabInputText).uri.fsPath);
+  }
+
+  private async _searchDir(query: string, dir: string): Promise<string> {
+    const p = child_process.spawn(
+      path.join(
+        getExtensionUri().fsPath,
+        "out",
+        "node_modules",
+        "@vscode",
+        "ripgrep",
+        "bin",
+        "rg",
+      ),
+      ["-i", "-C", "2", "--", `${query}`, "."], //no regex
+      //["-i", "-C", "2", "-e", `${query}`, "."], //use regex
+      { cwd: dir },
+    );
+    let output = "";
+
+    p.stdout.on("data", (data) => {
+      output += data.toString();
+    });
+
+    return new Promise<string>((resolve, reject) => {
+      p.on("error", reject);
+      p.on("close", (code) => {
+        if (code === 0) {
+          resolve(output);
+        } else {
+          reject(new Error(`Process exited with code ${code}`));
+        }
+      });
+    });
   }
 
   async getSearchResults(query: string): Promise<string> {
-    // ... 获取搜索结果的方法实现
+    const results = [];
+    for (const dir of await this.getWorkspaceDirs()) {
+      results.push(await this._searchDir(query, dir));
+    }
+
+    return results.join("\n\n");
   }
 
   async getProblems(filepath?: string | undefined): Promise<Problem[]> {
-    // ... 获取问题的方法实现
+    const uri = filepath
+      ? vscode.Uri.file(filepath)
+      : vscode.window.activeTextEditor?.document.uri;
+    if (!uri) {
+      return [];
+    }
+    return vscode.languages.getDiagnostics(uri).map((d) => {
+      return {
+        filepath: uri.fsPath,
+        range: {
+          start: {
+            line: d.range.start.line,
+            character: d.range.start.character,
+          },
+          end: { line: d.range.end.line, character: d.range.end.character },
+        },
+        message: d.message,
+      };
+    });
   }
 
   async subprocess(command: string): Promise<[string, string]> {
-    // ... 子进程执行命令的方法实现
+    return new Promise((resolve, reject) => {
+      exec(command, (error, stdout, stderr) => {
+        if (error) {
+          console.warn(error);
+          reject(stderr);
+        }
+        resolve([stdout, stderr]);
+      });
+    });
   }
 
   async getBranch(dir: string): Promise<string> {
-    // ... 获取分支的方法实现
+    return this.ideUtils.getBranch(vscode.Uri.file(dir));
   }
 
   getGitRootPath(dir: string): Promise<string | undefined> {
-    // ... 获取 Git 根路径的方法实现
+    return this.ideUtils.getGitRoot(dir);
   }
 
   async listDir(dir: string): Promise<[string, FileType][]> {
-    // ... 列出目录内容的方法实现
+    const files = await vscode.workspace.fs.readDirectory(uriFromFilePath(dir));
+    return files
+      .filter(([name, type]) => {
+        !(type === vscode.FileType.File && defaultIgnoreFile.ignores(name));
+      })
+      .map(([name, type]) => [path.join(dir, name), type]) as any;
   }
 
   getIdeSettings(): IdeSettings {
-    // ... 获取 IDE 设置的方法实现
+    const settings = vscode.workspace.getConfiguration("continue");
+    const remoteConfigServerUrl = settings.get<string | undefined>(
+      "remoteConfigServerUrl",
+      undefined,
+    );
+    const ideSettings: IdeSettings = {
+      remoteConfigServerUrl,
+      remoteConfigSyncPeriod: settings.get<number>(
+        "remoteConfigSyncPeriod",
+        60,
+      ),
+      userToken: settings.get<string>("userToken", ""),
+    };
+    return ideSettings;
   }
 }
 
