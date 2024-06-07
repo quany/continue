@@ -19,8 +19,7 @@ interface VsCodeCompletionInput {
 }
 
 export class ContinueCompletionProvider
-  implements vscode.InlineCompletionItemProvider
-{
+  implements vscode.InlineCompletionItemProvider {
   private onError(e: any) {
     const options = ["Documentation"];
     if (e.message.includes("https://ollama.ai")) {
@@ -246,7 +245,7 @@ export class ContinueCompletionProvider
         outcome.completion,
         completionRange,
         {
-          title: "Log Autocomplete Outcome",
+          title: "记录自动完成结果",
           command: "continue.logAutocompleteOutcome",
           arguments: [input.completionId, this.completionProvider],
         },

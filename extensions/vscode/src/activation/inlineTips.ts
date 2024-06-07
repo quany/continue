@@ -3,7 +3,7 @@ import { getMetaKeyName } from "../util/util";
 
 const inlineTipDecoration = vscode.window.createTextEditorDecorationType({
   after: {
-    contentText: `Add to chat (${getMetaKeyName()}+L) | Edit highlighted code (${getMetaKeyName()}+I).`,
+    contentText: `添加到聊天 (${getMetaKeyName()}+L) | 编辑高亮代码 (${getMetaKeyName()}+I).`,
     color: "#888",
     margin: "0 0 0 6em",
     fontWeight: "bold",
@@ -32,7 +32,7 @@ function handleSelectionChange(e: vscode.TextEditorSelectionChangeEvent) {
   const line = Math.max(0, selection.start.line - 1);
 
   const hoverMarkdown = new vscode.MarkdownString(
-    `Click [here](command:continue.hideInlineTip) to hide these suggestions`,
+    `点击[这里](command:continue.hideInlineTip)以隐藏这些建议`,
   );
   hoverMarkdown.isTrusted = true;
   hoverMarkdown.supportHtml = true;
@@ -50,7 +50,7 @@ function handleSelectionChange(e: vscode.TextEditorSelectionChangeEvent) {
 const emptyFileTooltipDecoration = vscode.window.createTextEditorDecorationType(
   {
     after: {
-      contentText: `Use ${getMetaKeyName()}+I to generate code`,
+      contentText: `使用 ${getMetaKeyName()}+I 生成代码`,
       color: "#888",
       margin: "2em 0 0 0",
       fontStyle: "italic",

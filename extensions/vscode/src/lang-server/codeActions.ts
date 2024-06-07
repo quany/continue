@@ -18,7 +18,7 @@ class ContinueQuickFixProvider implements vscode.CodeActionProvider {
     const createQuickFix = (edit: boolean) => {
       const diagnostic = context.diagnostics[0];
       const quickFix = new vscode.CodeAction(
-        edit ? "Fix with Continue" : "Ask Continue",
+        edit ? "使用 Continue 修复" : "询问 Continue",
         vscode.CodeActionKind.QuickFix,
       );
       quickFix.isPreferred = false;
@@ -30,7 +30,7 @@ class ContinueQuickFixProvider implements vscode.CodeActionProvider {
       );
       quickFix.command = {
         command: "continue.quickFix",
-        title: "Continue Quick Fix",
+        title: "Continue 快速修复",
         arguments: [
           diagnostic.message,
           document.getText(surroundingRange),
@@ -47,7 +47,7 @@ class ContinueQuickFixProvider implements vscode.CodeActionProvider {
 }
 
 export default function registerQuickFixProvider() {
-  // In your extension's activate function:
+  // 在你的扩展的激活函数中：
   vscode.languages.registerCodeActionsProvider(
     { language: "*" },
     new ContinueQuickFixProvider(),

@@ -21,7 +21,7 @@ class VerticalPerLineCodeLensProvider implements vscode.CodeLensProvider {
       string,
       VerticalDiffCodeLens[]
     >,
-  ) {}
+  ) { }
 
   public provideCodeLenses(
     document: vscode.TextDocument,
@@ -44,12 +44,12 @@ class VerticalPerLineCodeLensProvider implements vscode.CodeLensProvider {
       if (codeLenses.length === 0) {
         codeLenses.push(
           new vscode.CodeLens(range, {
-            title: `Accept All (${getMetaKeyLabel()}⇧⏎)`,
+            title: `全部接受 (${getMetaKeyLabel()}⇧⏎)`,
             command: "continue.acceptDiff",
             arguments: [filepath, i],
           }),
           new vscode.CodeLens(range, {
-            title: `Reject All (${getMetaKeyLabel()}⇧⌫)`,
+            title: `全部拒绝 (${getMetaKeyLabel()}⇧⌫)`,
             command: "continue.rejectDiff",
             arguments: [filepath, i],
           }),
@@ -57,20 +57,18 @@ class VerticalPerLineCodeLensProvider implements vscode.CodeLensProvider {
       }
       codeLenses.push(
         new vscode.CodeLens(range, {
-          title: `Accept${
-            codeLenses.length === 2
-              ? ` (${getAltOrOption()}${getMetaKeyLabel()}Y)`
-              : ""
-          }`,
+          title: `接受${codeLenses.length === 2
+            ? ` (${getAltOrOption()}${getMetaKeyLabel()}Y)`
+            : ""
+            }`,
           command: "continue.acceptVerticalDiffBlock",
           arguments: [filepath, i],
         }),
         new vscode.CodeLens(range, {
-          title: `Reject${
-            codeLenses.length === 2
-              ? ` (${getAltOrOption()}${getMetaKeyLabel()}N)`
-              : ""
-          }`,
+          title: `拒绝${codeLenses.length === 2
+            ? ` (${getAltOrOption()}${getMetaKeyLabel()}N)`
+            : ""
+            }`,
           command: "continue.rejectVerticalDiffBlock",
           arguments: [filepath, i],
         }),
@@ -78,7 +76,7 @@ class VerticalPerLineCodeLensProvider implements vscode.CodeLensProvider {
       if (codeLenses.length === 4) {
         codeLenses.push(
           new vscode.CodeLens(range, {
-            title: `${getMetaKeyLabel()}I to add instructions`,
+            title: `${getMetaKeyLabel()}I 添加指令`,
             command: "",
           }),
         );
@@ -108,12 +106,12 @@ class SuggestionsCodeLensProvider implements vscode.CodeLensProvider {
       );
       codeLenses.push(
         new vscode.CodeLens(range, {
-          title: "Accept",
+          title: "接受",
           command: "continue.acceptSuggestion",
           arguments: [suggestion],
         }),
         new vscode.CodeLens(range, {
-          title: "Reject",
+          title: "拒绝",
           command: "continue.rejectSuggestion",
           arguments: [suggestion],
         }),
@@ -121,7 +119,7 @@ class SuggestionsCodeLensProvider implements vscode.CodeLensProvider {
       if (codeLenses.length === 2) {
         codeLenses.push(
           new vscode.CodeLens(range, {
-            title: `(${getMetaKeyLabel()}⇧⏎/${getMetaKeyLabel()}⇧⌫ to accept/reject all)`,
+            title: `(${getMetaKeyLabel()}⇧⏎/${getMetaKeyLabel()}⇧⌫ 全部接受/拒绝)`,
             command: "",
           }),
         );
@@ -152,17 +150,17 @@ class DiffViewerCodeLensProvider implements vscode.CodeLensProvider {
       }
       codeLenses.push(
         new vscode.CodeLens(range, {
-          title: `Accept All ✅ (${getMetaKeyLabel()}⇧⏎)`,
+          title: `全部接受 ✅ (${getMetaKeyLabel()}⇧⏎)`,
           command: "continue.acceptDiff",
           arguments: [document.uri.fsPath],
         }),
         new vscode.CodeLens(range, {
-          title: `Reject All ❌ (${getMetaKeyLabel()}⇧⌫)`,
+          title: `全部拒绝 ❌ (${getMetaKeyLabel()}⇧⌫)`,
           command: "continue.rejectDiff",
           arguments: [document.uri.fsPath],
         }),
         // new vscode.CodeLens(range, {
-        //   title: `Further Edit ✏️ (${getMetaKeyLabel()}⇧M)`,
+        //   title: `进一步编辑 ✏️ (${getMetaKeyLabel()}⇧M)`,
         //   command: "continue.focusContinueInputWithEdit",
         // })
       );
@@ -196,7 +194,7 @@ class ConfigPyCodeLensProvider implements vscode.CodeLensProvider {
       const range = new vscode.Range(lineOfModels, 0, lineOfModels + 1, 0);
       // codeLenses.push(
       //   new vscode.CodeLens(range, {
-      //     title: `+ Add a Model`,
+      //     title: `+ 添加模型`,
       //     command: "continue.addModel",
       //   })
       // );
@@ -215,7 +213,7 @@ class ConfigPyCodeLensProvider implements vscode.CodeLensProvider {
       );
       codeLenses.push(
         new vscode.CodeLens(range, {
-          title: "✏️ Edit in UI",
+          title: "✏️ 在 UI 中编辑",
           command: "continue.openSettingsUI",
         }),
       );
@@ -234,7 +232,7 @@ const cmdCtrl = getPlatform() === "mac" ? "Cmd" : "Ctrl";
 
 const actions: TutorialCodeLensItems[] = [
   {
-    lineIncludes: `Step 2: Use the keyboard shortcut [${cmdCtrl}+L]`,
+    lineIncludes: `步骤 2: 使用键盘快捷键 [${cmdCtrl}+L]`,
     commands: [
       {
         title: `${cmdCtrl}+L`,
@@ -243,35 +241,35 @@ const actions: TutorialCodeLensItems[] = [
     ],
   },
   {
-    lineIncludes: "Step 3: Ask a question",
+    lineIncludes: "步骤 3: 提问",
     commands: [
       {
-        title: `"what does this code do?"`,
+        title: `"这个代码是做什么的？"`,
         command: "continue.sendMainUserInput",
         arguments: ["what does this code do?"],
       },
       {
-        title: `"what is an alternative to this?"`,
+        title: `"这个代码有替代方案吗？"`,
         command: "continue.sendMainUserInput",
         arguments: ["what is an alternative to this?"],
       },
     ],
   },
   {
-    lineIncludes: `Step 2: Use the keyboard shortcut [${cmdCtrl}+I] to edit`,
+    lineIncludes: `步骤 2: 使用键盘快捷键 [${cmdCtrl}+I] 编辑`,
     commands: [
       {
         title: `${cmdCtrl}+I`,
         command: "continue.quickEdit",
-        arguments: ["Add comments"],
+        arguments: ["添加注释"],
       },
     ],
   },
   {
-    lineIncludes: "Step 1: Run this Python file",
+    lineIncludes: "步骤 1: 运行此 Python 文件",
     commands: [
       {
-        title: "Run the file",
+        title: "运行文件",
         command: "continue.sendToTerminal",
         arguments: [
           `python ${path.join(
@@ -283,16 +281,16 @@ const actions: TutorialCodeLensItems[] = [
     ],
   },
   {
-    lineIncludes: "Step 2: Use the keyboard shortcut cmd/ctrl + shift + R",
+    lineIncludes: "步骤 2: 使用键盘快捷键 cmd/ctrl + shift + R",
     commands: [
       {
-        title: "Debug the error",
+        title: "调试错误",
         command: "continue.debugTerminal",
       },
     ],
   },
   {
-    lineIncludes: `Step 2: Use the keyboard shortcut [${cmdCtrl}+Shift+R]`,
+    lineIncludes: `步骤 2: 使用键盘快捷键 [${cmdCtrl}+Shift+R]`,
     commands: [
       {
         title: `${cmdCtrl}+Shift+R`,
@@ -329,33 +327,33 @@ class TutorialCodeLensProvider implements vscode.CodeLensProvider {
     }
 
     const lineOf11 = lines.findIndex((line) =>
-      line.includes("Step 1: Highlight the function below"),
+      line.includes("步骤 1: 高亮显示以下函数"),
     );
     if (lineOf11 >= 0) {
       const range = new vscode.Range(lineOf11, 0, lineOf11 + 1, 0);
       codeLenses.push(
         new vscode.CodeLens(range, {
-          title: "Highlight the function",
+          title: "高亮显示函数",
           command: "continue.selectRange",
           arguments: [lineOf11 + 3, lineOf11 + 11],
         }),
       );
     }
     const lineOf21 = lines.findIndex((line) =>
-      line.includes("Step 1: Highlight this code"),
+      line.includes("步骤 1: 高亮显示此代码"),
     );
     if (lineOf21 >= 0) {
       const range = new vscode.Range(lineOf21, 0, lineOf21 + 1, 0);
       codeLenses.push(
         new vscode.CodeLens(range, {
-          title: "Highlight the function",
+          title: "高亮显示函数",
           command: "continue.selectRange",
           arguments: [lineOf21 + 3, lineOf21 + 14],
         }),
       );
     }
 
-    // Folding of the tutorial
+    // 折叠教程
     // const regionLines = lines
     //   .map((line, i) => [line, i])
     //   .filter(([line, i]) => (line as string).startsWith("# region "))
@@ -370,7 +368,7 @@ class TutorialCodeLensProvider implements vscode.CodeLensProvider {
     //     });
     //   codeLenses.push(
     //     new vscode.CodeLens(range, {
-    //       title: `Begin Section`,
+    //       title: `开始部分`,
     //       command: "continue.foldAndUnfold",
     //       arguments: [linesToFold, [lineOfRegion, lineOfRegion + 1]],
     //     }),
