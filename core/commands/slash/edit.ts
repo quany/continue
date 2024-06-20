@@ -216,7 +216,7 @@ function lineToBeIgnored(line: string, isFirstLine = false): boolean {
 
 const EditSlashCommand: SlashCommand = {
   name: "edit",
-  description: "Edit selected code",
+  description: "编辑选中代码",
   run: async function* ({ ide, llm, input, history, contextItems, params }) {
     let contextItemToEdit = contextItems.find(
       (item: ContextItemWithId) =>

@@ -7,26 +7,26 @@ import {
 
 export const FREE_TRIAL_MODELS: ModelDescription[] = [
   {
-    title: "GPT-4o (Free Trial)",
+    title: "GPT-4o (免费试用)",
     provider: "free-trial",
     model: "gpt-4o",
     systemMessage:
-      "You are an expert software developer. You give helpful and concise responses.",
+      "你是一名专家级的软件开发人员。你提供有帮助且简明的回答。",
   },
   {
-    title: "Llama3 70b (Free Trial)",
+    title: "Llama3 70b (免费试用)",
     provider: "free-trial",
     model: "llama3-70b",
     systemMessage:
-      "You are an expert software developer. You give helpful and concise responses. Whenever you write a code block you include the language after the opening ticks.",
+      "你是一名专家级的软件开发人员。你提供有帮助且简明的回答。每当你编写代码块时，你会在开头标记后包含语言。",
   },
   {
-    title: "Codestral (Free Trial)",
+    title: "Codestral (免费试用)",
     provider: "free-trial",
     model: "codestral",
   },
   {
-    title: "Claude 3 Sonnet (Free Trial)",
+    title: "Claude 3 Sonnet (免费试用)",
     provider: "free-trial",
     model: "claude-3-sonnet-20240229",
   },
@@ -38,8 +38,8 @@ export const defaultConfig: SerializedContinueConfig = {
     {
       name: "test",
       prompt:
-        "{{{ input }}}\n\nWrite a comprehensive set of unit tests for the selected code. It should setup, run tests that check for correctness including important edge cases, and teardown. Ensure that the tests are complete and sophisticated. Give the tests just as chat output, don't edit any file.",
-      description: "Write unit tests for highlighted code",
+        "{{{ input }}}\n\n为选中的代码编写一整套单元测试。它应包括设置、运行检查正确性的测试（包括重要的边界情况）和清理。确保测试完整且复杂。仅将测试作为聊天输出，不要编辑任何文件。",
+      description: "为高亮代码编写单元测试",
     },
   ],
   tabAutocompleteModel: {
@@ -55,8 +55,8 @@ export const defaultConfigJetBrains: SerializedContinueConfig = {
     {
       name: "test",
       prompt:
-        "{{{ input }}}\n\nWrite a comprehensive set of unit tests for the selected code. It should setup, run tests that check for correctness including important edge cases, and teardown. Ensure that the tests are complete and sophisticated. Give the tests just as chat output, don't edit any file.",
-      description: "Write unit tests for highlighted code",
+        "{{{ input }}}\n\n为选中的代码编写一整套单元测试。它应包括设置、运行检查正确性的测试（包括重要的边界情况）和清理。确保测试完整且复杂。仅将测试作为聊天输出，不要编辑任何文件。",
+      description: "为高亮代码编写单元测试",
     },
   ],
   tabAutocompleteModel: {
@@ -69,42 +69,42 @@ export const defaultConfigJetBrains: SerializedContinueConfig = {
 export const defaultSlashCommandsVscode: SlashCommandDescription[] = [
   {
     name: "edit",
-    description: "Edit selected code",
+    description: "编辑选中代码",
   },
   {
     name: "comment",
-    description: "Write comments for the selected code",
+    description: "为选中的代码写注释",
   },
   {
     name: "share",
-    description: "Export the current chat session to markdown",
+    description: "将当前聊天会话导出为Markdown",
   },
   {
     name: "cmd",
-    description: "Generate a shell command",
+    description: "生成一个Shell命令",
   },
   {
     name: "commit",
-    description: "Generate a git commit message",
+    description: "生成一个Git提交信息",
   },
 ];
 
 export const defaultSlashCommandsJetBrains = [
   {
     name: "edit",
-    description: "Edit selected code",
+    description: "编辑选中代码",
   },
   {
     name: "comment",
-    description: "Write comments for the selected code",
+    description: "为选中的代码写注释",
   },
   {
     name: "share",
-    description: "Export the current chat session to markdown",
+    description: "将当前聊天会话导出为Markdown",
   },
   {
     name: "commit",
-    description: "Generate a git commit message",
+    description: "生成一个Git提交信息",
   },
 ];
 

@@ -74,7 +74,6 @@ function isTerminalCodeBlock(language: string | undefined, text: string) {
 function CodeBlockToolBar(props: CodeBlockToolBarProps) {
   const ideMessenger = useContext(IdeMessengerContext);
 
-  const [copied, setCopied] = useState(false);
   const [applying, setApplying] = useState(false);
 
   return (

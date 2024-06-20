@@ -122,7 +122,7 @@ function CodeSnippetPreview(props: CodeSnippetPreviewProps) {
         <div className="flex items-center">
           {props.onEdit && (
             <StyledHeaderButtonWithText
-              text="Edit"
+              text="编辑"
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
@@ -134,7 +134,7 @@ function CodeSnippetPreview(props: CodeSnippetPreviewProps) {
             </StyledHeaderButtonWithText>
           )}
           <HeaderButtonWithText
-            text="Delete"
+            text="删除"
             onClick={(e) => {
               e.stopPropagation();
               props.onDelete();
@@ -164,7 +164,7 @@ function CodeSnippetPreview(props: CodeSnippetPreviewProps) {
       {codeBlockRef.current?.scrollHeight > MAX_PREVIEW_HEIGHT && (
         <HeaderButtonWithText
           className="bottom-1 right-1 absolute"
-          text={collapsed ? "Expand" : "Collapse"}
+          text={collapsed ? "展开" : "收缩"}
         >
           {collapsed ? (
             <ChevronDownIcon
