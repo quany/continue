@@ -121,9 +121,9 @@ const Layout = () => {
 
   const timeline = useSelector((state: RootState) => state.state.history);
 
-  // #endregion
+  // #endregion=
 
-  useEffect(() => {
+  useEffect(() => {                   
     const handleKeyDown = (event: any) => {
       if (isMetaEquivalentKeyPressed(event) && event.code === "KeyC") {
         const selection = window.getSelection()?.toString();
@@ -267,7 +267,7 @@ const Layout = () => {
                 <IndexingProgressBar indexingState={indexingState} />
               </div>
               <HeaderButtonWithText
-                text="Help"
+                text="帮助"
                 onClick={() => {
                   if (location.pathname === "/help") {
                     navigate("/");
@@ -283,7 +283,7 @@ const Layout = () => {
                   // navigate("/settings");
                   ideMessenger.post("openConfigJson", undefined);
                 }}
-                text="Configure Continue"
+                text="配置 Continue"
               >
                 <Cog6ToothIcon width="1.4em" height="1.4em" />
               </HeaderButtonWithText>

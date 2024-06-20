@@ -73,14 +73,14 @@ function HelpPage() {
           onClick={() => navigate("/")}
           className="inline-block ml-4 cursor-pointer"
         />
-        <h3 className="text-lg font-bold m-2 inline-block">Help Center</h3>
+        <h3 className="text-lg font-bold m-2 inline-block">帮助中心</h3>
         <TutorialButton
           onClick={() => {
             ideMessenger.post("showTutorial", undefined);
             navigate("/onboarding");
           }}
         >
-          Open tutorial
+          打开指南
         </TutorialButton>
       </div>
 
@@ -90,7 +90,7 @@ function HelpPage() {
           navigate("/stats");
         }}
       >
-        View My Usage
+        查看我的使用
       </h3>
       <Hr className="my-0" />
       <h3 className="my-3 mx-auto text-center">资源</h3>

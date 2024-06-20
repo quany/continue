@@ -14,7 +14,7 @@ class CodeContextProvider extends BaseContextProvider {
   static description: ContextProviderDescription = {
     title: "code",
     displayTitle: "Code",
-    description: "Type to search",
+    description: "输入以搜索",
     type: "submenu",
   };
 

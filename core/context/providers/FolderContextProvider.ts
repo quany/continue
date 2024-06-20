@@ -11,8 +11,8 @@ import { BaseContextProvider } from "../index.js";
 class FolderContextProvider extends BaseContextProvider {
   static description: ContextProviderDescription = {
     title: "folder",
-    displayTitle: "Folder",
-    description: "Type to search",
+    displayTitle: "文件夹",
+    description: "输入以搜索",
     type: "submenu",
   };
 

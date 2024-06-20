@@ -102,25 +102,25 @@ const initialState: State = {
     slashCommands: [
       {
         name: "edit",
-        description: "Edit selected code",
+        description: "编辑选定的代码",
       },
       {
         name: "comment",
-        description: "Write comments for the selected code",
+        description: "为选定的代码编写注释",
       },
       {
         name: "share",
-        description: "Export the current chat session to markdown",
+        description: "将当前聊天会话导出为 Markdown 格式",
       },
       {
         name: "cmd",
-        description: "Generate a shell command",
+        description: "生成一个 shell 命令",
       },
     ],
     contextProviders: [],
     models: [],
   },
-  title: "New Session",
+  title: "新建会话",
   sessionId: v4(),
   defaultModelTitle: "GPT-4",
 };

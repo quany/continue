@@ -82,8 +82,8 @@ function DropdownIcon(props: { className?: string; item: ComboBoxItem }) {
     props.item.type === "contextProvider"
       ? props.item.id
       : props.item.type === "slashCommand"
-        ? props.item.id
-        : props.item.type;
+      ? props.item.id
+      : props.item.type;
 
   const Icon = ICONS_FOR_DROPDOWN[provider];
   const iconClass = `${props.className} flex-shrink-0`;
@@ -99,9 +99,7 @@ function DropdownIcon(props: { className?: string; item: ComboBoxItem }) {
 
 const ItemsDiv = styled.div`
   border-radius: ${defaultBorderRadius};
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.05),
-    0px 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0px 10px 20px rgba(0, 0, 0, 0.1);
   font-size: 0.9rem;
   overflow-x: hidden;
   overflow-y: auto;
@@ -173,15 +171,15 @@ const MentionList = forwardRef((props: MentionListProps, ref) => {
 
   useEffect(() => {
     const items = [...props.items];
-    if (subMenuTitle === "Type to search docs") {
+    if (subMenuTitle === "请输入以搜索文档") {
       items.push({
-        title: "Add Docs",
+        title: "添加文档",
         type: "action",
         action: () => {
           dispatch(setShowDialog(true));
           dispatch(setDialogMessage(<AddDocsDialog />));
 
-          // Delete back to last '@'
+          // 删除到上一个 '@'
           const { tr } = props.editor.view.state;
           const text = tr.doc.textBetween(0, tr.selection.from);
           const start = text.lastIndexOf("@");
@@ -189,7 +187,7 @@ const MentionList = forwardRef((props: MentionListProps, ref) => {
             tr.delete(start, tr.selection.from).scrollIntoView(),
           );
         },
-        description: "Add a new documentation source",
+        description: "添加一个新的文档来源",
       });
     }
     setAllItems(items);
@@ -366,7 +364,7 @@ const MentionList = forwardRef((props: MentionListProps, ref) => {
               </ItemDiv>
             ))
           ) : (
-            <ItemDiv className="item">No results</ItemDiv>
+            <ItemDiv className="item">无结果</ItemDiv>
           )}
           {/* </CustomScrollbarDiv> */}
         </>

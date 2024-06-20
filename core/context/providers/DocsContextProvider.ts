@@ -14,8 +14,8 @@ class DocsContextProvider extends BaseContextProvider {
   static DEFAULT_N_FINAL = 15;
   static description: ContextProviderDescription = {
     title: "docs",
-    displayTitle: "Docs",
-    description: "Type to search docs",
+    displayTitle: "文档",
+    description: "输入以搜索文档",
     type: "submenu",
   };
 
