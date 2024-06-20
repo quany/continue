@@ -8,8 +8,8 @@ import { BaseContextProvider } from "../index.js";
 class SearchContextProvider extends BaseContextProvider {
   static description: ContextProviderDescription = {
     title: "search",
-    displayTitle: "Search",
-    description: "Use ripgrep to exact search the workspace",
+    displayTitle: "搜索",
+    description: "使用 ripgrep 精确搜索工作区",
     type: "query",
   };
 
@@ -20,9 +20,9 @@ class SearchContextProvider extends BaseContextProvider {
     const results = await extras.ide.getSearchResults(query);
     return [
       {
-        description: "Search results",
-        content: `Results of searching codebase for "${query}":\n\n${results}`,
-        name: "Search results",
+        description: "搜索结果",
+        content: `在代码库中搜索 "${query}" 的结果:\n\n${results}`,
+        name: "搜索结果",
       },
     ];
   }

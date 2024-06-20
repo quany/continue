@@ -9,8 +9,8 @@ import { BaseContextProvider } from "../index.js";
 class CurrentFileContextProvider extends BaseContextProvider {
   static description: ContextProviderDescription = {
     title: "currentFile",
-    displayTitle: "Current File",
-    description: "Reference the currently open file",
+    displayTitle: "当前文件",
+    description: "引用当前打开的文件",
     type: "normal",
   };
 
@@ -27,7 +27,7 @@ class CurrentFileContextProvider extends BaseContextProvider {
     return [
       {
         description: currentFile,
-        content: `This is the currently open file:\n\n\`\`\`${getBasename(
+        content: `这是当前打开的文件:\n\n\`\`\`${getBasename(
           currentFile,
         )}\n${contents}\n\`\`\``,
         name: getBasename(currentFile),

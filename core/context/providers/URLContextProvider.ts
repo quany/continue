@@ -1,18 +1,18 @@
 import { Readability } from "@mozilla/readability";
 import { JSDOM } from "jsdom";
 import { NodeHtmlMarkdown } from "node-html-markdown";
-import { BaseContextProvider } from "../index.js";
 import {
   ContextItem,
   ContextProviderDescription,
   ContextProviderExtras,
 } from "../../index.js";
+import { BaseContextProvider } from "../index.js";
 
 class URLContextProvider extends BaseContextProvider {
   static description: ContextProviderDescription = {
     title: "url",
     displayTitle: "URL",
-    description: "Reference a webpage at a given URL",
+    description: "引用给定URL的网页",
     type: "query",
   };
 

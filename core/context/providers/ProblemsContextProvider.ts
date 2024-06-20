@@ -9,8 +9,8 @@ import { BaseContextProvider } from "../index.js";
 class ProblemsContextProvider extends BaseContextProvider {
   static description: ContextProviderDescription = {
     title: "problems",
-    displayTitle: "Problems",
-    description: "Reference problems in the current file",
+    displayTitle: "问题",
+    description: "引用当前文件中的问题",
     type: "normal",
   };
 
@@ -33,23 +33,23 @@ class ProblemsContextProvider extends BaseContextProvider {
           .join("\n");
 
         return {
-          description: "Problems in current file",
+          description: "当前文件中的问题",
           content: `\`\`\`${getBasename(
             problem.filepath,
           )}\n${rangeContent}\n\`\`\`\n${problem.message}\n\n`,
-          name: `Warning in ${getBasename(problem.filepath)}`,
+          name: `在 ${getBasename(problem.filepath)} 中的警告`,
         };
       }),
     );
 
     return items.length === 0
       ? [
-          {
-            description: "Problems in current file",
-            content: "There are no problems found in the open file.",
-            name: "No problems found",
-          },
-        ]
+        {
+          description: "当前文件中的问题",
+          content: "在打开的文件中没有发现问题。",
+          name: "未发现问题",
+        },
+      ]
       : items;
   }
 }

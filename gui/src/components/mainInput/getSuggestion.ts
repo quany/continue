@@ -140,7 +140,7 @@ export function getMentionSuggestion(
       mainResults.length === availableContextProvidersRef.current.length
     ) {
       mainResults.push({
-        title: "Add more context providers",
+        title: "添加更多上下文提供者",
         type: "action",
         action: () => {
           ideMessenger.request(

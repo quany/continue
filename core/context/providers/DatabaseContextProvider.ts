@@ -10,8 +10,8 @@ import { BaseContextProvider } from "../index.js";
 class DatabaseContextProvider extends BaseContextProvider {
   static description: ContextProviderDescription = {
     title: "database",
-    displayTitle: "Database",
-    description: "Table schemas",
+    displayTitle: "数据库",
+    description: "表架构",
     type: "submenu",
   };
 
@@ -42,12 +42,12 @@ class DatabaseContextProvider extends BaseContextProvider {
         );
 
         if (table === "all") {
-          let prompt = `Schema for all tables on ${connection.connection_type} is `;
+          let prompt = `在 ${connection.connection_type} 上所有表的架构是`;
           prompt += JSON.stringify(tablesAndSchemas);
 
           const contextItem = {
             name: `${connectionName}-all-tables-schemas`,
-            description: "Schema for all tables.",
+            description: "所有表的架构。",
             content: prompt,
           };
 
@@ -57,12 +57,12 @@ class DatabaseContextProvider extends BaseContextProvider {
 
           tables.forEach((tableName) => {
             if (table === tableName) {
-              let prompt = `Schema for ${tableName} on ${connection.connection_type} is `;
+              let prompt = `在 ${connection.connection_type} 上 ${tableName} 的架构是`;
               prompt += JSON.stringify(tablesAndSchemas[tableName]);
 
               const contextItem = {
                 name: `${connectionName}-${tableName}-schema`,
-                description: `${tableName} Schema`,
+                description: `${tableName} 架构`,
                 content: prompt,
               };
 
@@ -100,7 +100,7 @@ class DatabaseContextProvider extends BaseContextProvider {
 
       const contextItem = {
         id: `${connection.name}.all`,
-        title: `${connection.name} all table schemas`,
+        title: `${connection.name} 所有表的架构`,
         description: "",
       };
 
@@ -109,7 +109,7 @@ class DatabaseContextProvider extends BaseContextProvider {
       tables.forEach((tableName) => {
         const contextItem = {
           id: `${connection.name}.${tableName}`,
-          title: `${connection.name}.${tableName} schema`,
+          title: `${connection.name}.${tableName} 架构`,
           description: "",
         };
 

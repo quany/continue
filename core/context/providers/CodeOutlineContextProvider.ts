@@ -11,8 +11,8 @@ import { BaseContextProvider } from "../index.js";
 class CodeOutlineContextProvider extends BaseContextProvider {
   static description: ContextProviderDescription = {
     title: "outline",
-    displayTitle: "Outline",
-    description: "Definition lines only (from open files)",
+    displayTitle: "大纲",
+    description: "仅定义行（来自打开的文件）",
     type: "normal",
   };
 
@@ -45,14 +45,14 @@ class CodeOutlineContextProvider extends BaseContextProvider {
     // return [
     //   {
     //     content: outlines ? outlines : "",
-    //     name: "Code Outline",
-    //     description: "Definition lines only (from open files)",
+    //     name: "代码大纲",
+    //     description: "仅定义行（来自打开的文件）",
     //   },
     // ];
     return [];
   }
 
-  async load(): Promise<void> {}
+  async load(): Promise<void> { }
 }
 
 export default CodeOutlineContextProvider;

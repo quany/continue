@@ -13,8 +13,8 @@ const HIGHLIGHTS_TOKEN_BUDGET = 2000;
 class CodeHighlightsContextProvider extends BaseContextProvider {
   static description: ContextProviderDescription = {
     title: "highlights",
-    displayTitle: "Highlights",
-    description: "Code highlights from open files",
+    displayTitle: "高亮",
+    description: "来自打开文件的代码高亮",
     type: "normal",
   };
 
@@ -54,14 +54,14 @@ class CodeHighlightsContextProvider extends BaseContextProvider {
     // return [
     //   {
     //     content: repoMap ? repoMap : "",
-    //     name: "Code Highlights",
-    //     description: "Code highlights from open files",
+    //     name: "代码高亮",
+    //     description: "来自打开文件的代码高亮",
     //   },
     // ];
     return [];
   }
 
-  async load(): Promise<void> {}
+  async load(): Promise<void> { }
 }
 
 export default CodeHighlightsContextProvider;

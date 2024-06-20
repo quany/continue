@@ -8,8 +8,8 @@ import { BaseContextProvider } from "../index.js";
 class TerminalContextProvider extends BaseContextProvider {
   static description: ContextProviderDescription = {
     title: "terminal",
-    displayTitle: "Terminal",
-    description: "Reference the contents of the terminal",
+    displayTitle: "终端",
+    description: "引用终端的内容",
     type: "normal",
   };
 
@@ -20,9 +20,9 @@ class TerminalContextProvider extends BaseContextProvider {
     const content = await extras.ide.getTerminalContents();
     return [
       {
-        description: "The contents of the terminal",
-        content: `Current terminal contents:\n\n${content}`,
-        name: "Terminal",
+        description: "终端的内容",
+        content: `当前终端内容:\n\n${content}`,
+        name: "终端",
       },
     ];
   }

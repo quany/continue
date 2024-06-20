@@ -229,7 +229,7 @@ const EditSlashCommand: SlashCommand = {
     }
 
     if (!contextItemToEdit) {
-      yield "Please highlight the code you want to edit, then press `cmd/ctrl+shift+L` to add it to chat";
+      yield "请高亮你要编辑的代码，然后按 cmd/ctrl+shift+L 将其添加到聊天中";
       return;
     }
 
