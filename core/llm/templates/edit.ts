@@ -1,83 +1,83 @@
 import { ChatMessage, PromptTemplate } from "../../index.js";
 
-const simplifiedEditPrompt = `Consider the following code:
+const simplifiedEditPrompt = `考虑以下代码：
 \`\`\`{{{language}}}
 {{{codeToEdit}}}
 \`\`\`
-Edit the code to perfectly satisfy the following user request:
+编辑代码以完美满足以下用户请求：
 {{{userInput}}}
-Output nothing except for the code. No code block, no English explanation, no start/end tags.`;
+除了代码之外什么都不要输出。不要输出代码块、英文解释、起始/结束标签。`;
 
-const simplestEditPrompt = `Here is the code before editing:
+const simplestEditPrompt = `这是编辑前的代码：
 \`\`\`{{{language}}}
 {{{codeToEdit}}}
 \`\`\`
 
-Here is the edit requested:
+这是请求的编辑内容：
 "{{{userInput}}}"
 
-Here is the code after editing:`;
+这是编辑后的代码：`;
 
 const gptEditPrompt: PromptTemplate = (_, otherData) => {
   if (otherData?.codeToEdit?.trim().length === 0) {
     return `\
 \`\`\`${otherData.language}
-${otherData.prefix}[BLANK]${otherData.codeToEdit}${otherData.suffix}
+${otherData.prefix}[空白]${otherData.codeToEdit}${otherData.suffix}
 \`\`\`
 
-Given the user's request: "${otherData.userInput}"
+鉴于用户的请求："${otherData.userInput}"
 
-Here is the code that should fill in the [BLANK]:`;
+这是应该填充在[空白]部分的代码：`;
   }
 
   const paragraphs = [
-    "The user has requested a section of code in a file to be rewritten.",
+    "用户请求重写文件中的一段代码。",
   ];
   if (otherData.prefix?.trim().length > 0) {
-    paragraphs.push(`This is the prefix of the file:
+    paragraphs.push(`这是文件的前缀：
 \`\`\`${otherData.language}
 ${otherData.prefix}
 \`\`\``);
   }
 
   if (otherData.suffix?.trim().length > 0) {
-    paragraphs.push(`This is the suffix of the file:
+    paragraphs.push(`这是文件的后缀：
 \`\`\`${otherData.language}
 ${otherData.suffix}
 \`\`\``);
   }
 
-  paragraphs.push(`This is the code to rewrite:
+  paragraphs.push(`这是要重写的代码：
 \`\`\`${otherData.language}
 ${otherData.codeToEdit}
 \`\`\`
 
-The user's request is: "${otherData.userInput}"
+用户的请求是："${otherData.userInput}"
 
-Here is the rewritten code:`);
+这是重写后的代码：`);
 
   return paragraphs.join("\n\n");
 };
 
-const codellamaInfillEditPrompt = "{{filePrefix}}<FILL>{{fileSuffix}}";
+const codellamaInfillEditPrompt = "{{filePrefix}}<填充>{{fileSuffix}}";
 
-const START_TAG = "<START EDITING HERE>";
+const START_TAG = "<从这里开始编辑>";
 const osModelsEditPrompt: PromptTemplate = (history, otherData) => {
-  // "No sufix" means either there is no suffix OR
-  // it's a clean break at end of function or something
-  // (what we're trying to avoid is just the language model trying to complete the closing brackets of a function or something)
+  // "无后缀"意味着没有后缀或是
+  // 在函数末尾或其他地方的干净分隔
+  // （我们试图避免的是语言模型尝试完成函数的闭合括号等）
   const firstCharOfFirstLine = otherData.suffix?.split("\n")[0]?.[0]?.trim();
   const isSuffix =
     otherData.suffix?.trim() !== "" &&
-    // First character of first line is whitespace
-    // Otherwise we assume it's a clean break
+    // 首行第一个字符是空白
+    // 否则我们假设这是一个干净的分隔
     !firstCharOfFirstLine;
-  const suffixTag = isSuffix ? "<STOP EDITING HERE>" : "";
+  const suffixTag = isSuffix ? "<停止编辑这里>" : "";
   const suffixExplanation = isSuffix
-    ? ' When you get to "<STOP EDITING HERE>", end your response.'
+    ? ' 当你到达"<停止编辑这里>"时，结束你的响应。'
     : "";
 
-  // If neither prefilling nor /v1/completions are supported, we have to use a chat prompt without putting words in the model's mouth
+  // 如果既不支持预填充也不支持/v1/completions，我们必须使用不向模型灌输任何内容的聊天提示
   if (
     otherData.supportsCompletions !== "true" &&
     otherData.supportsPrefill !== "true"
@@ -85,7 +85,7 @@ const osModelsEditPrompt: PromptTemplate = (history, otherData) => {
     return gptEditPrompt(history, otherData);
   }
 
-  // Use a different prompt when there's neither prefix nor suffix
+  // 当既没有前缀也没有后缀时，使用不同的提示
   if (otherData.prefix?.trim() === "" && otherData.suffix?.trim() === "") {
     return [
       {
@@ -95,11 +95,11 @@ ${otherData.codeToEdit}
 ${suffixTag}
 \`\`\`
 
-Please rewrite the entire code block above in order to satisfy the following request: "${otherData.userInput}".${suffixExplanation}`,
+请重写上面的整个代码块以满足以下请求："${otherData.userInput}"。${suffixExplanation}`,
       },
       {
         role: "assistant",
-        content: `Sure! Here's the entire rewritten code block:
+        content: `当然！这是整个重写后的代码块：
 \`\`\`${otherData.language}
 `,
       },
@@ -115,12 +115,12 @@ ${otherData.codeToEdit}
 ${suffixTag}
 \`\`\`
 
-Please rewrite the entire code block above, editing the portion below "${START_TAG}" in order to satisfy the following request: "${otherData.userInput}".${suffixExplanation}
+请重写上面的整个代码块，编辑"${START_TAG}"以下的部分以满足以下请求："${otherData.userInput}"。${suffixExplanation}
 `,
     },
     {
       role: "assistant",
-      content: `Sure! Here's the entire code block, including the rewritten portion:
+      content: `当然！这是整个代码块，包括重写的部分：
 \`\`\`${otherData.language}
 ${otherData.prefix}${START_TAG}
 `,
@@ -128,158 +128,158 @@ ${otherData.prefix}${START_TAG}
   ];
 };
 
-const mistralEditPrompt = `[INST] You are a helpful code assistant. Your task is to rewrite the following code with these instructions: "{{{userInput}}}"
+const mistralEditPrompt = `[INST] 你是一位有帮助的代码助手。你的任务是根据以下指示重写代码："{{{userInput}}}"
 \`\`\`{{{language}}}
 {{{codeToEdit}}}
 \`\`\`
 
-Just rewrite the code without explanations: [/INST]
+只重写代码，不要进行解释：[/INST]
 \`\`\`{{{language}}}`;
 
-const alpacaEditPrompt = `Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+const alpacaEditPrompt = `以下是描述任务的指令，与提供进一步上下文的输入配对。写一个合适完成请求的响应。
 
-### Instruction: Rewrite the code to satisfy this request: "{{{userInput}}}"
+### 指令：重写代码以满足此请求："{{{userInput}}}"
 
-### Input:
-
-\`\`\`{{{language}}}
-{{{codeToEdit}}}
-\`\`\`
-
-### Response:
-
-Sure! Here's the code you requested:
-\`\`\`{{{language}}}
-`;
-
-const phindEditPrompt = `### System Prompt
-You are an expert programmer and write code on the first attempt without any errors or fillers.
-
-### User Message:
-Rewrite the code to satisfy this request: "{{{userInput}}}"
+### 输入：
 
 \`\`\`{{{language}}}
 {{{codeToEdit}}}
 \`\`\`
 
-### Assistant:
-Sure! Here's the code you requested:
+### 响应：
+
+当然！这是你请求的代码：
+\`\`\`{{{language}}}
+`;
+
+const phindEditPrompt = `### 系统提示
+你是一位专家程序员，第一次尝试就能写出没有错误或填充的代码。
+
+### 用户消息：
+重写代码以满足此请求："{{{userInput}}}"
+
+\`\`\`{{{language}}}
+{{{codeToEdit}}}
+\`\`\`
+
+### 助手：
+当然！这是你请求的代码：
 
 \`\`\`{{{language}}}
 `;
 
-const deepseekEditPrompt = `### System Prompt
-You are an AI programming assistant, utilizing the DeepSeek Coder model, developed by DeepSeek Company, and you only answer questions related to computer science. For politically sensitive questions, security and privacy issues, and other non-computer science questions, you will refuse to answer.
-### Instruction:
-Rewrite the code to satisfy this request: "{{{userInput}}}"
+const deepseekEditPrompt = `### 系统提示
+你是一位AI编程助手，使用由DeepSeek公司开发的DeepSeek Coder模型，你只回答与计算机科学相关的问题。对于政治敏感问题、安全和隐私问题及其他非计算机科学问题，你将拒绝回答。
+### 指令：
+重写代码以满足此请求："{{{userInput}}}"
 
 \`\`\`{{{language}}}
 {{{codeToEdit}}}
 \`\`\`<|EOT|>
-### Response:
-Sure! Here's the code you requested:
+### 响应：
+当然！这是你请求的代码：
 
 \`\`\`{{{language}}}
 `;
 
 const zephyrEditPrompt = `<|system|>
-You are an expert programmer and write code on the first attempt without any errors or fillers.</s>
+你是一位专家程序员，第一次尝试就能写出没有错误或填充的代码。</s>
 <|user|>
-Rewrite the code to satisfy this request: "{{{userInput}}}"
+重写代码以满足此请求："{{{userInput}}}"
 
 \`\`\`{{{language}}}
 {{{codeToEdit}}}
 \`\`\`</s>
 <|assistant|>
-Sure! Here's the code you requested:
+当然！这是你请求的代码：
 
 \`\`\`{{{language}}}
 `;
 
-const openchatEditPrompt = `GPT4 Correct User: You are an expert programmer and personal assistant. You are asked to rewrite the following code in order to {{{userInput}}}.
+const openchatEditPrompt = `GPT4 修正用户：你是一位专家程序员和个人助手。你被要求重写以下代码以满足{{{userInput}}}。
 \`\`\`{{{language}}}
 {{{codeToEdit}}}
 \`\`\`
-Please only respond with code and put it inside of a markdown code block. Do not give any explanation, but your code should perfectly satisfy the user request.<|end_of_turn|>GPT4 Correct Assistant: Sure thing! Here is the rewritten code that you requested:
+请仅以代码回应并将其放入markdown代码块中。不要给出任何解释，但你的代码应完美满足用户请求。<|end_of_turn|>GPT4 修正助手：当然！这是你请求的重写代码：
 \`\`\`{{{language}}}
 `;
 
-const xWinCoderEditPrompt = `<system>: You are an AI coding assistant that helps people with programming. Write a response that appropriately completes the user's request.
-<user>: Please rewrite the following code with these instructions: "{{{userInput}}}"
+const xWinCoderEditPrompt = `<system>: 你是一位帮助人们编程的AI助手。写一个合适完成用户请求的响应。
+<user>: 请根据这些指示重写以下代码："{{{userInput}}}"
 \`\`\`{{{language}}}
 {{{codeToEdit}}}
 \`\`\`
 
-Just rewrite the code without explanations:
+只重写代码，不要进行解释：
 <AI>:
 \`\`\`{{{language}}}`;
 
-const neuralChatEditPrompt = `### System:
-You are an expert programmer and write code on the first attempt without any errors or fillers.
-### User:
-Rewrite the code to satisfy this request: "{{{userInput}}}"
+const neuralChatEditPrompt = `### 系统：
+你是一位专家程序员，第一次尝试就能写出没有错误或填充的代码。
+### 用户：
+重写代码以满足此请求："{{{userInput}}}"
 
 \`\`\`{{{language}}}
 {{{codeToEdit}}}
 \`\`\`
-### Assistant:
-Sure! Here's the code you requested:
+### 助手：
+当然！这是你请求的代码：
 
 \`\`\`{{{language}}}
 `;
 
-const codeLlama70bEditPrompt = `<s>Source: system\n\n You are an expert programmer and write code on the first attempt without any errors or fillers. <step> Source: user\n\n Rewrite the code to satisfy this request: "{{{userInput}}}"
+const codeLlama70bEditPrompt = `<s>来源：系统\n\n 你是一位专家程序员，第一次尝试就能写出没有错误或填充的代码。 <step> 来源：用户\n\n 重写代码以满足此请求："{{{userInput}}}"
 
 \`\`\`{{{language}}}
 {{{codeToEdit}}}
-\`\`\` <step> Source: assistant\nDestination: user\n\n `;
+\`\`\` <step> 来源：助手\n目的地：用户\n\n `;
 
 const claudeEditPrompt: PromptTemplate = (
   history: ChatMessage[],
   otherData: Record<string, string>,
 ) => [
-  {
-    role: "user",
-    content: `\
+    {
+      role: "user",
+      content: `\
 \`\`\`${otherData.language}
 ${otherData.codeToEdit}
 \`\`\`
 
-You are an expert programmer. You will rewrite the above code to do the following:
+你是一位专家程序员。你将重写上述代码以执行以下操作：
 
 ${otherData.userInput}
 
-Output only a code block with the rewritten code:
+仅输出包含重写代码的代码块：
 `,
-  },
-  {
-    role: "assistant",
-    content: `Sure! Here is the rewritten code:
+    },
+    {
+      role: "assistant",
+      content: `当然！这是重写的代码：
 \`\`\`${otherData.language}`,
-  },
-];
+    },
+  ];
 
 const llama3EditPrompt: PromptTemplate = `<|begin_of_text|><|start_header_id|>user<|end_header_id|>
 \`\`\`{{{language}}}
 {{{codeToEdit}}}
 \`\`\`
 
-Rewrite the above code to satisfy this request: "{{{userInput}}}"<|eot_id|><|start_header_id|>assistant<|end_header_id|>
-Sure! Here's the code you requested:
+重写上述代码以满足此请求："{{{userInput}}}"<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+当然！这是你请求的代码：
 \`\`\`{{{language}}}`;
 
 const gemmaEditPrompt = `<start_of_turn>user
-You are an expert programmer and write code on the first attempt without any errors or fillers. Rewrite the code to satisfy this request: "{{{userInput}}}"
+你是一位专家程序员，第一次尝试就能写出没有错误或填充的代码。重写代码以满足此请求："{{{userInput}}}"
 
 \`\`\`{{{language}}}
 {{{codeToEdit}}}
 \`\`\`<end_of_turn>
 <start_of_turn>model
-Sure! Here's the code you requested:
+当然！这是你请求的代码：
 
 \`\`\`{{{language}}}
 `;
-
+// todo:
 export {
   alpacaEditPrompt,
   claudeEditPrompt,
@@ -297,5 +297,6 @@ export {
   simplestEditPrompt,
   simplifiedEditPrompt,
   xWinCoderEditPrompt,
-  zephyrEditPrompt,
+  zephyrEditPrompt
 };
+

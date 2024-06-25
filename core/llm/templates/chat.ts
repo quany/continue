@@ -200,7 +200,7 @@ const phindTemplateMessages = templateFactory(
 );
 
 /**
- * OpenChat Template, used by CodeNinja
+ * OpenChat Template, used by CodeNinja 
  * GPT4 Correct User: Hello<|end_of_turn|>GPT4 Correct Assistant: Hi<|end_of_turn|>GPT4 Correct User: How are you today?<|end_of_turn|>GPT4 Correct Assistant:
  */
 const openchatTemplateMessages = templateFactory(
@@ -289,5 +289,6 @@ export {
   phindTemplateMessages,
   templateAlpacaMessages,
   xWinCoderTemplateMessages,
-  zephyrTemplateMessages,
+  zephyrTemplateMessages
 };
+

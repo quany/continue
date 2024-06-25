@@ -179,10 +179,10 @@ function useChatHandler(dispatch: Dispatch, ideMessenger: IIdeMessenger) {
               .join("\n");
           }
           contextItems.unshift({
-            content: `The following file is currently open. Don't reference it if it's not relevant to the user's message.\n\n\`\`\`${getBasename(
+            content: `以下文件当前处于打开状态。如果它与用户的消息无关，请不要引用它。\n\n\`\`\`${getBasename(
               currentFilePath,
             )}\n${currentFileContents}\n\`\`\``,
-            name: `Active file: ${getBasename(currentFilePath)}`,
+            name: `激活文件: ${getBasename(currentFilePath)}`,
             description: currentFilePath,
             id: {
               itemId: currentFilePath,

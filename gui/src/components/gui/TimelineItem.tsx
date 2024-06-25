@@ -49,7 +49,7 @@ function TimelineItem(props: TimelineItemProps) {
         )}
       </CollapseButton>
       <span style={{ color: lightGray }}>
-        {props.item.message.role} Message
+        {props.item.message.role} 消息
         {/* {props.step.error ? props.step.error.title : props.step.name} */}
       </span>
     </CollapsedDiv>

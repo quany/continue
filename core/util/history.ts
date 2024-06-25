@@ -66,7 +66,7 @@ class HistoryManager {
       console.log(`Error migrating session: ${e}`);
       return {
         history: [],
-        title: "Failed to load session",
+        title: "加载会话失败",
         workspaceDirectory: "",
         sessionId: sessionId,
       };
