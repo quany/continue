@@ -5,7 +5,7 @@ import { languageForFilepath } from "../../autocomplete/constructPrompt.js";
 import { SlashCommand } from "../../index.js";
 import { stripImages } from "../../llm/countTokens.js";
 
-// If useful elsewhere, helper funcs should move to core/util/index.ts or similar
+// 如果在其他地方有用，辅助函数应移动到 core/util/index.ts 或类似位置
 function getOffsetDatetime(date: Date): Date {
   const offset = date.getTimezoneOffset();
   const offsetHours = Math.floor(offset / 60);
@@ -31,20 +31,19 @@ function reformatCodeBlocks(msgText: string): string {
       return `\`\`\`${extension}\n${lang.comment} ${metadata}\n`;
     },
   );
-  // Appease the markdown linter
+  // 满足 markdown linter
   return msgText.replace(/```\n```/g, "```\n\n```");
 }
 
 const ShareSlashCommand: SlashCommand = {
   name: "share",
-  description: "Export the current chat session to markdown",
+  description: "将当前聊天会话导出为 markdown",
   run: async function* ({ ide, history, params }) {
     const now = new Date();
 
-    let content = `### [Continue](https://continue.dev) session transcript\n Exported: ${now.toLocaleString()}`;
+    let content = `### [Continue](https://continue.dev) 会话记录\n 导出时间: ${now.toLocaleString()}`;
 
-    // As currently implemented, the /share command is by definition the last
-    // message in the chat history, this will omit it
+    // 按目前的实现，/share 命令定义为聊天记录中的最后一条消息，这将忽略它
     for (const msg of history.slice(0, history.length - 1)) {
       let msgText = msg.content;
       msgText = stripImages(msg.content);
@@ -53,12 +52,11 @@ const ShareSlashCommand: SlashCommand = {
         msgText = reformatCodeBlocks(msgText);
       }
 
-      // format messages as blockquotes
+      // 将消息格式化为引用块
       msgText = msgText.replace(/^/gm, "> ");
 
-      content += `\n\n#### ${
-        msg.role === "user" ? "_User_" : "_Assistant_"
-      }\n\n${msgText}`;
+      content += `\n\n#### ${msg.role === "user" ? "_用户_" : "_助手_"
+        }\n\n${msgText}`;
     }
 
     let outputDir: string = params?.outputDir;
@@ -74,11 +72,7 @@ const ShareSlashCommand: SlashCommand = {
       outputDir === "."
     ) {
       const workspaceDirs = await ide.getWorkspaceDirs();
-      // Although the most common situation is to have one directory open in a
-      // workspace it's also possible to have just a file open without an
-      // associated directory or to use multi-root workspaces in which multiple
-      // folders are included. We default to using the first item in the list, if
-      // it exists.
+      // 尽管在工作区中打开一个目录是最常见的情况，但也可能仅打开一个没有关联目录的文件，或使用多根工作区，其中包含多个文件夹。我们默认使用列表中的第一个项目（如果存在）。
       const workspaceDirectory = workspaceDirs?.[0] || "";
       outputDir = outputDir.replace(/^./, workspaceDirectory);
     }
@@ -88,12 +82,12 @@ const ShareSlashCommand: SlashCommand = {
     }
 
     const dtString = asBasicISOString(getOffsetDatetime(now));
-    const outPath = path.join(outputDir, `${dtString}_session.md`); //TODO: more flexible naming?
+    const outPath = path.join(outputDir, `${dtString}_session.md`); //TODO: 更灵活的命名？
 
     await ide.writeFile(outPath, content);
     await ide.openFile(outPath);
 
-    yield `The session transcript has been saved to a markdown file at \`${outPath}\`.`;
+    yield `会话记录已保存到 \`${outPath}\` 的 markdown 文件中。`;
   },
 };
 

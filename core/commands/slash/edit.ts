@@ -18,9 +18,9 @@ import {
   type RangeInFileWithContents,
 } from "../util.js";
 
-const PROMPT = `Take the file prefix and suffix into account, but only rewrite the code_to_edit as specified in the user_request. The code you write in modified_code_to_edit will replace the code between the code_to_edit tags. Do NOT preface your answer or write anything other than code. The </modified_code_to_edit> tag should be written to indicate the end of the modified code section. Do not ever use nested tags.
+const PROMPT = `考虑文件前缀和后缀，但仅按用户请求重写 code_to_edit 中的代码。您在 modified_code_to_edit 中编写的代码将替换 code_to_edit 标签之间的代码。不要以任何方式在答案前面加上前缀或写任何代码以外的内容。应写 </modified_code_to_edit> 标签以指示修改代码部分的结束。永远不要使用嵌套标签。
 
-Example:
+示例：
 
 <file_prefix>
 class Database:
@@ -41,7 +41,7 @@ class Database:
         self._data = {{}}
 </file_suffix>
 <user_request>
-Raise an error if the key already exists.
+如果键已存在，则抛出错误。
 </user_request>
 <modified_code_to_edit>
     def set(self, key, value):
@@ -50,7 +50,7 @@ Raise an error if the key already exists.
         self._data[key] = value
 </modified_code_to_edit>
 
-Main task:
+主要任务：
 `;
 
 export async function getPromptParts(
@@ -65,7 +65,7 @@ export async function getPromptParts(
   const TOKENS_TO_BE_CONSIDERED_LARGE_RANGE = tokenLimit ?? 1200;
   // if (model.countTokens(rif.contents) > TOKENS_TO_BE_CONSIDERED_LARGE_RANGE) {
   //   throw new Error(
-  //     "\n\n**It looks like you've selected a large range to edit, which may take a while to complete. If you'd like to cancel, click the 'X' button above. If you highlight a more specific range, Continue will only edit within it.**"
+  //     "\n\n**看起来您选择了一个较大的范围进行编辑，这可能需要一段时间才能完成。如果您想取消，请点击上方的 'X' 按钮。如果您选择一个更具体的范围，Continue 将仅在该范围内进行编辑。**"
   //   );
   // }
 
@@ -148,7 +148,7 @@ function compilePrompt(
   input: string,
 ): string {
   if (contents.trim() === "") {
-    // Separate prompt for insertion at the cursor, the other tends to cause it to repeat whole file
+    // 插入光标处的单独提示，避免使用重复整个文件的提示
     return `\
 <file_prefix>
 ${filePrefix}
@@ -161,7 +161,7 @@ ${fileSuffix}
 ${input}
 </user_request>
 
-Please output the code to be inserted at the cursor in order to fulfill the user_request. Do NOT preface your answer or write anything other than code. You should not write any tags, just the code. Make sure to correctly indent the code:`;
+请输出要插入光标处的代码以满足用户请求。不要在答案前面加前缀或写任何其他内容。您不应写任何标签，只写代码。确保正确缩进代码：`;
   }
 
   let prompt = PROMPT;
@@ -233,7 +233,7 @@ const EditSlashCommand: SlashCommand = {
       return;
     }
 
-    // Strip unecessary parts of the input (the fact that you have to do this is suboptimal, should be refactored away)
+    // 去除输入中不必要的部分（必须重构，当前方法不理想）
     let content = history[history.length - 1].content;
     if (typeof content !== "string") {
       content.forEach((part) => {
@@ -279,12 +279,12 @@ const EditSlashCommand: SlashCommand = {
     async function sendDiffUpdate(lines: string[], final = false) {
       const completion = lines.join("\n");
 
-      // Don't do this at the very end, just show the inserted code
+      // 在最后阶段，不要再重新计算，只显示插入的代码
       if (final) {
         linesToDisplay = [];
       }
 
-      // Only recalculate at every new-line, because this is sort of expensive
+      // 仅在每个新行时重新计算，因为此操作有点耗时
       else if (completion.endsWith("\n")) {
         const contentsLines = rif.contents.split("\n");
         let rewrittenLines = 0;
@@ -295,7 +295,7 @@ const EditSlashCommand: SlashCommand = {
               //     null, line, contentsLines[i]
               //   ).ratio()
               //   > 0.7
-              line.trim() === contentsLines[i].trim() && // Temp replacement for difflib (TODO)
+              line.trim() === contentsLines[i].trim() && // 临时代替 difflib 的方法（TODO）
               contentsLines[i].trim() !== ""
             ) {
               rewrittenLines = i + 1;
@@ -306,38 +306,37 @@ const EditSlashCommand: SlashCommand = {
         linesToDisplay = contentsLines.slice(rewrittenLines);
       }
 
-      const newFileContents = `${fullPrefixLines.join("\n")}\n${completion}\n${
-        linesToDisplay.length > 0 ? `${linesToDisplay.join("\n")}\n` : ""
-      }${fullSuffixLines.join("\n")}`;
+      const newFileContents = `${fullPrefixLines.join("\n")}\n${completion}\n${linesToDisplay.length > 0 ? `${linesToDisplay.join("\n")}\n` : ""
+        }${fullSuffixLines.join("\n")}`;
 
       const stepIndex = history.length - 1;
 
       await ide.showDiff(rif.filepath, newFileContents, stepIndex);
     }
 
-    // Important state variables
+    // 重要的状态变量
     // -------------------------
     const originalLines = rif.contents === "" ? [] : rif.contents.split("\n");
-    // In the actual file, taking into account block offset
+    // 在实际文件中，考虑块偏移
     let currentLineInFile = rif.range.start.line;
     let currentBlockLines: string[] = [];
     let originalLinesBelowPreviousBlocks = originalLines;
-    // The start of the current block in file, taking into account block offset
+    // 当前块在文件中的起始位置，考虑块偏移
     let currentBlockStart = -1;
     let offsetFromBlocks = 0;
 
-    // Don't end the block until you've matched N simultaneous lines
-    // This helps avoid many tiny blocks
+    // 在结束块之前，不要结束块
+    // 这有助于避免许多微小的块
     const LINES_TO_MATCH_BEFORE_ENDING_BLOCK = 2;
-    // If a line has been matched at the end of the block, this is its index within originalLinesBelowPreviousBlocks
-    // Except we are keeping track of multiple potentialities, so it's a list
-    // We always check the lines following each of these leads, but if multiple make it out at the end, we use the first one
-    // This is a tuple of (index_of_last_matched_line, number_of_lines_matched)
+    // 如果在块结束时匹配到一行，则这是 originalLinesBelowPreviousBlocks 中的索引
+    // 但我们正在跟踪多个潜在情况，因此它是一个列表
+    // 我们总是检查每个 lead 的后续行，但如果多个 lead 在最后存活，我们使用第一个 lead
+    // 这是 (index_of_last_matched_line, number_of_lines_matched) 的元组
     let indicesOfLastMatchedLines: [number, number][] = [];
 
     async function handleGeneratedLine(line: string) {
       if (currentBlockLines.length === 0) {
-        // Set this as the start of the next block
+        // 将其设置为下一个块的开始
         currentBlockStart =
           rif.range.start.line +
           originalLines.length -
@@ -347,15 +346,15 @@ const EditSlashCommand: SlashCommand = {
           originalLinesBelowPreviousBlocks.length > 0 &&
           line === originalLinesBelowPreviousBlocks[0]
         ) {
-          // Line is equal to the next line in file, move past this line
+          // 该行等于文件中的下一行，跳过此行
           originalLinesBelowPreviousBlocks =
             originalLinesBelowPreviousBlocks.slice(1);
           return;
         }
       }
 
-      // In a block, and have already matched at least one line
-      // Check if the next line matches, for each of the candidates
+      // 在块中，已经匹配到至少一行
+      // 检查下一行是否匹配，对于每个候选者
       const matchesFound: any[] = [];
       let firstValidMatch: any = null;
       for (const [
@@ -364,9 +363,9 @@ const EditSlashCommand: SlashCommand = {
       ] of indicesOfLastMatchedLines) {
         if (
           index_of_last_matched_line + 1 <
-            originalLinesBelowPreviousBlocks.length &&
+          originalLinesBelowPreviousBlocks.length &&
           line ===
-            originalLinesBelowPreviousBlocks[index_of_last_matched_line + 1]
+          originalLinesBelowPreviousBlocks[index_of_last_matched_line + 1]
         ) {
           matchesFound.push([
             index_of_last_matched_line + 1,
@@ -386,22 +385,22 @@ const EditSlashCommand: SlashCommand = {
       indicesOfLastMatchedLines = matchesFound;
 
       if (firstValidMatch !== null) {
-        // We've matched the required number of lines, insert suggestion!
+        // 我们匹配到了所需的行数，插入建议！
 
-        // We added some lines to the block that were matched (including maybe some blank lines)
-        // So here we will strip all matching lines from the end of currentBlockLines
+        // 我们向块中添加了一些已匹配的行（可能包括一些空行）
+        // 因此，在这里我们将从 currentBlockLines 末尾删除所有匹配的行
         const linesStripped: string[] = [];
         let indexOfLastLineInBlock: number = firstValidMatch[0];
         while (
           currentBlockLines.length > 0 &&
           currentBlockLines[currentBlockLines.length - 1] ===
-            originalLinesBelowPreviousBlocks[indexOfLastLineInBlock - 1]
+          originalLinesBelowPreviousBlocks[indexOfLastLineInBlock - 1]
         ) {
           linesStripped.push(currentBlockLines.pop() as string);
           indexOfLastLineInBlock -= 1;
         }
 
-        // Reset current block / update variables
+        // 重置当前块/更新变量
         currentLineInFile += 1;
         offsetFromBlocks += currentBlockLines.length;
         originalLinesBelowPreviousBlocks =
@@ -413,12 +412,12 @@ const EditSlashCommand: SlashCommand = {
         return;
       }
 
-      // Always look for new matching candidates
+      // 始终寻找新的匹配候选者
       const newMatches: any[] = [];
       for (let i = 0; i < originalLinesBelowPreviousBlocks.length; i++) {
         const ogLine = originalLinesBelowPreviousBlocks[i];
-        // TODO: It's a bit sus to be disqualifying empty lines.
-        // What you ideally do is find ALL matches, and then throw them out as you check the following lines
+        // TODO: 这里排除空行有点可疑。
+        // 理想情况下，您会找到所有匹配项，然后在检查后续行时将其剔除
         if (ogLine === line) {
           // and og_line.trim() !== "":
           newMatches.push([i, 1]);
@@ -426,7 +425,7 @@ const EditSlashCommand: SlashCommand = {
       }
       indicesOfLastMatchedLines = indicesOfLastMatchedLines.concat(newMatches);
 
-      // Make sure they are sorted by index
+      // 确保它们按索引排序
       indicesOfLastMatchedLines = indicesOfLastMatchedLines.sort(
         (a, b) => a[0] - b[0],
       );
@@ -444,7 +443,7 @@ const EditSlashCommand: SlashCommand = {
     let repeatingFileSuffix = false;
     const lineBelowHighlightedRange = fileSuffix.trim().split("\n")[0];
 
-    // Use custom templates defined by the model
+    // 使用模型定义的自定义模板
     const template = llm.promptTemplates?.edit;
     let generator: AsyncGenerator<string>;
     if (template) {
@@ -458,7 +457,7 @@ const EditSlashCommand: SlashCommand = {
           filePrefix: filePrefix,
           fileSuffix: fileSuffix,
 
-          // Some built-in templates use these instead of the above
+          // 一些内置模板使用这些参数而不是上面的
           prefix: filePrefix,
           suffix: fileSuffix,
 
@@ -510,50 +509,50 @@ const EditSlashCommand: SlashCommand = {
     }
 
     for await (const chunk of generator) {
-      // Stop early if it is repeating the fileSuffix or the step was deleted
+      // 如果它重复文件后缀或步骤已删除，请提前停止
       if (repeatingFileSuffix) {
         break;
       }
 
-      // Allow stopping breakpoints
+      // 允许停止断点
       yield undefined;
 
-      // Accumulate lines
+      // 累积行
       const chunkLines = chunk.split("\n");
       chunkLines[0] = unfinishedLine + chunkLines[0];
       if (chunk.endsWith("\n")) {
         unfinishedLine = "";
-        chunkLines.pop(); // because this will be an empty string
+        chunkLines.pop(); // 因为这将是一个空字符串
       } else {
         unfinishedLine = chunkLines.pop() ?? "";
       }
 
-      // Deal with newly accumulated lines
+      // 处理新累积的行
       for (let i = 0; i < chunkLines.length; i++) {
-        // Trailing whitespace doesn't matter
+        // 尾随空格不重要
         chunkLines[i] = chunkLines[i].trimEnd();
         chunkLines[i] = commonWhitespace + chunkLines[i];
 
-        // Lines that should signify the end of generation
+        // 行应标志生成结束
         if (isEndLine(chunkLines[i])) {
           break;
         }
-        // Lines that should be ignored, like the <> tags
+        // 应忽略的行，如 <> 标签
         if (lineToBeIgnored(chunkLines[i], completionLinesCovered === 0)) {
-          continue; // noice
+          continue; // 不错
         }
-        // Check if we are currently just copying the prefix
+        // 检查当前是否仅复制前缀
         if (
           (linesOfPrefixCopied > 0 || completionLinesCovered === 0) &&
           linesOfPrefixCopied < filePrefix.split("\n").length &&
           chunkLines[i] === fullPrefixLines[linesOfPrefixCopied]
         ) {
-          // This is a sketchy way of stopping it from repeating the filePrefix. Is a bug if output happens to have a matching line
+          // 这是防止重复文件前缀的一种草率方法。如果输出恰好有匹配的行，则为错误
           linesOfPrefixCopied += 1;
-          continue; // also nice
+          continue; // 也不错
         }
-        // Because really short lines might be expected to be repeated, this is only a !heuristic!
-        // Stop when it starts copying the fileSuffix
+        // 因为非常短的行可能被期望重复，所以这只是一个 !启发式!
+        // 当它开始复制文件后缀时停止
         if (
           chunkLines[i].trim() === lineBelowHighlightedRange.trim() &&
           chunkLines[i].trim().length > 4 &&
@@ -580,7 +579,7 @@ const EditSlashCommand: SlashCommand = {
       );
     }
 
-    // Add the unfinished line
+    // 添加未完成的行
     if (
       unfinishedLine !== "" &&
       !lineToBeIgnored(unfinishedLine, completionLinesCovered === 0) &&
@@ -596,18 +595,18 @@ const EditSlashCommand: SlashCommand = {
     await sendDiffUpdate(lines, true);
 
     if (params?.recap) {
-      const prompt = `This is the code before editing:
+      const prompt = `这是编辑前的代码：
 \`\`\`
 ${contents}
 \`\`\`
 
-This is the code after editing:
+这是编辑后的代码：
 
 \`\`\`
 ${lines.join("\n")}
 \`\`\`
 
-Please briefly explain the changes made to the code above. Give no more than 2-3 sentences, and use markdown bullet points:`;
+请简要说明对上述代码所做的更改。不要超过 2-3 句，并使用 markdown 列表：`;
 
       for await (const update of llm.streamComplete(prompt)) {
         yield update;

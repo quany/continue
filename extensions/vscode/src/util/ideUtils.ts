@@ -419,7 +419,7 @@ export class VsCodeIdeUtils {
 
     if (!session) {
       vscode.window.showWarningMessage(
-        "No active debug session found, therefore no debug context will be provided for the llm.",
+        "没有找到活动的调试会话，因此不会为大语言模型提供调试上下文。",
       );
       return "";
     }

@@ -1,5 +1,5 @@
-import React, { memo, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { memo, useEffect } from "react";
+
 import { useRemark } from "react-remark";
 import rehypeHighlight from "rehype-highlight";
 import rehypeKatex from "rehype-katex";
@@ -12,7 +12,6 @@ import {
   vscEditorBackground,
   vscForeground,
 } from "..";
-import { RootState } from "../../redux/store";
 import { getFontSize } from "../../util";
 import PreWithToolbar from "./PreWithToolbar";
 import { SyntaxHighlightedPre } from "./SyntaxHighlightedPre";
@@ -91,42 +90,7 @@ interface StyledMarkdownPreviewProps {
   scrollLocked?: boolean;
 }
 
-const FadeInWords: React.FC = (props: any) => {
-  const { children, ...otherProps } = props;
 
-  const active = useSelector((store: RootState) => store.state.active);
-
-  const [textWhenActiveStarted, setTextWhenActiveStarted] = useState(
-    props.children,
-  );
-
-  useEffect(() => {
-    if (active) {
-      setTextWhenActiveStarted(children);
-    }
-  }, [active]);
-
-  // Split the text into words
-  const words = children
-    .map((child) => {
-      if (typeof child === "string") {
-        return child.split(" ").map((word, index) => (
-          <span className="fade-in-span" key={index}>
-            {word}{" "}
-          </span>
-        ));
-      } else {
-        return <span className="fade-in-span">{child}</span>;
-      }
-    })
-    .flat();
-
-  return active && children !== textWhenActiveStarted ? (
-    <p {...otherProps}>{words}</p>
-  ) : (
-    <p>{children}</p>
-  );
-};
 
 const StyledMarkdownPreview = memo(function StyledMarkdownPreview(
   props: StyledMarkdownPreviewProps,
@@ -169,31 +133,6 @@ const StyledMarkdownPreview = memo(function StyledMarkdownPreview(
             <SyntaxHighlightedPre {...preProps}></SyntaxHighlightedPre>
           );
         },
-        //   pre: ({ node, ...preProps }) => {
-        //     const codeString =
-        //       preProps.children?.[0]?.props?.children?.[0].trim() || "";
-        //     const monacoEditor = (
-        //       <MonacoCodeBlock
-        //         showBorder={props.showCodeBorder}
-        //         language={
-        //           preProps.children?.[0]?.props?.className?.split("-")[1] ||
-        //           "typescript"
-        //         }
-        //         preProps={preProps}
-        //         codeString={codeString}
-        //       />
-        //     );
-        //     return props.showCodeBorder ? (
-        //       <PreWithToolbar copyvalue={codeString}>
-        //         <SyntaxHighlightedPre {...preProps}></SyntaxHighlightedPre>
-        //       </PreWithToolbar>
-        //     ) : (
-        //       <SyntaxHighlightedPre {...preProps}></SyntaxHighlightedPre>
-        //     );
-        //   },
-        // p: ({ node, ...props }) => {
-        //   return <FadeInWords {...props}></FadeInWords>;
-        // },
       },
     },
   });

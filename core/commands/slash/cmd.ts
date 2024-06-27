@@ -4,14 +4,14 @@ import { removeQuotesAndEscapes } from "../../util/index.js";
 
 const GenerateTerminalCommand: SlashCommand = {
   name: "cmd",
-  description: "Generate a shell command",
+  description: "生成一个 shell 命令",
   run: async function* ({ ide, llm, input }) {
     const gen =
-      llm.streamComplete(`The user has made a request to run a shell command. Their description of what it should do is:
+      llm.streamComplete(`用户请求运行一个 shell 命令。他们的描述如下：
 
 "${input}"
 
-Please write a shell command that will do what the user requested. Your output should consist of only the command itself, without any explanation or example output. Do not use any newlines. Only output the command that when inserted into the terminal will do precisely what was requested. Here is the command:`);
+请编写一个 shell 命令来完成用户的请求。您的输出应仅包含命令本身，没有任何解释或示例输出。不要使用任何换行符。仅输出命令，当插入到终端时，命令将准确执行请求。命令如下：`);
 
     const lines = streamLines(gen);
     let cmd = "";
@@ -36,7 +36,7 @@ Please write a shell command that will do what the user requested. Your output s
     }
 
     await ide.runCommand(cmd);
-    yield `Generated shell command: ${cmd}`;
+    yield `生成的 shell 命令：${cmd}`;
   },
 };
 
