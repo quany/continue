@@ -248,7 +248,7 @@ function GUI(props: GUIProps) {
             setDialogMessage(
               <div className="text-center p-4">
                 👋 感谢使用
-                Continue。我们一直在努力改进，并且喜欢听取用户的意见。如果您有兴趣与我们交流，请输入您的姓名和电子邮件。我们不会将这些信息用于除联系您之外的其他用途。
+                iCoding。我们一直在努力改进，并且喜欢听取用户的意见。如果您有兴趣与我们交流，请输入您的姓名和电子邮件。我们不会将这些信息用于除联系您之外的其他用途。
                 <br />
                 <br />
                 <form

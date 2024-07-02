@@ -1,5 +1,5 @@
 """
-Welcome to Continue!
+Welcome to iCoding!
 
 _________               _____ _____                       
 __  ____/______ _______ __  /____(_)_______ ____  _______ 
@@ -30,7 +30,7 @@ def mysterious_function(x):
 
 
 """Step 2: Use the keyboard shortcut [⌘ J] to
-select the code and toggle the Continue input box"""
+select the code and toggle the iCoding input box"""
 
 """Step 3: Ask a question and press enter"""
 # e.g.) what does this function do?
@@ -66,4 +66,4 @@ accept [⌥ ⇧ Y] or reject [⌥ ⇧ N] the edit"""
 
 # endregion
 
-# Ready to learn more? Check out the Continue documentation: https://docs.continue.dev
+# Ready to learn more? Check out the iCoding documentation: https://docs.continue.dev

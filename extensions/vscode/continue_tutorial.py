@@ -3,17 +3,17 @@ _________               _____ _____
 __  ____/______ _______ __  /____(_)_______ ____  _______ 
 _  /     _  __ \__  __ \_  __/__  / __  __ \_  / / /_  _ \ 
 / /___   / /_/ /_  / / // /_  _  /  _  / / // /_/ / /  __/
-\____/   \____/ /_/ /_/ \__/  /_/   /_/ /_/ \__,_/  \___/ 
+/____/   \____/ /_/ /_/ \__/  /_/   /_/ /_/ \__,_/  \___/ 
 
-Welcome to Continue! This is a 2 minute tutorial.
+欢迎使用iCoding！这是一个2分钟教程。
 
-You can click the gray buttons, starting with "Highlight the function" to follow along.
+你可以点击灰色按钮，从“高亮函数”开始，跟随教程进行操作。
 """
 
-# region —————————————————————————— Part 1: Ask a question about code [Cmd+L] ——————————————————————————
+# region —————————————————————————— 第1部分: 提问代码相关问题 [Cmd+L] ——————————————————————————
 
 
-"""Step 1: Highlight the function below"""
+"""步骤1：高亮下面的函数"""
 
 
 def mysterious_function(x):
@@ -25,17 +25,17 @@ def mysterious_function(x):
     return x
 
 
-"""Step 2: Use the keyboard shortcut [Cmd+L] to
-select the code and toggle the Continue input box"""
+"""步骤2：使用键盘快捷键[Cmd+L]
+选择代码并切换iCoding输入框"""
 
-"""Step 3: Ask a question and press Enter"""
+"""步骤3：提问并按下回车键"""
 
 # endregion
 
-# region ————————————————————————————————— Part 2: Edit code [Cmd+I] —————————————————————————————————
+# region ————————————————————————————————— 第2部分: 编辑代码 [Cmd+I] —————————————————————————————————
 
 
-"""Step 1: Highlight this code"""
+"""步骤1：高亮这段代码"""
 
 
 def mysterious_function(x):
@@ -51,29 +51,29 @@ def mysterious_function(x):
     return x
 
 
-"""Step 2: Use the keyboard shortcut [Cmd+I] to edit"""
+"""步骤2：使用键盘快捷键[Cmd+I]进行编辑"""
 
-"""Step 3: Type "<your edit request>" and press Enter"""
+"""步骤3：输入“<你的编辑请求>”并按下回车键"""
 
-"""Step 4: Use keyboard shortcuts to
-accept [Cmd+Shift+Enter] or reject [Cmd+Shift+Backspace] the edit"""
+"""步骤4：使用键盘快捷键
+接受[Cmd+Shift+Enter]或拒绝[Cmd+Shift+Backspace]编辑"""
 
 # endregion
 
-# region ———————————————————————————— Part 3: Debug automatically [Cmd+Shift+R] ————————————————————————————
+# region ———————————————————————————— 第3部分: 自动调试 [Cmd+Shift+R] ————————————————————————————
 
 
-"""Step 1: Run this Python file (it should error!)"""
+"""步骤1：运行这个Python文件（它应该会报错！）"""
 
 
 def print_sum(list_to_print):
     print(sum(list_to_print))
 
 
-"""Step 2: Use the keyboard shortcut [Cmd+Shift+R]
-to automatically debug the error"""
+"""步骤2：使用键盘快捷键[Cmd+Shift+R]
+自动调试错误"""
 print_sum(["a", "b", "c"])
 
 # endregion
 
-# Ready to learn more? Check out the Continue documentation: https://docs.continue.dev
+# 准备了解更多吗？请查阅iCoding文档：https://ic0ding.netlify.app/

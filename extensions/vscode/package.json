@@ -1,7 +1,7 @@
 {
   "name": "continue",
   "icon": "media/icon.png",
-  "version": "0.9.142",
+  "version": "0.9.143",
   "repository": {
     "type": "git",
     "url": "https://github.com/continuedev/continue"
@@ -17,10 +17,10 @@
   "homepage": "https://continue.dev",
   "qna": "https://github.com/continuedev/continue/issues/new/choose",
   "license": "Apache-2.0",
-  "displayName": "Continue - Codestral、GPT-4o 及更多",
+  "displayName": "iCoding - Codestral、GPT-4o 及更多",
   "pricing": "免费",
   "description": "开源自动驾驶 - 构建您自己的 AI 软件开发系统",
-  "publisher": "Continue",
+  "publisher": "iCoding",
   "engines": {
     "vscode": "^1.70.0",
     "node": ">=20.11.0"
@@ -54,22 +54,22 @@
   "browser": "./out/extension.js",
   "contributes": {
     "configuration": {
-      "title": "Continue",
+      "title": "iCoding",
       "properties": {
         "continue.telemetryEnabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Continue 收集匿名的使用数据，去除个人身份信息，以帮助我们改进产品。了解更多信息请访问 [continue.dev › Telemetry](https://docs.continue.dev/telemetry)。"
+          "markdownDescription": "iCoding 收集匿名的使用数据，去除个人身份信息，以帮助我们改进产品。了解更多信息请访问 [continue.dev › Telemetry](https://docs.continue.dev/telemetry)。"
         },
         "continue.showInlineTip": {
           "type": "boolean",
           "default": true,
-          "description": "显示使用 Continue 键盘快捷键的内联建议（例如“Cmd/Ctrl L 选择代码，Cmd/Ctrl I 编辑”）。"
+          "description": "显示使用 iCoding 键盘快捷键的内联建议（例如“Cmd/Ctrl L 选择代码，Cmd/Ctrl I 编辑”）。"
         },
         "continue.enableTabAutocomplete": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "启用 Continue 的 Tab 自动补全功能。阅读我们的使用指南了解配置和反馈共享：[continue.dev › 使用指南：Tab 自动补全](https://docs.continue.dev/walkthroughs/tab-autocomplete)"
+          "markdownDescription": "启用 iCoding 的 Tab 自动补全功能。阅读我们的使用指南了解配置和反馈共享：[continue.dev › 使用指南：Tab 自动补全](https://docs.continue.dev/walkthroughs/tab-autocomplete)"
         },
         "continue.remoteConfigServerUrl": {
           "type": "string",
@@ -91,133 +91,133 @@
     "commands": [
       {
         "command": "continue.acceptDiff",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "接受差异",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.rejectDiff",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "拒绝差异",
-        "group": "Continue",
+        "group": "iCoding",
         "icon": "$(stop)"
       },
       {
         "command": "continue.acceptVerticalDiffBlock",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "接受垂直差异块",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.rejectVerticalDiffBlock",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "拒绝垂直差异块",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.quickEdit",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "生成代码",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.toggleAuxiliaryBar",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "切换右侧边栏",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.focusContinueInput",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "将突出显示的代码添加到上下文",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.focusContinueInputWithoutClear",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "将突出显示的代码添加到上下文",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.debugTerminal",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "Continue：调试终端",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.toggleFullScreen",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "切换全屏",
         "icon": "$(fullscreen)",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.openConfigJson",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "打开 config.json",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.toggleTabAutocompleteEnabled",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "切换自动补全启用",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.shareSession",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "分享会话",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.selectFilesAsContext",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "Continue：选择文件作为上下文",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.newSession",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "新会话",
         "icon": "$(add)",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.viewHistory",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "查看历史",
         "icon": "$(history)",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.writeCommentsForCode",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "为此代码编写注释",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.writeDocstringForCode",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "为此代码编写文档字符串",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.fixCode",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "修复此代码",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.optimizeCode",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "优化此代码",
-        "group": "Continue"
+        "group": "iCoding"
       },
       {
         "command": "continue.fixGrammar",
-        "category": "Continue",
+        "category": "iCoding",
         "title": "修复语法/拼写",
-        "group": "Continue"
+        "group": "iCoding"
       }
     ],
     "keybindings": [
@@ -287,7 +287,7 @@
     "submenus": [
       {
         "id": "continue.continueSubMenu",
-        "label": "Continue"
+        "label": "iCoding"
       }
     ],
     "menus": {
@@ -323,39 +323,39 @@
       "editor/title/run": [
         {
           "command": "continue.rejectDiff",
-          "group": "Continue",
+          "group": "iCoding",
           "when": "continue.streamingDiff"
         }
       ],
       "continue.continueSubMenu": [
         {
           "command": "continue.focusContinueInputWithoutClear",
-          "group": "Continue",
+          "group": "iCoding",
           "when": "editorHasSelection"
         },
         {
           "command": "continue.writeCommentsForCode",
-          "group": "Continue",
+          "group": "iCoding",
           "when": "editorHasSelection"
         },
         {
           "command": "continue.writeDocstringForCode",
-          "group": "Continue",
+          "group": "iCoding",
           "when": "editorHasSelection"
         },
         {
           "command": "continue.fixCode",
-          "group": "Continue",
+          "group": "iCoding",
           "when": "editorHasSelection"
         },
         {
           "command": "continue.optimizeCode",
-          "group": "Continue",
+          "group": "iCoding",
           "when": "editorHasSelection"
         },
         {
           "command": "continue.fixGrammar",
-          "group": "Continue",
+          "group": "iCoding",
           "when": "editorHasSelection && editorLangId == 'markdown'"
         }
       ],
@@ -400,8 +400,8 @@
       "activitybar": [
         {
           "id": "continue",
-          "title": "Continue",
-          "icon": "media/sidebar-icon.png"
+          "title": "iCoding",
+          "icon": "media/iCoding-sidebar-icon.png"
         }
       ]
     },
@@ -419,12 +419,12 @@
       {
         "id": "continue",
         "title": "开始使用",
-        "description": "学习如何使用 Continue",
+        "description": "学习如何使用 iCoding",
         "steps": [
           {
             "id": "edit",
             "title": "用自然语言编辑",
-            "description": "高亮选中一段代码并指示 Continue 进行重构（例如“/edit 将此函数重写为异步函数”）",
+            "description": "高亮选中一段代码并指示 iCoding 进行重构（例如“/edit 将此函数重写为异步函数”）",
             "media": {
               "image": "media/edit.png",
               "altText": "空图片"
@@ -434,7 +434,7 @@
           {
             "id": "explain",
             "title": "获取可能的解释",
-            "description": "询问 Continue 关于您代码的一部分以获取另一种观点（例如“我应该在页面的哪个位置向后端发送请求？”）",
+            "description": "询问 iCoding 关于您代码的一部分以获取另一种观点（例如“我应该在页面的哪个位置向后端发送请求？”）",
             "media": {
               "image": "media/explain.png",
               "altText": "空图片"
@@ -444,7 +444,7 @@
           {
             "id": "generate",
             "title": "从头生成文件",
-            "description": "让 Continue 构建 Python 脚本、React 组件等的脚手架（例如“/edit 这里是一个 postgres 的连接器，现在写一个 kafka 的连接器”）",
+            "description": "让 iCoding 构建 Python 脚本、React 组件等的脚手架（例如“/edit 这里是一个 postgres 的连接器，现在写一个 kafka 的连接器”）",
             "media": {
               "image": "media/generate.png",
               "altText": "空图片"

@@ -18,7 +18,7 @@ class ContinueQuickFixProvider implements vscode.CodeActionProvider {
     const createQuickFix = (edit: boolean) => {
       const diagnostic = context.diagnostics[0];
       const quickFix = new vscode.CodeAction(
-        edit ? "使用 Continue 修复" : "询问 Continue",
+        edit ? "使用 iCoding 修复" : "询问 iCoding",
         vscode.CodeActionKind.QuickFix,
       );
       quickFix.isPreferred = false;
@@ -30,7 +30,7 @@ class ContinueQuickFixProvider implements vscode.CodeActionProvider {
       );
       quickFix.command = {
         command: "continue.quickFix",
-        title: "Continue 快速修复",
+        title: "iCoding 快速修复",
         arguments: [
           diagnostic.message,
           document.getText(surroundingRange),

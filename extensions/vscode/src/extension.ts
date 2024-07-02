@@ -14,7 +14,7 @@ async function dynamicImportAndActivate(context: vscode.ExtensionContext) {
     console.log("激活扩展时出错: ", e);
     vscode.window
       .showInformationMessage(
-        "激活 Continue 扩展时发生错误。",
+        "激活 iCoding 扩展时发生错误。",
         "查看日志",
         "重试",
       )

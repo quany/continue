@@ -41,7 +41,7 @@ const ShareSlashCommand: SlashCommand = {
   run: async function* ({ ide, history, params }) {
     const now = new Date();
 
-    let content = `### [Continue](https://continue.dev) 会话记录\n 导出时间: ${now.toLocaleString()}`;
+    let content = `### [iCoding](https://ic0ding.netlify.app) 会话记录\n 导出时间: ${now.toLocaleString()}`;
 
     // 按目前的实现，/share 命令定义为聊天记录中的最后一条消息，这将忽略它
     for (const msg of history.slice(0, history.length - 1)) {

@@ -66,7 +66,7 @@ class VsCodeIde implements IDE {
       if (!this.askedForAuth) {
         vscode.window
           .showInformationMessage(
-            "Continue 将请求读取您的 GitHub 邮箱权限，以便我们能够防止免费试用的滥用。如果您不想登录，您可以使用您自己的 API 密钥或本地模型来使用 Continue。",
+            "iCoding 将请求读取您的 GitHub 邮箱权限，以便我们能够防止免费试用的滥用。如果您不想登录，您可以使用您自己的 API 密钥或本地模型来使用 Continue。",
             "登录",
             "使用 API 密钥 / 本地模型",
             "了解更多",

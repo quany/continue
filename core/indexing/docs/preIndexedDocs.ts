@@ -142,9 +142,9 @@ const configs: SiteIndexingConfig[] = [
     rootUrl: "https://code.visualstudio.com/api",
   },
   {
-    title: "Continue",
-    startUrl: "https://docs.continue.dev/intro",
-    rootUrl: "https://docs.continue.dev",
+    title: "iCoding",
+    startUrl: "https://ic0ding.netlify.app/intro",
+    rootUrl: "https://ic0ding.netlify.app",
   },
   {
     title: "jQuery",

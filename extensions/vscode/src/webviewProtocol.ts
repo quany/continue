@@ -125,7 +125,7 @@ export class VsCodeWebviewProtocol
             } else if (e.cause.code === "ECONNREFUSED") {
               message = `连接被拒绝。这可能意味着在指定的 URL 没有正在运行的服务器。如果你正在运行自己的服务器，你可能需要在 config.json 中设置 "apiBase" 参数。例如，你可以设置一个 OpenAI 兼容的服务器，如这里所示: https://docs.continue.dev/reference/Model%20Providers/openai#openai-compatible-servers--apis`;
             } else {
-              message = `请求失败，原因是 "${e.cause.name}": ${e.cause.message}。如果你在设置 Continue 时遇到困难，请参阅故障排除指南以获得帮助。`;
+              message = `请求失败，原因是 "${e.cause.name}": ${e.cause.message}。如果你在设置 iCoding 时遇到困难，请参阅故障排除指南以获得帮助。`;
             }
           }
 
@@ -136,7 +136,7 @@ export class VsCodeWebviewProtocol
             } catch { }
             if (message.includes("exceeded")) {
               message +=
-                " 要继续使用 Continue，你可以设置一个本地模型或使用你自己的 API 密钥。";
+                " 要继续使用 iCoding，你可以设置一个本地模型或使用你自己的 API 密钥。";
             }
 
             vscode.window

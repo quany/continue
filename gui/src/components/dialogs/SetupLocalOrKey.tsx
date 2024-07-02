@@ -25,7 +25,7 @@ function SetupLocalOrKeyDialog() {
     <div className="p-4">
       <h3>设置您自己的模型</h3>
       <p>
-        要在免费输入后继续使用 Continue，您可以使用自己的 API
+        要在免费输入后继续使用 iCoding，您可以使用自己的 API
         密钥，或者使用本地大语言模型。要了解更多选项，请查看我们的
         <a
           className="cursor-pointer"

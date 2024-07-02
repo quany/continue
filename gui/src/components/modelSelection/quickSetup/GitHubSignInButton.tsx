@@ -22,7 +22,7 @@ function GitHubSignInButton(props: GitHubSignInButtonProps) {
           onClick={() => {
             ideMessenger.post(
               "openUrl",
-              "https://github.com/settings/tokens/new?scopes=user:email&description=Continue%20Free%20Trial%20Token%20",
+              "https://github.com/settings/tokens/new?scopes=user:email&description=iCoding%20Free%20Trial%20Token%20",
             );
           }}
           className="grid grid-flow-col items-center gap-2"
@@ -57,7 +57,7 @@ function GitHubSignInButton(props: GitHubSignInButtonProps) {
           props.onComplete(jbGhAuthToken);
         }}
       >
-        Continue
+        iCoding
       </Button>
     </div>
   ) : (

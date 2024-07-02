@@ -283,7 +283,7 @@ const Layout = () => {
                   // navigate("/settings");
                   ideMessenger.post("openConfigJson", undefined);
                 }}
-                text="配置 Continue"
+                text="配置 iCoding"
               >
                 <Cog6ToothIcon width="1.4em" height="1.4em" />
               </HeaderButtonWithText>

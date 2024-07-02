@@ -135,7 +135,7 @@ export class VsCodeIdeUtils {
     vscode.commands.executeCommand("workbench.action.closeAuxiliaryBar");
     const panel = vscode.window.createWebviewPanel(
       "continue.continueGUIView",
-      "Continue",
+      "iCoding",
       vscode.ViewColumn.One,
     );
     // panel.webview.html = this.sidebar.getSidebarContent(
@@ -189,7 +189,7 @@ export class VsCodeIdeUtils {
 
     // If not, ask user for secret
     secret = await vscode.window.showInputBox({
-      prompt: `Either enter secret for ${key} or press enter to try Continue for free.`,
+      prompt: `Either enter secret for ${key} or press enter to try iCoding for free.`,
       password: true,
     });
 
