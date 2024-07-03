@@ -1,5 +1,5 @@
 """
-Welcome to iCoding!
+欢迎来到 iCoding!
 
 _________               _____ _____                       
 __  ____/______ _______ __  /____(_)_______ ____  _______ 
@@ -7,17 +7,17 @@ _  /     _  __ \__  __ \_  __/__  / __  __ \_  / / /_  _ \
 / /___   / /_/ /_  / / // /_  _  /  _  / / // /_/ / /  __/
 \____/   \____/ /_/ /_/ \__/  /_/   /_/ /_/ \__,_/  \___/ 
 
-This is a 2 minute tutorial.
+这是一段2分钟的教程。
 
-It will walk you through two basic features:
-1. Ask a question
-2. Edit code
+它将向你介绍两个基本功能：
+1. 提问
+2. 编辑代码
 """
 
-# region —————————————————————————— Part 1: Ask a question about code [⌘ J] ——————————————————————————
+# region —————————————————————————— 第1部分：关于代码提问 [⌘ J] ——————————————————————————
 
 
-"""Step 1: Highlight the function below"""
+"""步骤 1: 高亮下面的函数"""
 
 
 def mysterious_function(x):
@@ -29,20 +29,20 @@ def mysterious_function(x):
     return x
 
 
-"""Step 2: Use the keyboard shortcut [⌘ J] to
-select the code and toggle the iCoding input box"""
+"""步骤 2: 使用键盘快捷键 [⌘ J] 
+选择代码并切换 iCoding 输入框"""
 
-"""Step 3: Ask a question and press enter"""
-# e.g.) what does this function do?
-# e.g.) what should I call this function?
+"""步骤 3: 提问并按下回车键"""
+# 例如) 这个函数的作用是什么？
+# 例如) 这个函数应该叫什么名字？
 
 # endregion
 
 
-# region ————————————————————————————————— Part 2: Edit code [⌘ I] —————————————————————————————————
+# region ————————————————————————————————— 第2部分: 编辑代码 [⌘ I] —————————————————————————————————
 
 
-"""Step 1: Highlight this code"""
+"""步骤 1: 高亮这段代码"""
 
 
 def bubble_sort(x):
@@ -54,16 +54,16 @@ def bubble_sort(x):
     return x
 
 
-"""Step 2: Use the keyboard shortcut [⌘ I] to
-select the code"""
+"""步骤 2: 使用键盘快捷键 [⌘ I] 
+选择代码"""
 
-"""Step 3: Type instructions to edit the code and press Enter"""
-# e.g.) "optimize this function"
-# e.g.) "edit write comments"
+"""步骤 3: 输入修改代码的指示并按回车键"""
+# 例如) "优化此函数"
+# 例如) "编辑并写注释"
 
-"""Step 4: Use keyboard shortcuts to
-accept [⌥ ⇧ Y] or reject [⌥ ⇧ N] the edit"""
+"""步骤 4: 使用键盘快捷键
+接受 [⌥ ⇧ Y] 或者 拒绝 [⌥ ⇧ N] 该修改"""
 
 # endregion
 
-# Ready to learn more? Check out the iCoding documentation: https://docs.continue.dev
+# 准备好了解更多？查看 iCoding 文档: https://ic0ding.netlify.app
