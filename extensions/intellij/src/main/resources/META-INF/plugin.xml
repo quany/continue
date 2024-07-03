@@ -2,7 +2,10 @@
 <idea-plugin>
     <id>com.github.continuedev.continueintellijextension</id>
     <name>iCoding</name>
-    <vendor>continue-dev</vendor>
+    <vendor>icoding-dev</vendor>
+    <description>
+        iCoding 让开发者保持高效状态。我们的开源插件，让你轻松创建自己的模块化 AI 软件开发系统，并且可以不断改进; 你可以使用我们的免费试用模型来体验 iCoding，然后再配置你的设置; Tab 键自动完成代码建议\在编码时重构函数\快速使用文档作为上下文
+    </description>
     <depends>com.intellij.modules.platform</depends>
     <idea-version since-build="223.0"/>
 

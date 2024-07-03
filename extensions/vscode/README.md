@@ -1,53 +1,53 @@
-![readme](media/readme.png)
+<!-- Plugin description -->
 
-<h1 align="center">Continue</h1>
+![readme](../../media/readme.png)
+
+<h1 align="center">iCoding</h1>
 
 <div align="center">
 
-**[Continue](https://docs.continue.dev) keeps developers in flow. Our open-source [VS Code](https://marketplace.visualstudio.com/items?itemName=Continue.continue) and [JetBrains](https://plugins.jetbrains.com/plugin/22707-continue-extension) extensions enable you to easily create your own modular AI software development system that you can improve.**
+**[iCoding](https://ic0ding.netlify.app) 让开发者保持高效状态。我们的开源 [VS Code](https://marketplace.visualstudio.com/items?itemName=Continue.continue) 和 [JetBrains](https://plugins.jetbrains.com/plugin/22707-continue-extension) 插件，让你轻松创建自己的模块化 AI 软件开发系统，并且可以不断改进。**
 
 </div>
 
 <div align="center">
 
-## Easily understand code sections
+## 轻松理解代码部分
 
-![understand](docs/static/img/understand.gif)
+![understand](../../docs/static/img/understand.gif)
 
-`cmd+L` (MacOS) / `ctrl+L` (Windows)
+`cmd+J` (MacOS) / `ctrl+J` (Windows)
 
-## Tab to autocomplete code suggestions
+## Tab 键自动完成代码建议
 
-![autocomplete](docs/static/img/autocomplete.gif)
+![autocomplete](../../docs/static/img/autocomplete.gif)
 
 `tab` (MacOS) / `tab` (Windows)
 
-## Refactor functions where you are coding
+## 在编码时重构函数
 
-![inline](docs/static/img/inline.gif)
+![inline](../../docs/static/img/inline.gif)
 
 `cmd+I` (MacOS) / `ctrl+I` (Windows)
 
-## Ask questions about your codebase
+## 快速使用文档作为上下文
 
-![codebase](docs/static/img/codebase.gif)
-
-`@codebase` (MacOS) / `@codebase` (Windows)
-
-## Quickly use documentation as context
-
-![docs](docs/static/img/docs.gif)
+![docs](../../docs/static/img/docs.gif)
 
 `@docs` (MacOS) / `@docs` (Windows)
 
 </div>
 
-## Getting Started
+## 入门指南
 
-You can try out Continue with our free trial models before configuring your setup.
+你可以使用我们的免费试用模型来体验 iCoding，然后再配置你的设置。
 
-Learn more about the models and providers [here](https://continue.dev/docs/setup/overview).
+在[这里](https://ic0ding.netlify.app)了解更多关于模型和提供者的信息。
 
-## License
 
-[Apache 2.0 © 2023 Continue Dev, Inc.](./LICENSE)
+## 许可证
+
+[Apache 2.0 © 2023 iCoding Dev, Inc.](./LICENSE)
+
+
+<!-- Plugin description end -->
