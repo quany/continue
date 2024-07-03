@@ -37,8 +37,8 @@ export const serverStateSlice = createSlice({
     ) => {
       state.slashCommands = [
         ...action.payload,
-        { name: "codebase", description: "Retrieve codebase context" },
-        { name: "so", description: "Search StackOverflow" },
+        { name: "codebase", description: "检索代码库上下文" },
+        { name: "so", description: "搜索 StackOverflow" },
       ];
     },
     setContextProviders: (

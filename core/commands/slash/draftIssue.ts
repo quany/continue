@@ -5,32 +5,32 @@ import { removeQuotesAndEscapes } from "../../util/index.js";
 const PROMPT = (
   input: string,
   title: string,
-) => `You will be asked to generate the body of a GitHub issue given a user request. You should follow these rules:
-- Be descriptive but do not make up details
-- If the the user request includes any code snippets that are relevant, reference them in code blocks
-- Describe step by step how to reproduce the problem
-- Describe the ideal solution to the problem
-- Describe the expected behavior after the issue has been resolved
-- This issue will be read by a team member
-- Use markdown formatting, but you do not need to surround the entire body with triple backticks
+) => `您将被要求根据用户请求生成一个 GitHub 问题的主体。您应遵循以下规则：
+- 要描述详细，但不要编造细节
+- 如果用户请求中包含任何相关的代码片段，请在代码块中引用它们
+- 逐步描述如何重现该问题
+- 描述问题的理想解决方案
+- 描述问题解决后的预期行为
+- 此问题将由团队成员读取
+- 使用 Markdown 格式，但您不需要用三个反引号将整个正文包围
 {additional_instructions}
 
-Here is the user request: '${input}'
+以下是用户的请求: '${input}'
 
-Title: ${title}
+标题: ${title}
 
-Body:\n\n`;
+正文:\n\n`;
 
 const DraftIssueCommand: SlashCommand = {
   name: "issue",
-  description: "Draft a GitHub issue",
+  description: "起草一个 GitHub 问题",
   run: async function* ({ input, llm, history, params }) {
     if (params?.repositoryUrl === undefined) {
-      yield "This command requires a repository URL to be set in the config file.";
+      yield "此命令需要在配置文件中设置存储库 URL。";
       return;
     }
     let title = await llm.complete(
-      `Generate a title for the GitHub issue requested in this user input: '${input}'. Use no more than 20 words and output nothing other than the title. Do not surround it with quotes. The title is: `,
+      `为此用户输入请求的 GitHub 问题生成一个标题: '${input}'。不要超过 20 个字，并且只输出标题。不要用引号包围它。标题是: `,
       { maxTokens: 20 },
     );
 
@@ -51,7 +51,7 @@ const DraftIssueCommand: SlashCommand = {
     const url = `${params.repositoryUrl}/issues/new?title=${encodeURIComponent(
       title,
     )}&body=${encodeURIComponent(body)}`;
-    yield `\n\n[Link to draft of issue](${url})`;
+    yield `\n\n[问题草稿链接](${url})`;
   },
 };
 

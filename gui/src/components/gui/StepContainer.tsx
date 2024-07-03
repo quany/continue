@@ -37,20 +37,6 @@ interface StepContainerProps {
 
 // #region styled components
 
-const ButtonsDiv = styled.div`
-  display: flex;
-  gap: 2px;
-  align-items: center;
-  background-color: ${vscBackground};
-  box-shadow: 1px 1px 10px ${vscBackground};
-  border-radius: ${defaultBorderRadius};
-  z-index: 100;
-  position: absolute;
-  right: 8px;
-  top: 16px;
-  height: 0;
-`;
-
 const ContentDiv = styled.div<{ isUserInput: boolean; fontSize?: number }>`
   padding: 2px;
   padding-right: 0px;
