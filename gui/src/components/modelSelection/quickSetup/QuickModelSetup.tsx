@@ -39,7 +39,7 @@ function QuickModelSetup(props: QuickModelSetupProps) {
         {!props.hideFreeTrialLimitMessage && getLocalStorage("ftc") > ftl() && (
           <p className="text-sm text-gray-500">
             您已达到 {ftl()} 次免费输入的免费试用限制。要继续使用
-            Continue，您可以使用自己的 API
+            iCoding，您可以使用自己的 API
             密钥，或者使用本地大语言模型。要了解更多选项，请查看我们的
             <a
               href="https://docs.continue.dev/setup/overview"

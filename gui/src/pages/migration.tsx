@@ -10,7 +10,7 @@ function MigrationPage() {
       </h1>
 
       <p>
-        Continue 现在使用一个 .json 配置文件。我们希望这能消除设置过程中的猜测。
+        iCoding 现在使用一个 .json 配置文件。我们希望这能消除设置过程中的猜测。
       </p>
 
       <p>

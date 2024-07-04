@@ -1,36 +1,34 @@
 <!-- Plugin description -->
 
-![readme](../../media/readme.png)
-
 <h1 align="center">iCoding</h1>
 
 <div align="center">
 
-**[iCoding](https://ic0ding.netlify.app) 让开发者保持高效状态。我们的开源 [VS Code](https://marketplace.visualstudio.com/items?itemName=Continue.continue) 和 [JetBrains](https://plugins.jetbrains.com/plugin/22707-continue-extension) 插件，让你轻松创建自己的模块化 AI 软件开发系统，并且可以不断改进。**
+**[iCoding](https://ic0ding.netlify.app) keeps developers in flow. Our open-source [VS Code](https://marketplace.visualstudio.com/items?itemName=Continue.continue) and [JetBrains](https://plugins.jetbrains.com/plugin/22707-continue-extension) extensions enable you to easily create your own modular AI software development system that you can improve.**
 
 </div>
 
 <div align="center">
 
-## 轻松理解代码部分
+## Easily understand code sections
 
 ![understand](../../docs/static/img/understand.gif)
 
 `cmd+J` (MacOS) / `ctrl+J` (Windows)
 
-## Tab 键自动完成代码建议
+## Tab to autocomplete code suggestions
 
 ![autocomplete](../../docs/static/img/autocomplete.gif)
 
 `tab` (MacOS) / `tab` (Windows)
 
-## 在编码时重构函数
+## Refactor functions where you are coding
 
 ![inline](../../docs/static/img/inline.gif)
 
 `cmd+I` (MacOS) / `ctrl+I` (Windows)
 
-## 快速使用文档作为上下文
+## Quickly use documentation as context
 
 ![docs](../../docs/static/img/docs.gif)
 
@@ -38,14 +36,13 @@
 
 </div>
 
-## 入门指南
+## Getting Started
 
-你可以使用我们的免费试用模型来体验 iCoding，然后再配置你的设置。
+You can try out iCoding with our free trial models before configuring your setup.
 
-在[这里](https://ic0ding.netlify.app)了解更多关于模型和提供者的信息。
+Learn more about the models and providers [here](https://ic0ding.netlify.app).
 
-
-## 许可证
+## License
 
 [Apache 2.0 © 2023 iCoding Dev, Inc.](./LICENSE)
 

@@ -28,7 +28,7 @@ function Onboarding() {
         </>
       ) : (
         <>
-          <h1 className="text-center">欢迎使用Continue</h1>
+          <h1 className="text-center">欢迎使用iCoding</h1>
           <p className="text-center pb-2">让我们找到最适合您的设置</p>
         </>
       )}
