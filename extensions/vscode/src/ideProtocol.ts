@@ -98,7 +98,7 @@ class VsCodeIde implements IDE {
             } else if (selection === "了解更多") {
               vscode.env.openExternal(
                 vscode.Uri.parse(
-                  "https://docs.continue.dev/reference/Model%20Providers/freetrial",
+                  "https://ic0ding.netlify.app/reference/Model%20Providers/freetrial",
                 ),
               );
             } else if (selection === "登录") {

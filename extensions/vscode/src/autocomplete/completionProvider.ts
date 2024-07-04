@@ -29,7 +29,7 @@ export class ContinueCompletionProvider
       if (val === "Documentation") {
         vscode.env.openExternal(
           vscode.Uri.parse(
-            "https://docs.continue.dev/walkthroughs/tab-autocomplete",
+            "https://ic0ding.netlify.app/walkthroughs/tab-autocomplete",
           ),
         );
       } else if (val === "Download Ollama") {

@@ -121,9 +121,9 @@ export class VsCodeWebviewProtocol
           let message = e.message;
           if (e.cause) {
             if (e.cause.name === "ConnectTimeoutError") {
-              message = `连接超时。如果你预计连接需要更长时间，你可以在 config.json 中增加超时时间，通过设置 "requestOptions": { "timeout": 10000 }。你可以在这里找到完整的配置参考: https://docs.continue.dev/reference/config`;
+              message = `连接超时。如果你预计连接需要更长时间，你可以在 config.json 中增加超时时间，通过设置 "requestOptions": { "timeout": 10000 }。你可以在这里找到完整的配置参考: https://ic0ding.netlify.app/reference/config`;
             } else if (e.cause.code === "ECONNREFUSED") {
-              message = `连接被拒绝。这可能意味着在指定的 URL 没有正在运行的服务器。如果你正在运行自己的服务器，你可能需要在 config.json 中设置 "apiBase" 参数。例如，你可以设置一个 OpenAI 兼容的服务器，如这里所示: https://docs.continue.dev/reference/Model%20Providers/openai#openai-compatible-servers--apis`;
+              message = `连接被拒绝。这可能意味着在指定的 URL 没有正在运行的服务器。如果你正在运行自己的服务器，你可能需要在 config.json 中设置 "apiBase" 参数。例如，你可以设置一个 OpenAI 兼容的服务器，如这里所示: https://ic0ding.netlify.app/reference/Model%20Providers/openai#openai-compatible-servers--apis`;
             } else {
               message = `请求失败，原因是 "${e.cause.name}": ${e.cause.message}。如果你在设置 iCoding 时遇到困难，请参阅故障排除指南以获得帮助。`;
             }
@@ -183,7 +183,7 @@ export class VsCodeWebviewProtocol
                 } else if (selection === "故障排除") {
                   vscode.env.openExternal(
                     vscode.Uri.parse(
-                      "https://docs.continue.dev/troubleshooting",
+                      "https://ic0ding.netlify.app/troubleshooting",
                     ),
                   );
                 }
