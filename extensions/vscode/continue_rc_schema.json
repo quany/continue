@@ -154,22 +154,22 @@
             "cloudflare"
           ],
           "markdownEnumDescriptions": [
-            "### OpenAI\n使用gpt-4、gpt-3.5-turbo或任何其他OpenAI模型。请查看[这里](https://openai.com/product#made-for-developers)获取API密钥。\n\n> [参考](https://docs.continue.dev/reference/Model%20Providers/openai)",
-            "### 免费试用\n新用户可以通过代理服务器免费试用iCoding，安全地使用我们的API密钥调用OpenAI。如果你已经准备好使用自己的API密钥或已使用完所有250次免费使用次数，你可以在config.json中输入你的API密钥`apiKey=\"\"`或选择其他模型提供商。\n> [参考](https://docs.continue.dev/reference/Model%20Providers/freetrial)",
-            "### Anthropic\n要开始使用Anthropic模型，你需要先在[这里](https://claude.ai/login)注册开放测试版以获取API密钥。\n> [参考](https://docs.continue.dev/reference/Model%20Providers/anthropicllm)",
-            "### Cohere\n要使用Cohere，请访问[Cohere仪表板](https://dashboard.cohere.com/api-keys)创建API密钥。\n\n> [参考](https://docs.continue.dev/reference/Model%20Providers/cohere)",
+            "### OpenAI\n使用gpt-4、gpt-3.5-turbo或任何其他OpenAI模型。请查看[这里](https://openai.com/product#made-for-developers)获取API密钥。\n\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/openai)",
+            "### 免费试用\n新用户可以通过代理服务器免费试用iCoding，安全地使用我们的API密钥调用OpenAI。如果你已经准备好使用自己的API密钥或已使用完所有250次免费使用次数，你可以在config.json中输入你的API密钥`apiKey=\"\"`或选择其他模型提供商。\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/freetrial)",
+            "### Anthropic\n要开始使用Anthropic模型，你需要先在[这里](https://claude.ai/login)注册开放测试版以获取API密钥。\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/anthropicllm)",
+            "### Cohere\n要使用Cohere，请访问[Cohere仪表板](https://dashboard.cohere.com/api-keys)创建API密钥。\n\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/cohere)",
             "### Bedrock\n要开始使用Bedrock，你需要在AWS上注册[这里](https://aws.amazon.com/bedrock/claude/)",
-            "### Together\nTogether是一个托管服务，提供非常快速的开源语言模型流传输。要开始使用Together：\n1. 从[这里](https://together.ai)获取API密钥\n2. 粘贴下面\n3. 选择一个模型预设\n> [参考](https://docs.continue.dev/reference/Model%20Providers/togetherllm)",
-            "### Ollama\n要开始使用Ollama，请按照以下步骤操作：\n1. 从[ollama.ai](https://ollama.ai/)下载并打开应用程序\n2. 打开终端并运行`ollama run <MODEL_NAME>`。示例模型名称为`codellama:7b-instruct`或`llama2:7b-text`。你可以在[这里](https://ollama.ai/library)找到完整列表。\n3. 确保步骤2中使用的模型名称与config.json中的模型名称相同（例如`model=\"codellama:7b-instruct\"`）\n4. 一旦模型下载完成，你可以通过iCoding开始提问。\n> [参考](https://docs.continue.dev/reference/Model%20Providers/ollama)",
-            "### Huggingface TGI\n\n> [参考](https://docs.continue.dev/reference/Model%20Providers/huggingfacetgi)",
-            "### Huggingface推理API\n\n> [参考](https://docs.continue.dev/reference/Model%20Providers/huggingfaceinferenceapi)",
-            "### Llama.cpp\nllama.cpp自带一个[内置服务器](https://github.com/ggerganov/llama.cpp/tree/master/examples/server#llamacppexampleserver)，可以从源码运行。要做到这一点：\n\n1. 用`git clone https://github.com/ggerganov/llama.cpp`克隆存储库。\n2. `cd llama.cpp`\n3. 运行`make`构建服务器。\n4. 下载你想使用的模型并将其放在`llama.cpp/models`目录中（最好在[The Bloke on HuggingFace](https://huggingface.co/TheBloke)找到模型）\n5. 用以下命令运行llama.cpp服务器（替换为你下载的模型）：\n\n```shell\n.\\server.exe -c 4096 --host 0.0.0.0 -t 16 --mlock -m models/codellama-7b-instruct.Q8_0.gguf\n```\n\n启动并运行后，你可以开始使用iCoding。\n> [参考](https://docs.continue.dev/reference/Model%20Providers/llamacpp)",
-            "### Replicate\nReplicate是一个托管服务，使运行ML模型变得简单。要开始使用Replicate：\n1. 从[这里](https://replicate.com)获取API密钥\n2. 粘贴下面\n3. 选择一个模型预设\n> [参考](https://docs.continue.dev/reference/Model%20Providers/replicatellm)",
-            "### Gemini API\n要开始使用Google Makersuite，请从[这里](https://makersuite.google.com)获取API密钥并粘贴在下面。\n> [参考](https://docs.continue.dev/reference/Model%20Providers/geminiapi)",
-            "### LMStudio\nLMStudio提供了一个专业且设计精良的GUI，用于探索、配置和服务LLM。它适用于Mac和Windows。要开始使用：\n1. 从[lmstudio.ai](https://lmstudio.ai/)下载并打开应用程序\n2. 从LMStudio主页搜索并下载所需模型。\n3. 在左侧栏单击'<->'图标以打开本地推理服务器并按‘启动服务器’。\n4. 一旦你的模型加载完成并服务器启动，你就可以开始使用iCoding。\n> [参考](https://docs.continue.dev/reference/Model%20Providers/lmstudio)",
-            "### Llamafile\n要开始使用llamafiles，请在他们的[GitHub仓库](https://github.com/Mozilla-Ocho/llamafile#binary-instructions)中找到并下载二进制文件。然后用以下命令运行它：\n\n```shell\nchmod +x ./llamafile\n./llamafile\n```\n> [参考](https://docs.continue.dev/reference/Model%20Providers/llamafile)",
+            "### Together\nTogether是一个托管服务，提供非常快速的开源语言模型流传输。要开始使用Together：\n1. 从[这里](https://together.ai)获取API密钥\n2. 粘贴下面\n3. 选择一个模型预设\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/togetherllm)",
+            "### Ollama\n要开始使用Ollama，请按照以下步骤操作：\n1. 从[ollama.ai](https://ollama.ai/)下载并打开应用程序\n2. 打开终端并运行`ollama run <MODEL_NAME>`。示例模型名称为`codellama:7b-instruct`或`llama2:7b-text`。你可以在[这里](https://ollama.ai/library)找到完整列表。\n3. 确保步骤2中使用的模型名称与config.json中的模型名称相同（例如`model=\"codellama:7b-instruct\"`）\n4. 一旦模型下载完成，你可以通过iCoding开始提问。\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/ollama)",
+            "### Huggingface TGI\n\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/huggingfacetgi)",
+            "### Huggingface推理API\n\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/huggingfaceinferenceapi)",
+            "### Llama.cpp\nllama.cpp自带一个[内置服务器](https://github.com/ggerganov/llama.cpp/tree/master/examples/server#llamacppexampleserver)，可以从源码运行。要做到这一点：\n\n1. 用`git clone https://github.com/ggerganov/llama.cpp`克隆存储库。\n2. `cd llama.cpp`\n3. 运行`make`构建服务器。\n4. 下载你想使用的模型并将其放在`llama.cpp/models`目录中（最好在[The Bloke on HuggingFace](https://huggingface.co/TheBloke)找到模型）\n5. 用以下命令运行llama.cpp服务器（替换为你下载的模型）：\n\n```shell\n.\\server.exe -c 4096 --host 0.0.0.0 -t 16 --mlock -m models/codellama-7b-instruct.Q8_0.gguf\n```\n\n启动并运行后，你可以开始使用iCoding。\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/llamacpp)",
+            "### Replicate\nReplicate是一个托管服务，使运行ML模型变得简单。要开始使用Replicate：\n1. 从[这里](https://replicate.com)获取API密钥\n2. 粘贴下面\n3. 选择一个模型预设\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/replicatellm)",
+            "### Gemini API\n要开始使用Google Makersuite，请从[这里](https://makersuite.google.com)获取API密钥并粘贴在下面。\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/geminiapi)",
+            "### LMStudio\nLMStudio提供了一个专业且设计精良的GUI，用于探索、配置和服务LLM。它适用于Mac和Windows。要开始使用：\n1. 从[lmstudio.ai](https://lmstudio.ai/)下载并打开应用程序\n2. 从LMStudio主页搜索并下载所需模型。\n3. 在左侧栏单击'<->'图标以打开本地推理服务器并按‘启动服务器’。\n4. 一旦你的模型加载完成并服务器启动，你就可以开始使用iCoding。\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/lmstudio)",
+            "### Llamafile\n要开始使用llamafiles，请在他们的[GitHub仓库](https://github.com/Mozilla-Ocho/llamafile#binary-instructions)中找到并下载二进制文件。然后用以下命令运行它：\n\n```shell\nchmod +x ./llamafile\n./llamafile\n```\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/llamafile)",
             "### Mistral API\n\n要访问Mistral API，请从[Mistral平台](https://docs.mistral.ai/)获取API密钥。",
-            "### DeepInfra\n\n> [参考](https://docs.continue.dev/reference/Model%20Providers/deepinfra)",
+            "### DeepInfra\n\n> [参考](https://ic0ding.netlify.app/reference/Model%20Providers/deepinfra)",
             "### iCoding Proxy\n\nContinue Enterprise用户可以使用iCoding Proxy作为模型的单一访问点。",
             "### Cloudflare Workers AI\n\n[参考](https://developers.cloudflare.com/workers-ai/)"
           ],
@@ -221,7 +221,7 @@
         },
         "promptTemplates": {
           "title": "提示模板",
-          "markdownDescription": "提示模板名称（目前iCoding中唯一使用的是'edit'）到字符串提示模板的映射。请查看[这里](https://docs.continue.dev/model-setup/configuration#customizing-the-edit-prompt)获取示例。",
+          "markdownDescription": "提示模板名称（目前iCoding中唯一使用的是'edit'）到字符串提示模板的映射。请查看[这里](https://ic0ding.netlify.app/model-setup/configuration#customizing-the-edit-prompt)获取示例。",
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -1890,13 +1890,13 @@
       "properties": {
         "allowAnonymousTelemetry": {
           "title": "Allow Anonymous Telemetry",
-          "markdownDescription": "If this field is set to True, we will collect anonymous telemetry as described in the documentation page on telemetry. If set to `false`, we will not collect any data. Learn more in [the docs](https://docs.continue.dev/telemetry).",
+          "markdownDescription": "If this field is set to True, we will collect anonymous telemetry as described in the documentation page on telemetry. If set to `false`, we will not collect any data. Learn more in [the docs](https://ic0ding.netlify.app/telemetry).",
           "default": true,
           "type": "boolean"
         },
         "models": {
           "title": "Models",
-          "markdownDescription": "Learn about setting up models in [the documentation](https://docs.continue.dev/model-setup/overview).",
+          "markdownDescription": "Learn about setting up models in [the documentation](https://ic0ding.netlify.app/model-setup/overview).",
           "default": [
             {
               "title": "GPT-4 (trial)",
@@ -1944,7 +1944,7 @@
         },
         "slashCommands": {
           "title": "Slash Commands",
-          "markdownDescription": "An array of slash commands that let you take custom actions from the sidebar. Learn more in the [documentation](https://docs.continue.dev/customization/slash-commands).",
+          "markdownDescription": "An array of slash commands that let you take custom actions from the sidebar. Learn more in the [documentation](https://ic0ding.netlify.app/customization/slash-commands).",
           "default": [],
           "type": "array",
           "items": {
@@ -1953,7 +1953,7 @@
         },
         "customCommands": {
           "title": "Custom Commands",
-          "markdownDescription": "An array of custom commands that allow you to reuse prompts. Each has name, description, and prompt properties. When you enter /<name> in the text input, it will act as a shortcut to the prompt. Learn more in the [documentation](https://docs.continue.dev/customization/slash-commands#custom-commands-use-natural-language).",
+          "markdownDescription": "An array of custom commands that allow you to reuse prompts. Each has name, description, and prompt properties. When you enter /<name> in the text input, it will act as a shortcut to the prompt. Learn more in the [documentation](https://ic0ding.netlify.app/customization/slash-commands#custom-commands-use-natural-language).",
           "default": [
             {
               "name": "test",
@@ -1968,7 +1968,7 @@
         },
         "contextProviders": {
           "title": "Context Providers",
-          "markdownDescription": "A list of ContextProvider objects that can be used to provide context to the LLM by typing '@'. Read more about ContextProviders in [the documentation](https://docs.continue.dev/customization/context-providers).",
+          "markdownDescription": "A list of ContextProvider objects that can be used to provide context to the LLM by typing '@'. Read more about ContextProviders in [the documentation](https://ic0ding.netlify.app/customization/context-providers).",
           "default": [],
           "type": "array",
           "items": {
@@ -2006,7 +2006,7 @@
         },
         "embeddingsProvider": {
           "title": "Embeddings Provider",
-          "markdownDescription": "The method that will be used to generate codebase embeddings. The default is transformers.js, which will run locally in the browser. Learn about the other options [here](https://docs.continue.dev/walkthroughs/codebase-embeddings#embeddings-providers).",
+          "markdownDescription": "The method that will be used to generate codebase embeddings. The default is transformers.js, which will run locally in the browser. Learn about the other options [here](https://ic0ding.netlify.app/walkthroughs/codebase-embeddings#embeddings-providers).",
           "type": "object",
           "properties": {
             "provider": {
@@ -2216,7 +2216,7 @@
         "tabAutocompleteOptions": {
           "title": "TabAutocompleteOptions",
           "type": "object",
-          "markdownDescription": "These options let you customize your tab-autocomplete experience. Read about all options in [the docs](https://docs.continue.dev/walkthroughs/tab-autocomplete#configuration-options).",
+          "markdownDescription": "These options let you customize your tab-autocomplete experience. Read about all options in [the docs](https://ic0ding.netlify.app/walkthroughs/tab-autocomplete#configuration-options).",
           "properties": {
             "disable": {
               "type": "boolean",

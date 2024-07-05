@@ -85,3 +85,5 @@ Check out the [contribution ideas board](https://github.com/orgs/continuedev/pro
 [Apache 2.0 © 2023 Continue Dev, Inc.](./LICENSE)
 文档网站
 https://codeforai.netlify.app/intro/
+vscode:
+uatfismrojurilhs36z3zasedegj26aollfvyd4mlpud2pkgrlda

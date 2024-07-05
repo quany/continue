@@ -1,24 +1,24 @@
 {
   "name": "continue",
-  "icon": "media/icon.png",
-  "version": "0.9.143",
+  "icon": "media/pluginIcon.png",
+  "version": "0.9.146",
   "repository": {
     "type": "git",
-    "url": "https://github.com/continuedev/continue"
+    "url": "https://github.com/quany/continue"
   },
   "extensionKind": [
     "ui",
     "workspace"
   ],
   "bugs": {
-    "url": "https://github.com/continuedev/continue/issues",
+    "url": "https://github.com/quany/continue/issues",
     "email": "nate@continue.dev"
   },
-  "homepage": "https://continue.dev",
+  "homepage": "https://ic0ding.netlify.app",
   "qna": "https://github.com/continuedev/continue/issues/new/choose",
   "license": "Apache-2.0",
   "displayName": "iCoding - Codestral、GPT-4o 及更多",
-  "pricing": "免费",
+  "pricing": "Free",
   "description": "开源自动驾驶 - 构建您自己的 AI 软件开发系统",
   "publisher": "iCoding",
   "engines": {
@@ -59,7 +59,7 @@
         "continue.telemetryEnabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "iCoding 收集匿名的使用数据，去除个人身份信息，以帮助我们改进产品。了解更多信息请访问 [continue.dev › Telemetry](https://docs.continue.dev/telemetry)。"
+          "markdownDescription": "iCoding 收集匿名的使用数据，去除个人身份信息，以帮助我们改进产品。了解更多信息请访问 [continue.dev › Telemetry](https://ic0ding.netlify.app/telemetry)。"
         },
         "continue.showInlineTip": {
           "type": "boolean",
@@ -69,7 +69,7 @@
         "continue.enableTabAutocomplete": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "启用 iCoding 的 Tab 自动补全功能。阅读我们的使用指南了解配置和反馈共享：[continue.dev › 使用指南：Tab 自动补全](https://docs.continue.dev/walkthroughs/tab-autocomplete)"
+          "markdownDescription": "启用 iCoding 的 Tab 自动补全功能。阅读我们的使用指南了解配置和反馈共享：[continue.dev › 使用指南：Tab 自动补全](https://ic0ding.netlify.app/walkthroughs/tab-autocomplete)"
         },
         "continue.remoteConfigServerUrl": {
           "type": "string",
