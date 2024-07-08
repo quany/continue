@@ -1,7 +1,7 @@
 {
   "name": "icoding",
   "icon": "media/pluginIcon.png",
-  "version": "0.9.149",
+  "version": "0.9.151",
   "repository": {
     "type": "git",
     "url": "https://github.com/quany/continue"
@@ -302,7 +302,7 @@
     ],
     "submenus": [
       {
-        "id": "icoding.continueSubMenu",
+        "id": "icoding.iCodingSubMenu",
         "label": "iCoding"
       }
     ],
@@ -332,7 +332,7 @@
       ],
       "editor/context": [
         {
-          "submenu": "icoding.continueSubMenu",
+          "submenu": "icoding.iCodingSubMenu",
           "group": "0_acontinue"
         }
       ],
@@ -343,7 +343,7 @@
           "when": "icoding.streamingDiff"
         }
       ],
-      "icoding.continueSubMenu": [
+      "icoding.iCodingSubMenu": [
         {
           "command": "icoding.focusContinueInputWithoutClear",
           "group": "iCoding",
@@ -385,24 +385,24 @@
         {
           "command": "icoding.newSession",
           "group": "navigation@1",
-          "when": "view == icoding.continueGUIView"
+          "when": "view == icoding.iCodingGUIView"
         },
         {
           "command": "icoding.toggleFullScreen",
           "group": "navigation@1",
-          "when": "view == icoding.continueGUIView"
+          "when": "view == icoding.iCodingGUIView"
         },
         {
           "command": "icoding.viewHistory",
           "group": "navigation@1",
-          "when": "view == icoding.continueGUIView"
+          "when": "view == icoding.iCodingGUIView"
         }
       ],
       "editor/title": [
         {
           "command": "icoding.toggleFullScreen",
           "group": "navigation@1",
-          "when": "activeWebviewPanelId == icoding.continueGUIView"
+          "when": "activeWebviewPanelId == icoding.iCodingGUIView"
         }
       ],
       "terminal/context": [
@@ -415,17 +415,17 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "continue",
+          "id": "icoding",
           "title": "iCoding",
           "icon": "media/iCoding-sidebar-icon.png"
         }
       ]
     },
     "views": {
-      "continue": [
+      "icoding": [
         {
           "type": "webview",
-          "id": "icoding.continueGUIView",
+          "id": "icoding.iCodingGUIView",
           "name": "",
           "visibility": "visible"
         }
@@ -433,7 +433,7 @@
     },
     "walkthroughs": [
       {
-        "id": "continue",
+        "id": "icoding",
         "title": "开始使用",
         "description": "学习如何使用 iCoding",
         "steps": [
