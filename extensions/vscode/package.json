@@ -1,7 +1,7 @@
 {
-  "name": "continue",
+  "name": "icoding",
   "icon": "media/pluginIcon.png",
-  "version": "0.9.146",
+  "version": "0.9.148",
   "repository": {
     "type": "git",
     "url": "https://github.com/quany/continue"
@@ -31,10 +31,26 @@
     "theme": "dark"
   },
   "categories": [
-    "编程语言",
-    "教育",
-    "机器学习",
-    "代码片段"
+    "AI",
+    "Azure",
+    "Chat",
+    "Data Science",
+    "Debuggers",
+    "Extension Packs",
+    "Education",
+    "Formatters",
+    "Keymaps",
+    "Language Packs",
+    "Linters",
+    "Machine Learning",
+    "Notebooks",
+    "Programming Languages",
+    "SCM Providers",
+    "Snippets",
+    "Testing",
+    "Themes",
+    "Visualization",
+    "Other"
   ],
   "keywords": [
     "chatgpt",
@@ -556,5 +572,6 @@
     "vscode-languageclient": "^8.0.2",
     "ws": "^8.13.0",
     "yarn": "^1.22.21"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

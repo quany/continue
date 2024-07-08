@@ -12,25 +12,25 @@
 
 ## Easily understand code sections
 
-![understand](../../docs/static/img/understand.gif)
+![understand](https://aifix.oss-cn-beijing.aliyuncs.com/static/temp/img/understand.gif)
 
 `cmd+J` (MacOS) / `ctrl+J` (Windows)
 
 ## Tab to autocomplete code suggestions
 
-![autocomplete](../../docs/static/img/autocomplete.gif)
+![autocomplete](https://aifix.oss-cn-beijing.aliyuncs.com/static/temp/img/autocomplete.gif)
 
 `tab` (MacOS) / `tab` (Windows)
 
 ## Refactor functions where you are coding
 
-![inline](../../docs/static/img/inline.gif)
+![inline](https://aifix.oss-cn-beijing.aliyuncs.com/static/temp/img/inline.gif)
 
 `cmd+I` (MacOS) / `ctrl+I` (Windows)
 
 ## Quickly use documentation as context
 
-![docs](../../docs/static/img/docs.gif)
+![docs](https://aifix.oss-cn-beijing.aliyuncs.com/static/temp/img/docs.gif)
 
 `@docs` (MacOS) / `@docs` (Windows)
 

@@ -1,12 +1,10 @@
 <!-- Plugin description -->
 
-![readme](../../media/readme.png)
-
 <h1 align="center">iCoding</h1>
 
 <div align="center">
 
-**[iCoding](https://ic0ding.netlify.app) 让开发者保持高效状态。我们的开源 [VS Code](https://marketplace.visualstudio.com/items?itemName=Continue.continue) 和 [JetBrains](https://plugins.jetbrains.com/plugin/22707-continue-extension) 插件，让你轻松创建自己的模块化 AI 软件开发系统，并且可以不断改进。**
+**[iCoding](https://ic0ding.netlify.app) 让开发者保持高效状态。我们的开源 [VS Code](https://marketplace.visualstudio.com/items?itemName=iCoding.icoding) 和 [JetBrains](https://plugins.jetbrains.com/plugin/24780-icoding) 插件，让你轻松创建自己的模块化 AI 软件开发系统，并且可以不断改进。**
 
 </div>
 
@@ -14,25 +12,25 @@
 
 ## 轻松理解代码部分
 
-![understand](../../docs/static/img/understand.gif)
+![understand](https://aifix.oss-cn-beijing.aliyuncs.com/static/temp/img/understand.gif)
 
 `cmd+J` (MacOS) / `ctrl+J` (Windows)
 
 ## Tab 键自动完成代码建议
 
-![autocomplete](../../docs/static/img/autocomplete.gif)
+![autocomplete](https://aifix.oss-cn-beijing.aliyuncs.com/static/temp/img/autocomplete.gif)
 
 `tab` (MacOS) / `tab` (Windows)
 
 ## 在编码时重构函数
 
-![inline](../../docs/static/img/inline.gif)
+![inline](https://aifix.oss-cn-beijing.aliyuncs.com/static/temp/img/inline.gif)
 
 `cmd+I` (MacOS) / `ctrl+I` (Windows)
 
 ## 快速使用文档作为上下文
 
-![docs](../../docs/static/img/docs.gif)
+![docs](https://aifix.oss-cn-beijing.aliyuncs.com/static/temp/img/docs.gif)
 
 `@docs` (MacOS) / `@docs` (Windows)
 
