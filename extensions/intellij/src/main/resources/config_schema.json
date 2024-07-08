@@ -1204,27 +1204,27 @@
       ]
     },
     "ModelRoles": {
-      "title": "ModelRoles",
+      "title": "模型角色",
       "type": "object",
       "properties": {
         "default": {
-          "title": "Default",
-          "description": "The default model. If other model roles are not set, they will fall back to default.",
+          "title": "默认",
+          "description": "默认模型。如果其他模型角色没有设置，它们将回退到默认。",
           "type": "string"
         },
         "chat": {
-          "title": "Chat",
-          "description": "The model to use for chat. If not set, will fall back to default.",
+          "title": "聊天",
+          "description": "用于聊天的模型。如果未设置，将回退到默认。",
           "type": "string"
         },
         "edit": {
-          "title": "Edit",
-          "description": "The model to use for editing. If not set, will fall back to default.",
+          "title": "编辑",
+          "description": "用于编辑的模型。如果未设置，将回退到默认。",
           "type": "string"
         },
         "summarize": {
-          "title": "Summarize",
-          "description": "The model to use for summarization. If not set, will fall back to default.",
+          "title": "摘要",
+          "description": "用于摘要的模型。如果未设置，将回退到默认。",
           "type": "string"
         }
       },
@@ -1233,11 +1233,11 @@
       ]
     },
     "SlashCommand": {
-      "title": "SlashCommand",
+      "title": "斜杠命令",
       "type": "object",
       "properties": {
         "name": {
-          "title": "Name",
+          "title": "名称",
           "anyOf": [
             {
               "enum": [
@@ -1253,15 +1253,15 @@
               ],
               "type": "string",
               "markdownEnumDescriptions": [
-                "Generate a link to a drafted GitHub issue",
-                "Export the current chat session to markdown",
-                "Reference StackOverflow to answer the question",
-                "Generate a terminal command and paste it into the terminal",
-                "Edit the highlighted code with given instructions",
-                "Add comments to the highlighted code",
-                "Write a custom slash command at your own HTTP endpoint. Set 'url' in the params object for the endpoint you have setup.",
-                "Generate a commit message for the current changes",
-                "Review code and give feedback"
+                "生成一个草稿的 GitHub 问题链接",
+                "将当前聊天会话导出为 markdown",
+                "引用 StackOverflow 来回答问题",
+                "生成一个终端命令并将其粘贴到终端",
+                "用给定的指令编辑高亮代码",
+                "为高亮代码添加注释",
+                "在您自己的 HTTP 端点上编写自定义斜杠命令。设置 'params' 对象中的 'url' 为您设置的端点。",
+                "为当前更改生成提交信息",
+                "检查代码并提供反馈"
               ]
             },
             {
@@ -1270,16 +1270,16 @@
           ]
         },
         "description": {
-          "title": "Description",
+          "title": "描述",
           "type": "string"
         },
         "step": {
-          "title": "Step",
-          "description": "This property is no longer required and has no effect. To use a built-in slash command, instead set the 'name' property to one of the pre-configured options.",
+          "title": "步骤",
+          "description": "此属性不再需要且无效。要使用内置的斜杠命令，请将 'name' 属性设置为预配置选项之一。",
           "type": "string"
         },
         "params": {
-          "title": "Params",
+          "title": "参数",
           "default": {},
           "type": "object"
         }
@@ -1301,7 +1301,7 @@
                 "properties": {
                   "repositoryUrl": {
                     "type": "string",
-                    "description": "Enter the URL of the GitHub repository for which you want to generate the issue."
+                    "description": "输入您想要生成问题的 GitHub 仓库 URL。"
                   }
                 },
                 "required": [
@@ -1330,11 +1330,11 @@
                 "properties": {
                   "recap": {
                     "type": "boolean",
-                    "markdownDescription": "If recap is set to `true`, iCoding will generate a summary of the changes after making the edit."
+                    "markdownDescription": "如果 recap 设置为 `true`，iCoding 将在编辑后生成更改摘要。"
                   },
                   "tokenLimit": {
                     "type": "integer",
-                    "markdownDescription": "By default, iCoding doesn't let you edit extremely large ranges (beyond 1,200 tokens), because the LLM is unlikely to succeed. But if you would like to override this limit with the understanding of possible failure you may do so here."
+                    "markdownDescription": "默认情况下，iCoding 不允许您编辑非常大的范围（超过 1,200 个 token），因为 LLM 可能不会成功。但如果您愿意在理解可能失败的前提下覆盖此限制，可以在此处进行设置。"
                   }
                 }
               }
@@ -1357,7 +1357,7 @@
                 "properties": {
                   "outputDir": {
                     "type": "string",
-                    "markdownDescription": "If outputDir is set to `.` or begins with `./` or `.\\`, file will be saved to the current workspace or a subdirectory thereof, respectively. `~` can similarly be used to specify the user's home directory."
+                    "markdownDescription": "如果 outputDir 设置为 `.` 或以 `./` 或 `.\\` 开头，文件将分别保存到当前工作空间或其子目录中。`~` 也可以用来指定用户的主目录。"
                   }
                 }
               }
@@ -1371,19 +1371,19 @@
       ]
     },
     "CustomCommand": {
-      "title": "CustomCommand",
+      "title": "自定义命令",
       "type": "object",
       "properties": {
         "name": {
-          "title": "Name",
+          "title": "名称",
           "type": "string"
         },
         "prompt": {
-          "title": "Prompt",
+          "title": "提示",
           "type": "string"
         },
         "description": {
-          "title": "Description",
+          "title": "描述",
           "type": "string"
         }
       },
@@ -1790,20 +1790,20 @@
               "params": {
                 "properties": {
                   "nRetrieve": {
-                    "title": "N Retrieve",
-                    "description": "Number of results to initially retrieve from vector database",
+                    "title": "初始检索结果数量",
+                    "description": "从向量数据库中初始检索的结果数量",
                     "default": 50,
                     "type": "integer"
                   },
                   "nFinal": {
-                    "title": "N Final",
-                    "description": "Final number of results to use after re-ranking",
+                    "title": "最终结果数量",
+                    "description": "重新排序后要使用的最终结果数量",
                     "default": 10,
                     "type": "integer"
                   },
                   "useReranking": {
-                    "title": "Use Reranking",
-                    "description": "Whether to use re-ranking, which will allow initial selection of nRetrieve results, then will use an LLM to select the top nFinal results. Disabling re-ranking will give faster, but less accurate, results.",
+                    "title": "使用重新排序",
+                    "description": "是否使用重新排序，这将允许初始选择 nRetrieve 结果，然后使用 LLM 选择前 nFinal 结果。禁用重新排序将提供更快但准确性较低的结果。",
                     "default": true,
                     "type": "boolean"
                   }
@@ -1827,43 +1827,43 @@
               "params": {
                 "properties": {
                   "host": {
-                    "title": "Host",
-                    "description": "Database host",
+                    "title": "主机",
+                    "description": "数据库主机",
                     "default": "localhost",
                     "type": "string"
                   },
                   "port": {
-                    "title": "Port",
-                    "description": "Database port",
+                    "title": "端口",
+                    "description": "数据库端口",
                     "default": 5432,
                     "type": "integer"
                   },
                   "user": {
-                    "title": "User",
-                    "description": "Database user",
+                    "title": "用户",
+                    "description": "数据库用户",
                     "default": "postgres",
                     "type": "string"
                   },
                   "password": {
-                    "title": "Password",
-                    "description": "Database password",
+                    "title": "密码",
+                    "description": "数据库密码",
                     "type": "string"
                   },
                   "database": {
-                    "title": "Database",
-                    "description": "Database name",
+                    "title": "数据库",
+                    "description": "数据库名称",
                     "default": "postgres",
                     "type": "string"
                   },
                   "schema": {
-                    "title": "Schema",
-                    "description": "Database schema",
+                    "title": "架构",
+                    "description": "数据库架构",
                     "default": "public",
                     "type": "string"
                   },
                   "sampleRows": {
-                    "title": "Sample Rows",
-                    "description": "Number of rows to sample from the database",
+                    "title": "采样行数",
+                    "description": "从数据库中采样的行数",
                     "default": 3,
                     "type": "integer"
                   }
@@ -1889,17 +1889,17 @@
       "type": "object",
       "properties": {
         "allowAnonymousTelemetry": {
-          "title": "Allow Anonymous Telemetry",
-          "markdownDescription": "If this field is set to True, we will collect anonymous telemetry as described in the documentation page on telemetry. If set to `false`, we will not collect any data. Learn more in [the docs](https://ic0ding.netlify.app/telemetry).",
+          "title": "允许匿名遥测",
+          "markdownDescription": "如果该字段设置为 True，我们将收集匿名遥测数据，如文档页面上的遥测描述。如果设置为 `false`，我们不会收集任何数据。了解更多信息请参阅 [文档](https://ic0ding.netlify.app/telemetry)。",
           "default": true,
           "type": "boolean"
         },
         "models": {
-          "title": "Models",
-          "markdownDescription": "Learn about setting up models in [the documentation](https://ic0ding.netlify.app/model-setup/overview).",
+          "title": "模型",
+          "markdownDescription": "了解在 [文档](https://ic0ding.netlify.app/model-setup/overview) 中设置模型的相关信息。",
           "default": [
             {
-              "title": "GPT-4 (trial)",
+              "title": "GPT-4（试用）",
               "provider": "free-trial",
               "model": "gpt-4",
               "apiKey": ""
@@ -1911,13 +1911,13 @@
           }
         },
         "systemMessage": {
-          "title": "System Message",
-          "description": "A system message that will always be followed by the LLM",
+          "title": "系统消息",
+          "description": "LLM 将始终遵循的系统消息",
           "type": "string"
         },
         "completionOptions": {
-          "title": "Completion Options",
-          "description": "Default options for completion. These will be overriden by any options set for a specific model.",
+          "title": "完成选项",
+          "description": "默认的完成选项。这些将被为特定模型设置的任何选项覆盖。",
           "default": {
             "temperature": null,
             "topP": null,
@@ -1934,8 +1934,8 @@
           ]
         },
         "requestOptions": {
-          "title": "Request Options",
-          "description": "Default request options for all fetch requests from models and context providers. These will be overriden by any model-specific request options.",
+          "title": "请求选项",
+          "description": "模型和上下文提供者的所有获取请求的默认请求选项。这些将被任何特定模型的请求选项覆盖。",
           "allOf": [
             {
               "$ref": "#/definitions/RequestOptions"
@@ -1943,8 +1943,8 @@
           ]
         },
         "slashCommands": {
-          "title": "Slash Commands",
-          "markdownDescription": "An array of slash commands that let you take custom actions from the sidebar. Learn more in the [documentation](https://ic0ding.netlify.app/customization/slash-commands).",
+          "title": "斜杠命令",
+          "markdownDescription": "一个斜杠命令数组，允许您从侧边栏执行自定义操作。了解更多信息请参阅 [文档](https://ic0ding.netlify.app/customization/slash-commands)。",
           "default": [],
           "type": "array",
           "items": {
@@ -1952,13 +1952,13 @@
           }
         },
         "customCommands": {
-          "title": "Custom Commands",
-          "markdownDescription": "An array of custom commands that allow you to reuse prompts. Each has name, description, and prompt properties. When you enter /<name> in the text input, it will act as a shortcut to the prompt. Learn more in the [documentation](https://ic0ding.netlify.app/customization/slash-commands#custom-commands-use-natural-language).",
+          "title": "自定义命令",
+          "markdownDescription": "一个自定义命令数组，允许您重用提示。每个命令都有名称、描述和提示属性。当您在文本输入中输入 /<name> 时，它将作为提示的快捷方式。了解更多信息请参阅 [文档](https://ic0ding.netlify.app/customization/slash-commands#custom-commands-use-natural-language)。",
           "default": [
             {
               "name": "test",
-              "prompt": "{{{ input }}}\n\nWrite a comprehensive set of unit tests for the selected code. It should setup, run tests that check for correctness including important edge cases, and teardown. Ensure that the tests are complete and sophisticated. Give the tests just as chat output, don't edit any file.",
-              "description": "This is an example custom command. Open config.json to edit it and create more"
+              "prompt": "{{{ input }}}\n\n为选定的代码编写一套全面的单元测试。它应设置、运行检查正确性的测试，包括重要的边界情况，并进行清理。确保测试完整而复杂。仅提供测试结果，不编辑任何文件。",
+              "description": "这是一个示例自定义命令。打开 config.json 进行编辑并创建更多命令"
             }
           ],
           "type": "array",
@@ -1967,8 +1967,8 @@
           }
         },
         "contextProviders": {
-          "title": "Context Providers",
-          "markdownDescription": "A list of ContextProvider objects that can be used to provide context to the LLM by typing '@'. Read more about ContextProviders in [the documentation](https://ic0ding.netlify.app/customization/context-providers).",
+          "title": "上下文提供者",
+          "markdownDescription": "一个 ContextProvider 对象列表，通过输入 '@' 来为 LLM 提供上下文。了解更多关于 ContextProvider 的信息请参阅 [文档](https://ic0ding.netlify.app/customization/context-providers)。",
           "default": [],
           "type": "array",
           "items": {
@@ -1976,37 +1976,37 @@
           }
         },
         "userToken": {
-          "title": "User Token",
-          "description": "An optional token to identify the user.",
+          "title": "用户令牌",
+          "description": "用于标识用户的可选令牌。",
           "type": "string"
         },
         "dataServerUrl": {
-          "title": "Data Server Url",
-          "description": "The URL of the server where development data is sent. No data is sent unless a valid user token is provided.",
+          "title": "数据服务器 URL",
+          "description": "发送开发数据的服务器 URL。除非提供有效的用户令牌，否则不会发送任何数据。",
           "default": "https://us-west1-autodebug.cloudfunctions.net",
           "type": "string"
         },
         "disableSummaries": {
-          "title": "Disable Summaries",
-          "markdownDescription": "If set to `true`, iCoding will not generate summaries for each Step. This can be useful if you want to save on compute.",
+          "title": "禁用摘要",
+          "markdownDescription": "如果设置为 `true`，iCoding 将不会为每一步生成摘要。这在您想节省计算资源时非常有用。",
           "default": false,
           "type": "boolean"
         },
         "disableIndexing": {
-          "title": "Disable Indexing",
-          "markdownDescription": "If set to `true`, iCoding will not index the codebase. This is mainly used for debugging purposes.",
+          "title": "禁用索引",
+          "markdownDescription": "如果设置为 `true`，iCoding 将不会索引代码库。这主要用于调试目的。",
           "default": false,
           "type": "boolean"
         },
         "disableSessionTitles": {
-          "title": "Disable Session Titles",
-          "markdownDescription": "If set to `true`, iCoding will not make extra requests to the LLM to generate a summary title of each session.",
+          "title": "禁用会话标题",
+          "markdownDescription": "如果设置为 `true`，iCoding 将不会向 LLM 发送额外请求以生成每个会话的摘要标题。",
           "default": false,
           "type": "boolean"
         },
         "embeddingsProvider": {
-          "title": "Embeddings Provider",
-          "markdownDescription": "The method that will be used to generate codebase embeddings. The default is transformers.js, which will run locally in the browser. Learn about the other options [here](https://ic0ding.netlify.app/walkthroughs/codebase-embeddings#embeddings-providers).",
+          "title": "嵌入提供者",
+          "markdownDescription": "用于生成代码库嵌入的方法。默认是 transformers.js，它将在本地浏览器中运行。了解关于其他选项的更多信息 [here](https://ic0ding.netlify.app/walkthroughs/codebase-embeddings#embeddings-providers)。",
           "type": "object",
           "properties": {
             "provider": {
@@ -2028,8 +2028,8 @@
               "type": "string"
             },
             "requestOptions": {
-              "title": "Request Options",
-              "description": "Request options to be used in any fetch requests made by the embeddings provider",
+              "title": "请求选项",
+              "description": "嵌入提供者在进行任何获取请求时使用的请求选项",
               "$ref": "#/definitions/RequestOptions"
             }
           },
@@ -2078,8 +2078,8 @@
           ]
         },
         "reranker": {
-          "title": "Reranker",
-          "markdownDescription": "The reranker is responsible for selecting the final results when retrieving snippets from your codebase.",
+          "title": "重排器",
+          "markdownDescription": "重排器负责在从代码库检索片段时选择最终结果。",
           "type": "object",
           "properties": {
             "name": {
@@ -2204,52 +2204,52 @@
           ]
         },
         "tabAutocompleteModel": {
-          "title": "Tab Autocomplete Model",
-          "markdownDescription": "The model used for tab autocompletion. If undefined, iCoding will default to using starcoder2:3b on a local Ollama instance.\n\n*IMPORTANT*:\n\nIf you use a custom model, ensure that it is one trained for fill-in-the-middle completions. An instruct model is typically not well-suited to autocomplete and you may receive unsatisfactory completions.",
+          "title": "Tab 自动完成模型",
+          "markdownDescription": "用于 Tab 自动完成的模型。如果未定义，iCoding 将默认使用本地 Ollama 实例上的 starcoder2:3b。\n\n*重要提示*:\n\n如果您使用自定义模型，请确保它是为中间填充完成训练的模型。指令模型通常不适合自动完成，您可能会收到不满意的完成结果。",
           "default": {
-            "title": "Tab Autocomplete Model",
+            "title": "Tab 自动完成模型",
             "provider": "ollama",
             "model": "deepseek-coder:1.3b-base"
           },
           "$ref": "#/definitions/ModelDescription"
         },
         "tabAutocompleteOptions": {
-          "title": "TabAutocompleteOptions",
+          "title": "Tab 自动完成选项",
           "type": "object",
-          "markdownDescription": "These options let you customize your tab-autocomplete experience. Read about all options in [the docs](https://ic0ding.netlify.app/walkthroughs/tab-autocomplete#configuration-options).",
+          "markdownDescription": "这些选项让您可以自定义 Tab 自动完成体验。阅读所有选项的文档 [the docs](https://ic0ding.netlify.app/walkthroughs/tab-autocomplete#configuration-options)。",
           "properties": {
             "disable": {
               "type": "boolean",
-              "description": "Disable tab autocomplete. This can also be done from the IDE settings.",
+              "description": "禁用 Tab 自动完成。这也可以从 IDE 设置中完成。",
               "default": false
             },
             "useCopyBuffer": {
               "type": "boolean",
-              "description": "Determines whether the copy buffer will be considered when contructing the prompt."
+              "description": "决定是否在构建提示时考虑复制缓冲区。"
             },
             "useSuffix": {
               "type": "boolean",
-              "description": "Determines whether to use the file suffix in the prompt."
+              "description": "决定是否在提示中使用文件后缀。"
             },
             "maxPromptTokens": {
               "type": "number",
-              "description": "The maximum number of prompt tokens to use. A smaller number will yield faster completions, but less context."
+              "description": "使用的最大提示令牌数。较小的数字会产生更快的完成速度，但上下文较少。"
             },
             "debounceDelay": {
               "type": "number",
-              "description": "The delay in milliseconds before triggering autocomplete after a keystroke."
+              "description": "击键后触发自动完成前的延迟时间（毫秒）。"
             },
             "maxSuffixPercentage": {
               "type": "number",
-              "description": "The maximum percentage of the prompt that can be dedicated to the suffix."
+              "description": "提示中可以用于后缀的最大百分比。"
             },
             "prefixPercentage": {
               "type": "number",
-              "description": "The percentage of the input that should be dedicated to the prefix."
+              "description": "输入中应分配给前缀的百分比。"
             },
             "template": {
               "type": "string",
-              "description": "An optional template string to be used for autocomplete. It will be rendered with the Mustache templating language, and is passed the 'prefix' and 'suffix' variables."
+              "description": "用于自动完成的可选模板字符串。它将使用 Mustache 模板语言渲染，并传递 'prefix' 和 'suffix' 变量。"
             },
             "multilineCompletions": {
               "enum": [
@@ -2257,22 +2257,22 @@
                 "never",
                 "auto"
               ],
-              "description": "If set to true, iCoding will only complete a single line at a time."
+              "description": "如果设置为 true，iCoding 将每次只完成一行。"
             },
             "useCache": {
               "type": "boolean",
-              "description": "Whether to cache completions"
+              "description": "是否缓存完成结果"
             },
             "onlyMyCode": {
               "type": "boolean",
-              "description": "If set to true, iCoding will not include any snippets from go to definition unless they are within your repository"
+              "description": "如果设置为 true，iCoding 不会包含任何定义跳转片段，除非它们在您的仓库内。"
             },
             "useOtherFiles": {
               "type": "boolean",
-              "description": "Defaults to true. If set to false, iCoding will not attempt to include snippets from other files."
+              "description": "默认设置为 true。如果设置为 false，iCoding 将不会尝试包含其他文件中的片段。"
             },
             "disableInFiles": {
-              "description": "A list of files / glob patterns in which to disable tab autocomplete. For example, *.csv if you'd like to disable autocomplete in .csv files.",
+              "description": "禁用 Tab 自动完成的文件/全局模式列表。例如，如果您希望在 .csv 文件中禁用自动完成，可以使用 *.csv。",
               "type": "array",
               "items": {
                 "type": "string"
@@ -2290,7 +2290,7 @@
                 "bottom"
               ],
               "default": "top",
-              "description": "Whether to show the copy and apply code buttons at the top or bottom of code blocks in the sidebar."
+              "description": "是否在侧边栏的代码块顶部或底部显示复制和应用代码按钮。"
             },
             "fontSize": {
               "type": "number"
@@ -2323,23 +2323,23 @@
               "properties": {
                 "comment": {
                   "type": "string",
-                  "default": "Write comments for this code. Do not change anything about the code itself."
+                  "default": "为这段代码写注释。不要改变代码本身的任何内容。"
                 },
                 "docstring": {
                   "type": "string",
-                  "default": "Write a docstring for this code. Do not change anything about the code itself."
+                  "default": "为这段代码写文档字符串。不要改变代码本身的任何内容。"
                 },
                 "fix": {
                   "type": "string",
-                  "default": "Fix this code"
+                  "default": "修复这段代码"
                 },
                 "optimize": {
                   "type": "string",
-                  "default": "Optimize this code"
+                  "default": "优化这段代码"
                 },
                 "fixGrammar": {
                   "type": "string",
-                  "default": "If there are any grammar or spelling mistakes in this writing, fix them. Do not make other large changes to the writing."
+                  "default": "如果在这篇写作中有任何语法或拼写错误，请纠正它们。不要对写作做其他大的改动。"
                 }
               }
             }

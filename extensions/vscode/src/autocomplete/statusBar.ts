@@ -35,7 +35,7 @@ export function setupStatusBar(
     ? "$(loading~spin) iCoding"
     : statusBarItemText(enabled);
   statusBarItem.tooltip = statusBarItemTooltip(enabled);
-  statusBarItem.command = "continue.toggleTabAutocompleteEnabled";
+  statusBarItem.command = "icoding.toggleTabAutocompleteEnabled";
 
   statusBarItem.show();
 

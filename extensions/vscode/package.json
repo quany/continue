@@ -12,7 +12,7 @@
   ],
   "bugs": {
     "url": "https://github.com/quany/continue/issues",
-    "email": "nate@continue.dev"
+    "email": "nate@icoding.dev"
   },
   "homepage": "https://ic0ding.netlify.app",
   "qna": "https://github.com/continuedev/continue/issues/new/choose",
@@ -64,7 +64,7 @@
   ],
   "activationEvents": [
     "onStartupFinished",
-    "onView:continueGUIView"
+    "onView:iCodingGUIView"
   ],
   "main": "./out/extension.js",
   "browser": "./out/extension.js",
@@ -106,131 +106,131 @@
     },
     "commands": [
       {
-        "command": "continue.acceptDiff",
+        "command": "icoding.acceptDiff",
         "category": "iCoding",
         "title": "接受差异",
         "group": "iCoding"
       },
       {
-        "command": "continue.rejectDiff",
+        "command": "icoding.rejectDiff",
         "category": "iCoding",
         "title": "拒绝差异",
         "group": "iCoding",
         "icon": "$(stop)"
       },
       {
-        "command": "continue.acceptVerticalDiffBlock",
+        "command": "icoding.acceptVerticalDiffBlock",
         "category": "iCoding",
         "title": "接受垂直差异块",
         "group": "iCoding"
       },
       {
-        "command": "continue.rejectVerticalDiffBlock",
+        "command": "icoding.rejectVerticalDiffBlock",
         "category": "iCoding",
         "title": "拒绝垂直差异块",
         "group": "iCoding"
       },
       {
-        "command": "continue.quickEdit",
+        "command": "icoding.quickEdit",
         "category": "iCoding",
         "title": "生成代码",
         "group": "iCoding"
       },
       {
-        "command": "continue.toggleAuxiliaryBar",
+        "command": "icoding.toggleAuxiliaryBar",
         "category": "iCoding",
         "title": "切换右侧边栏",
         "group": "iCoding"
       },
       {
-        "command": "continue.focusContinueInput",
+        "command": "icoding.focusContinueInput",
         "category": "iCoding",
         "title": "将突出显示的代码添加到上下文",
         "group": "iCoding"
       },
       {
-        "command": "continue.focusContinueInputWithoutClear",
+        "command": "icoding.focusContinueInputWithoutClear",
         "category": "iCoding",
         "title": "将突出显示的代码添加到上下文",
         "group": "iCoding"
       },
       {
-        "command": "continue.debugTerminal",
+        "command": "icoding.debugTerminal",
         "category": "iCoding",
         "title": "Continue：调试终端",
         "group": "iCoding"
       },
       {
-        "command": "continue.toggleFullScreen",
+        "command": "icoding.toggleFullScreen",
         "category": "iCoding",
         "title": "切换全屏",
         "icon": "$(fullscreen)",
         "group": "iCoding"
       },
       {
-        "command": "continue.openConfigJson",
+        "command": "icoding.openConfigJson",
         "category": "iCoding",
         "title": "打开 config.json",
         "group": "iCoding"
       },
       {
-        "command": "continue.toggleTabAutocompleteEnabled",
+        "command": "icoding.toggleTabAutocompleteEnabled",
         "category": "iCoding",
         "title": "切换自动补全启用",
         "group": "iCoding"
       },
       {
-        "command": "continue.shareSession",
+        "command": "icoding.shareSession",
         "category": "iCoding",
         "title": "分享会话",
         "group": "iCoding"
       },
       {
-        "command": "continue.selectFilesAsContext",
+        "command": "icoding.selectFilesAsContext",
         "category": "iCoding",
         "title": "iCoding：选择文件作为上下文",
         "group": "iCoding"
       },
       {
-        "command": "continue.newSession",
+        "command": "icoding.newSession",
         "category": "iCoding",
         "title": "新会话",
         "icon": "$(add)",
         "group": "iCoding"
       },
       {
-        "command": "continue.viewHistory",
+        "command": "icoding.viewHistory",
         "category": "iCoding",
         "title": "查看历史",
         "icon": "$(history)",
         "group": "iCoding"
       },
       {
-        "command": "continue.writeCommentsForCode",
+        "command": "icoding.writeCommentsForCode",
         "category": "iCoding",
         "title": "为此代码编写注释",
         "group": "iCoding"
       },
       {
-        "command": "continue.writeDocstringForCode",
+        "command": "icoding.writeDocstringForCode",
         "category": "iCoding",
         "title": "为此代码编写文档字符串",
         "group": "iCoding"
       },
       {
-        "command": "continue.fixCode",
+        "command": "icoding.fixCode",
         "category": "iCoding",
         "title": "修复此代码",
         "group": "iCoding"
       },
       {
-        "command": "continue.optimizeCode",
+        "command": "icoding.optimizeCode",
         "category": "iCoding",
         "title": "优化此代码",
         "group": "iCoding"
       },
       {
-        "command": "continue.fixGrammar",
+        "command": "icoding.fixGrammar",
         "category": "iCoding",
         "title": "修复语法/拼写",
         "group": "iCoding"
@@ -238,176 +238,176 @@
     ],
     "keybindings": [
       {
-        "command": "continue.focusContinueInput",
+        "command": "icoding.focusContinueInput",
         "mac": "cmd+l",
         "key": "ctrl+l"
       },
       {
-        "command": "continue.focusContinueInputWithoutClear",
+        "command": "icoding.focusContinueInputWithoutClear",
         "mac": "cmd+shift+l",
         "key": "ctrl+shift+l"
       },
       {
-        "command": "continue.acceptDiff",
+        "command": "icoding.acceptDiff",
         "mac": "shift+cmd+enter",
         "key": "shift+ctrl+enter"
       },
       {
-        "command": "continue.rejectDiff",
+        "command": "icoding.rejectDiff",
         "mac": "shift+cmd+backspace",
         "key": "shift+ctrl+backspace"
       },
       {
-        "command": "continue.rejectDiff",
+        "command": "icoding.rejectDiff",
         "mac": "cmd+z",
         "key": "ctrl+z",
-        "when": "continue.diffVisible"
+        "when": "icoding.diffVisible"
       },
       {
-        "command": "continue.acceptVerticalDiffBlock",
+        "command": "icoding.acceptVerticalDiffBlock",
         "mac": "alt+cmd+y",
         "key": "alt+ctrl+y"
       },
       {
-        "command": "continue.rejectVerticalDiffBlock",
+        "command": "icoding.rejectVerticalDiffBlock",
         "mac": "alt+cmd+n",
         "key": "alt+ctrl+n"
       },
       {
-        "command": "continue.quickEdit",
+        "command": "icoding.quickEdit",
         "mac": "cmd+i",
         "key": "ctrl+i"
       },
       {
-        "command": "continue.toggleAuxiliaryBar",
+        "command": "icoding.toggleAuxiliaryBar",
         "mac": "alt+cmd+l",
         "key": "alt+ctrl+l"
       },
       {
-        "command": "continue.debugTerminal",
+        "command": "icoding.debugTerminal",
         "mac": "cmd+shift+r",
         "key": "ctrl+shift+r"
       },
       {
-        "command": "continue.toggleFullScreen",
+        "command": "icoding.toggleFullScreen",
         "mac": "cmd+k cmd+m",
         "key": "ctrl+k ctrl+m",
         "when": "!terminalFocus"
       },
       {
-        "command": "continue.toggleTabAutocompleteEnabled",
+        "command": "icoding.toggleTabAutocompleteEnabled",
         "mac": "cmd+k cmd+a",
         "key": "ctrl+k ctrl+a"
       }
     ],
     "submenus": [
       {
-        "id": "continue.continueSubMenu",
+        "id": "icoding.continueSubMenu",
         "label": "iCoding"
       }
     ],
     "menus": {
       "commandPalette": [
         {
-          "command": "continue.quickEdit"
+          "command": "icoding.quickEdit"
         },
         {
-          "command": "continue.toggleAuxiliaryBar"
+          "command": "icoding.toggleAuxiliaryBar"
         },
         {
-          "command": "continue.focusContinueInput"
+          "command": "icoding.focusContinueInput"
         },
         {
-          "command": "continue.focusContinueInputWithoutClear"
+          "command": "icoding.focusContinueInputWithoutClear"
         },
         {
-          "command": "continue.debugTerminal"
+          "command": "icoding.debugTerminal"
         },
         {
-          "command": "continue.toggleFullScreen"
+          "command": "icoding.toggleFullScreen"
         },
         {
-          "command": "continue.newSession"
+          "command": "icoding.newSession"
         }
       ],
       "editor/context": [
         {
-          "submenu": "continue.continueSubMenu",
+          "submenu": "icoding.continueSubMenu",
           "group": "0_acontinue"
         }
       ],
       "editor/title/run": [
         {
-          "command": "continue.rejectDiff",
+          "command": "icoding.rejectDiff",
           "group": "iCoding",
-          "when": "continue.streamingDiff"
+          "when": "icoding.streamingDiff"
         }
       ],
-      "continue.continueSubMenu": [
+      "icoding.continueSubMenu": [
         {
-          "command": "continue.focusContinueInputWithoutClear",
+          "command": "icoding.focusContinueInputWithoutClear",
           "group": "iCoding",
           "when": "editorHasSelection"
         },
         {
-          "command": "continue.writeCommentsForCode",
+          "command": "icoding.writeCommentsForCode",
           "group": "iCoding",
           "when": "editorHasSelection"
         },
         {
-          "command": "continue.writeDocstringForCode",
+          "command": "icoding.writeDocstringForCode",
           "group": "iCoding",
           "when": "editorHasSelection"
         },
         {
-          "command": "continue.fixCode",
+          "command": "icoding.fixCode",
           "group": "iCoding",
           "when": "editorHasSelection"
         },
         {
-          "command": "continue.optimizeCode",
+          "command": "icoding.optimizeCode",
           "group": "iCoding",
           "when": "editorHasSelection"
         },
         {
-          "command": "continue.fixGrammar",
+          "command": "icoding.fixGrammar",
           "group": "iCoding",
           "when": "editorHasSelection && editorLangId == 'markdown'"
         }
       ],
       "explorer/context": [
         {
-          "command": "continue.selectFilesAsContext",
+          "command": "icoding.selectFilesAsContext",
           "group": "1_debug@1"
         }
       ],
       "view/title": [
         {
-          "command": "continue.newSession",
+          "command": "icoding.newSession",
           "group": "navigation@1",
-          "when": "view == continue.continueGUIView"
+          "when": "view == icoding.continueGUIView"
         },
         {
-          "command": "continue.toggleFullScreen",
+          "command": "icoding.toggleFullScreen",
           "group": "navigation@1",
-          "when": "view == continue.continueGUIView"
+          "when": "view == icoding.continueGUIView"
         },
         {
-          "command": "continue.viewHistory",
+          "command": "icoding.viewHistory",
           "group": "navigation@1",
-          "when": "view == continue.continueGUIView"
+          "when": "view == icoding.continueGUIView"
         }
       ],
       "editor/title": [
         {
-          "command": "continue.toggleFullScreen",
+          "command": "icoding.toggleFullScreen",
           "group": "navigation@1",
-          "when": "activeWebviewPanelId == continue.continueGUIView"
+          "when": "activeWebviewPanelId == icoding.continueGUIView"
         }
       ],
       "terminal/context": [
         {
-          "command": "continue.debugTerminal",
+          "command": "icoding.debugTerminal",
           "group": "navigation@top"
         }
       ]
@@ -425,7 +425,7 @@
       "continue": [
         {
           "type": "webview",
-          "id": "continue.continueGUIView",
+          "id": "icoding.continueGUIView",
           "name": "",
           "visibility": "visible"
         }

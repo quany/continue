@@ -29,7 +29,7 @@ class ContinueQuickFixProvider implements vscode.CodeActionProvider {
         0,
       );
       quickFix.command = {
-        command: "continue.quickFix",
+        command: "icoding.quickFix",
         title: "iCoding 快速修复",
         arguments: [
           diagnostic.message,

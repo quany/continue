@@ -74,7 +74,7 @@ class VsCodeIde implements IDE {
           .then(async (selection) => {
             if (selection === "使用 API 密钥 / 本地模型") {
               await vscode.commands.executeCommand(
-                "continue.continueGUIView.focus",
+                "icoding.continueGUIView.focus",
               );
               (await this.vscodeWebviewProtocolPromise).request(
                 "openOnboarding",
@@ -202,7 +202,7 @@ class VsCodeIde implements IDE {
       version: vscode.version,
       remoteName: vscode.env.remoteName || "local",
       extensionVersion:
-        vscode.extensions.getExtension("continue.continue")?.packageJSON
+        vscode.extensions.getExtension("icoding.continue")?.packageJSON
           .version,
     });
   }

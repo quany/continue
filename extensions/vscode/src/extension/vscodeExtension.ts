@@ -70,7 +70,7 @@ export class VsCodeExtension {
     // Sidebar
     context.subscriptions.push(
       vscode.window.registerWebviewViewProvider(
-        "continue.continueGUIView",
+        "icoding.continueGUIView",
         this.sidebar,
         {
           webviewOptions: { retainContextWhenHidden: true },

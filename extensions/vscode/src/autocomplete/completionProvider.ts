@@ -246,7 +246,7 @@ export class ContinueCompletionProvider
         completionRange,
         {
           title: "记录自动完成结果",
-          command: "continue.logAutocompleteOutcome",
+          command: "icoding.logAutocompleteOutcome",
           arguments: [input.completionId, this.completionProvider],
         },
       );

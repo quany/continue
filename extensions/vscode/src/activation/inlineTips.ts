@@ -32,7 +32,7 @@ function handleSelectionChange(e: vscode.TextEditorSelectionChangeEvent) {
   const line = Math.max(0, selection.start.line - 1);
 
   const hoverMarkdown = new vscode.MarkdownString(
-    `点击[这里](command:continue.hideInlineTip)以隐藏这些建议`,
+    `点击[这里](command:icoding.hideInlineTip)以隐藏这些建议`,
   );
   hoverMarkdown.isTrusted = true;
   hoverMarkdown.supportHtml = true;

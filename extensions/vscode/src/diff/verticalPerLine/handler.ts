@@ -212,7 +212,7 @@ export class VerticalPerLineDiffHandler implements vscode.Disposable {
   clear(accept: boolean) {
     vscode.commands.executeCommand(
       "setContext",
-      "continue.streamingDiff",
+      "icoding.streamingDiff",
       false,
     );
     const rangesToDelete = accept

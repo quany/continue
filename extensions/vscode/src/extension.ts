@@ -20,7 +20,7 @@ async function dynamicImportAndActivate(context: vscode.ExtensionContext) {
       )
       .then((selection) => {
         if (selection === "查看日志") {
-          vscode.commands.executeCommand("continue.viewLogs");
+          vscode.commands.executeCommand("icoding.viewLogs");
         } else if (selection === "重试") {
           // 重新加载 VS Code 窗口
           vscode.commands.executeCommand("workbench.action.reloadWindow");

@@ -45,12 +45,12 @@ class VerticalPerLineCodeLensProvider implements vscode.CodeLensProvider {
         codeLenses.push(
           new vscode.CodeLens(range, {
             title: `全部接受 (${getMetaKeyLabel()}⇧⏎)`,
-            command: "continue.acceptDiff",
+            command: "icoding.acceptDiff",
             arguments: [filepath, i],
           }),
           new vscode.CodeLens(range, {
             title: `全部拒绝 (${getMetaKeyLabel()}⇧⌫)`,
-            command: "continue.rejectDiff",
+            command: "icoding.rejectDiff",
             arguments: [filepath, i],
           }),
         );
@@ -61,7 +61,7 @@ class VerticalPerLineCodeLensProvider implements vscode.CodeLensProvider {
             ? ` (${getAltOrOption()}${getMetaKeyLabel()}Y)`
             : ""
             }`,
-          command: "continue.acceptVerticalDiffBlock",
+          command: "icoding.acceptVerticalDiffBlock",
           arguments: [filepath, i],
         }),
         new vscode.CodeLens(range, {
@@ -69,7 +69,7 @@ class VerticalPerLineCodeLensProvider implements vscode.CodeLensProvider {
             ? ` (${getAltOrOption()}${getMetaKeyLabel()}N)`
             : ""
             }`,
-          command: "continue.rejectVerticalDiffBlock",
+          command: "icoding.rejectVerticalDiffBlock",
           arguments: [filepath, i],
         }),
       );
@@ -107,12 +107,12 @@ class SuggestionsCodeLensProvider implements vscode.CodeLensProvider {
       codeLenses.push(
         new vscode.CodeLens(range, {
           title: "接受",
-          command: "continue.acceptSuggestion",
+          command: "icoding.acceptSuggestion",
           arguments: [suggestion],
         }),
         new vscode.CodeLens(range, {
           title: "拒绝",
-          command: "continue.rejectSuggestion",
+          command: "icoding.rejectSuggestion",
           arguments: [suggestion],
         }),
       );
@@ -151,17 +151,17 @@ class DiffViewerCodeLensProvider implements vscode.CodeLensProvider {
       codeLenses.push(
         new vscode.CodeLens(range, {
           title: `全部接受 ✅ (${getMetaKeyLabel()}⇧⏎)`,
-          command: "continue.acceptDiff",
+          command: "icoding.acceptDiff",
           arguments: [document.uri.fsPath],
         }),
         new vscode.CodeLens(range, {
           title: `全部拒绝 ❌ (${getMetaKeyLabel()}⇧⌫)`,
-          command: "continue.rejectDiff",
+          command: "icoding.rejectDiff",
           arguments: [document.uri.fsPath],
         }),
         // new vscode.CodeLens(range, {
         //   title: `进一步编辑 ✏️ (${getMetaKeyLabel()}⇧M)`,
-        //   command: "continue.focusContinueInputWithEdit",
+        //   command: "icoding.focusContinueInputWithEdit",
         // })
       );
       return codeLenses;
@@ -195,7 +195,7 @@ class ConfigPyCodeLensProvider implements vscode.CodeLensProvider {
       // codeLenses.push(
       //   new vscode.CodeLens(range, {
       //     title: `+ 添加模型`,
-      //     command: "continue.addModel",
+      //     command: "icoding.addModel",
       //   })
       // );
     }
@@ -214,7 +214,7 @@ class ConfigPyCodeLensProvider implements vscode.CodeLensProvider {
       codeLenses.push(
         new vscode.CodeLens(range, {
           title: "✏️ 在 UI 中编辑",
-          command: "continue.openSettingsUI",
+          command: "icoding.openSettingsUI",
         }),
       );
     }
@@ -236,7 +236,7 @@ const actions: TutorialCodeLensItems[] = [
     commands: [
       {
         title: `${cmdCtrl}+L`,
-        command: "continue.focusContinueInput",
+        command: "icoding.focusContinueInput",
       },
     ],
   },
@@ -245,12 +245,12 @@ const actions: TutorialCodeLensItems[] = [
     commands: [
       {
         title: `"这个代码是做什么的？"`,
-        command: "continue.sendMainUserInput",
+        command: "icoding.sendMainUserInput",
         arguments: ["what does this code do?"],
       },
       {
         title: `"这个代码有替代方案吗？"`,
-        command: "continue.sendMainUserInput",
+        command: "icoding.sendMainUserInput",
         arguments: ["what is an alternative to this?"],
       },
     ],
@@ -260,7 +260,7 @@ const actions: TutorialCodeLensItems[] = [
     commands: [
       {
         title: `${cmdCtrl}+I`,
-        command: "continue.quickEdit",
+        command: "icoding.quickEdit",
         arguments: ["添加注释"],
       },
     ],
@@ -270,7 +270,7 @@ const actions: TutorialCodeLensItems[] = [
     commands: [
       {
         title: "运行文件",
-        command: "continue.sendToTerminal",
+        command: "icoding.sendToTerminal",
         arguments: [
           `python ${path.join(
             getExtensionUri().fsPath,
@@ -285,7 +285,7 @@ const actions: TutorialCodeLensItems[] = [
     commands: [
       {
         title: "调试错误",
-        command: "continue.debugTerminal",
+        command: "icoding.debugTerminal",
       },
     ],
   },
@@ -294,7 +294,7 @@ const actions: TutorialCodeLensItems[] = [
     commands: [
       {
         title: `${cmdCtrl}+Shift+R`,
-        command: "continue.debugTerminal",
+        command: "icoding.debugTerminal",
       },
     ],
   },
@@ -334,7 +334,7 @@ class TutorialCodeLensProvider implements vscode.CodeLensProvider {
       codeLenses.push(
         new vscode.CodeLens(range, {
           title: "高亮显示函数",
-          command: "continue.selectRange",
+          command: "icoding.selectRange",
           arguments: [lineOf11 + 3, lineOf11 + 11],
         }),
       );
@@ -347,7 +347,7 @@ class TutorialCodeLensProvider implements vscode.CodeLensProvider {
       codeLenses.push(
         new vscode.CodeLens(range, {
           title: "高亮显示函数",
-          command: "continue.selectRange",
+          command: "icoding.selectRange",
           arguments: [lineOf21 + 3, lineOf21 + 14],
         }),
       );
@@ -369,7 +369,7 @@ class TutorialCodeLensProvider implements vscode.CodeLensProvider {
     //   codeLenses.push(
     //     new vscode.CodeLens(range, {
     //       title: `开始部分`,
-    //       command: "continue.foldAndUnfold",
+    //       command: "icoding.foldAndUnfold",
     //       arguments: [linesToFold, [lineOfRegion, lineOfRegion + 1]],
     //     }),
     //   );

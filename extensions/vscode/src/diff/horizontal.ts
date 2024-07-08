@@ -116,7 +116,7 @@ export class DiffManager {
 
     if (
       this.extensionContext.globalState.get<boolean>(
-        "continue.showDiffInfoMessage",
+        "icoding.showDiffInfoMessage",
       ) !== false
     ) {
       vscode.window
@@ -129,7 +129,7 @@ export class DiffManager {
           if (selection === "Don't show again") {
             // Get the global state
             this.extensionContext.globalState.update(
-              "continue.showDiffInfoMessage",
+              "icoding.showDiffInfoMessage",
               false,
             );
           }

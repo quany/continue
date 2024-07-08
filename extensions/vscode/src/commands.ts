@@ -17,7 +17,7 @@ import type { VsCodeWebviewProtocol } from "./webviewProtocol";
 function getFullScreenTab() {
   const tabs = vscode.window.tabGroups.all.flatMap((tabGroup) => tabGroup.tabs);
   return tabs.find((tab) =>
-    (tab.input as any)?.viewType?.endsWith("continue.continueGUIView"),
+    (tab.input as any)?.viewType?.endsWith("icoding.continueGUIView"),
   );
 }
 
@@ -169,27 +169,27 @@ const commandsMap: (
       );
     }
     return {
-      "continue.acceptDiff": async (newFilepath?: string | vscode.Uri) => {
+      "icoding.acceptDiff": async (newFilepath?: string | vscode.Uri) => {
         if (newFilepath instanceof vscode.Uri) {
           newFilepath = newFilepath.fsPath;
         }
         verticalDiffManager.clearForFilepath(newFilepath, true);
         await diffManager.acceptDiff(newFilepath);
       },
-      "continue.rejectDiff": async (newFilepath?: string | vscode.Uri) => {
+      "icoding.rejectDiff": async (newFilepath?: string | vscode.Uri) => {
         if (newFilepath instanceof vscode.Uri) {
           newFilepath = newFilepath.fsPath;
         }
         verticalDiffManager.clearForFilepath(newFilepath, false);
         await diffManager.rejectDiff(newFilepath);
       },
-      "continue.acceptVerticalDiffBlock": (filepath?: string, index?: number) => {
+      "icoding.acceptVerticalDiffBlock": (filepath?: string, index?: number) => {
         verticalDiffManager.acceptRejectVerticalDiffBlock(true, filepath, index);
       },
-      "continue.rejectVerticalDiffBlock": (filepath?: string, index?: number) => {
+      "icoding.rejectVerticalDiffBlock": (filepath?: string, index?: number) => {
         verticalDiffManager.acceptRejectVerticalDiffBlock(false, filepath, index);
       },
-      "continue.quickFix": async (
+      "icoding.quickFix": async (
         message: string,
         code: string,
         edit: boolean,
@@ -200,19 +200,19 @@ const commandsMap: (
         });
 
         if (!edit) {
-          vscode.commands.executeCommand("continue.continueGUIView.focus");
+          vscode.commands.executeCommand("icoding.continueGUIView.focus");
         }
       },
-      "continue.focusContinueInput": async () => {
+      "icoding.focusContinueInput": async () => {
         if (!getFullScreenTab()) {
-          vscode.commands.executeCommand("continue.continueGUIView.focus");
+          vscode.commands.executeCommand("icoding.continueGUIView.focus");
         }
         sidebar.webviewProtocol?.request("focusContinueInput", undefined);
         await addHighlightedCodeToContext(false, sidebar.webviewProtocol);
       },
-      "continue.focusContinueInputWithoutClear": async () => {
+      "icoding.focusContinueInputWithoutClear": async () => {
         if (!getFullScreenTab()) {
-          vscode.commands.executeCommand("continue.continueGUIView.focus");
+          vscode.commands.executeCommand("icoding.continueGUIView.focus");
         }
         sidebar.webviewProtocol?.request(
           "focusContinueInputWithoutClear",
@@ -220,10 +220,10 @@ const commandsMap: (
         );
         await addHighlightedCodeToContext(true, sidebar.webviewProtocol);
       },
-      "continue.toggleAuxiliaryBar": () => {
+      "icoding.toggleAuxiliaryBar": () => {
         vscode.commands.executeCommand("workbench.action.toggleAuxiliaryBar");
       },
-      "continue.quickEdit": async (prompt?: string) => {
+      "icoding.quickEdit": async (prompt?: string) => {
         const selectionEmpty = vscode.window.activeTextEditor?.selection.isEmpty;
 
         const editor = vscode.window.activeTextEditor;
@@ -330,37 +330,37 @@ const commandsMap: (
           }
         }
       },
-      "continue.writeCommentsForCode": async () => {
+      "icoding.writeCommentsForCode": async () => {
         streamInlineEdit(
           "comment",
           "为此代码编写注释。不要更改代码本身的任何内容。",
         );
       },
-      "continue.writeDocstringForCode": async () => {
+      "icoding.writeDocstringForCode": async () => {
         streamInlineEdit(
           "docstring",
           "为此代码编写一个文档字符串。不要更改代码本身的任何内容。",
           true,
         );
       },
-      "continue.fixCode": async () => {
+      "icoding.fixCode": async () => {
         streamInlineEdit(
           "fix",
           "修复此代码。如果它已经是100%正确的，只需重写代码。",
         );
       },
-      "continue.optimizeCode": async () => {
+      "icoding.optimizeCode": async () => {
         streamInlineEdit("optimize", "优化此代码");
       },
-      "continue.fixGrammar": async () => {
+      "icoding.fixGrammar": async () => {
         streamInlineEdit(
           "fixGrammar",
           "如果这篇文章中有任何语法或拼写错误，请改正。不要对文字做其他大的改动。",
         );
       },
-      "continue.viewLogs": async () => {
-        // Open ~/.continue/continue.log
-        const logFile = path.join(os.homedir(), ".continue", "continue.log");
+      "icoding.viewLogs": async () => {
+        // Open ~/.continue/icoding.log
+        const logFile = path.join(os.homedir(), ".continue", "icoding.log");
         // Make sure the file/directory exist
         if (!fs.existsSync(logFile)) {
           fs.mkdirSync(path.dirname(logFile), { recursive: true });
@@ -370,37 +370,37 @@ const commandsMap: (
         const uri = vscode.Uri.file(logFile);
         await vscode.window.showTextDocument(uri);
       },
-      "continue.debugTerminal": async () => {
+      "icoding.debugTerminal": async () => {
         const terminalContents = await ide.getTerminalContents();
-        vscode.commands.executeCommand("continue.continueGUIView.focus");
+        vscode.commands.executeCommand("icoding.continueGUIView.focus");
         sidebar.webviewProtocol?.request("userInput", {
           input: `我有以下错误，你能帮忙解释一下如何修复吗？\n\n${terminalContents.trim()}`,
         });
       },
-      "continue.hideInlineTip": () => {
+      "icoding.hideInlineTip": () => {
         vscode.workspace
           .getConfiguration("continue")
           .update("showInlineTip", false, vscode.ConfigurationTarget.Global);
       },
 
       // Commands without keyboard shortcuts
-      "continue.addModel": () => {
-        vscode.commands.executeCommand("continue.continueGUIView.focus");
+      "icoding.addModel": () => {
+        vscode.commands.executeCommand("icoding.continueGUIView.focus");
         sidebar.webviewProtocol?.request("addModel", undefined);
       },
-      "continue.openSettingsUI": () => {
-        vscode.commands.executeCommand("continue.continueGUIView.focus");
+      "icoding.openSettingsUI": () => {
+        vscode.commands.executeCommand("icoding.continueGUIView.focus");
         sidebar.webviewProtocol?.request("openSettings", undefined);
       },
-      "continue.sendMainUserInput": (text: string) => {
+      "icoding.sendMainUserInput": (text: string) => {
         sidebar.webviewProtocol?.request("userInput", {
           input: text,
         });
       },
-      "continue.shareSession": () => {
+      "icoding.shareSession": () => {
         sidebar.sendMainUserInput("/share");
       },
-      "continue.selectRange": (startLine: number, endLine: number) => {
+      "icoding.selectRange": (startLine: number, endLine: number) => {
         if (!vscode.window.activeTextEditor) {
           return;
         }
@@ -411,7 +411,7 @@ const commandsMap: (
           0,
         );
       },
-      "continue.foldAndUnfold": (
+      "icoding.foldAndUnfold": (
         foldSelectionLines: number[],
         unfoldSelectionLines: number[],
       ) => {
@@ -422,16 +422,16 @@ const commandsMap: (
           selectionLines: foldSelectionLines,
         });
       },
-      "continue.sendToTerminal": (text: string) => {
+      "icoding.sendToTerminal": (text: string) => {
         ide.runCommand(text);
       },
-      "continue.newSession": () => {
+      "icoding.newSession": () => {
         sidebar.webviewProtocol?.request("newSession", undefined);
       },
-      "continue.viewHistory": () => {
+      "icoding.viewHistory": () => {
         sidebar.webviewProtocol?.request("viewHistory", undefined);
       },
-      "continue.toggleFullScreen": () => {
+      "icoding.toggleFullScreen": () => {
         // Check if full screen is already open by checking open tabs
         const fullScreenTab = getFullScreenTab();
 
@@ -468,7 +468,7 @@ const commandsMap: (
 
         //create the full screen panel
         let panel = vscode.window.createWebviewPanel(
-          "continue.continueGUIView",
+          "icoding.continueGUIView",
           "Continue",
           vscode.ViewColumn.One,
         );
@@ -486,26 +486,26 @@ const commandsMap: (
         panel.onDidDispose(
           () => {
             sidebar.resetWebviewProtocolWebview();
-            vscode.commands.executeCommand("continue.focusContinueInput");
+            vscode.commands.executeCommand("icoding.focusContinueInput");
           },
           null,
           extensionContext.subscriptions,
         );
       },
-      "continue.openConfigJson": () => {
+      "icoding.openConfigJson": () => {
         ide.openFile(getConfigJsonPath());
       },
-      "continue.selectFilesAsContext": (
+      "icoding.selectFilesAsContext": (
         firstUri: vscode.Uri,
         uris: vscode.Uri[],
       ) => {
-        vscode.commands.executeCommand("continue.continueGUIView.focus");
+        vscode.commands.executeCommand("icoding.continueGUIView.focus");
 
         for (const uri of uris) {
           addEntireFileToContext(uri, false, sidebar.webviewProtocol);
         }
       },
-      "continue.updateAllReferences": (filepath: vscode.Uri) => {
+      "icoding.updateAllReferences": (filepath: vscode.Uri) => {
         // Get the cursor position in the editor
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
@@ -516,13 +516,13 @@ const commandsMap: (
           `/references ${filepath.fsPath} ${position.line} ${position.character}`,
         );
       },
-      "continue.logAutocompleteOutcome": (
+      "icoding.logAutocompleteOutcome": (
         completionId: string,
         completionProvider: CompletionProvider,
       ) => {
         completionProvider.accept(completionId);
       },
-      "continue.toggleTabAutocompleteEnabled": () => {
+      "icoding.toggleTabAutocompleteEnabled": () => {
         const config = vscode.workspace.getConfiguration("continue");
         const enabled = config.get("enableTabAutocomplete");
         config.update(
