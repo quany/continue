@@ -40,8 +40,8 @@ export function setupStatusBar(
   statusBarItem.show();
 
   vscode.workspace.onDidChangeConfiguration((event) => {
-    if (event.affectsConfiguration("continue")) {
-      const config = vscode.workspace.getConfiguration("continue");
+    if (event.affectsConfiguration("icoding")) {
+      const config = vscode.workspace.getConfiguration("icoding");
       const enabled = config.get<boolean>("enableTabAutocomplete");
       setupStatusBar(enabled);
     }

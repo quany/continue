@@ -70,7 +70,7 @@ export class VsCodeExtension {
     // Sidebar
     context.subscriptions.push(
       vscode.window.registerWebviewViewProvider(
-        "icoding.continueGUIView",
+        "icoding.iCodingGUIView",
         this.sidebar,
         {
           webviewOptions: { retainContextWhenHidden: true },
@@ -132,7 +132,7 @@ export class VsCodeExtension {
       verticalDiffCodeLens.refresh.bind(verticalDiffCodeLens);
 
     // Tab autocomplete
-    const config = vscode.workspace.getConfiguration("continue");
+    const config = vscode.workspace.getConfiguration("icoding");
     const enabled = config.get<boolean>("enableTabAutocomplete");
 
     // Register inline completion provider
@@ -241,7 +241,7 @@ export class VsCodeExtension {
     );
   }
 
-  static continueVirtualDocumentScheme = "continue";
+  static continueVirtualDocumentScheme = "icoding";
 
   private PREVIOUS_BRANCH_FOR_WORKSPACE_DIR: { [dir: string]: string } = {};
 

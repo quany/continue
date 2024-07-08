@@ -182,7 +182,7 @@ export class VsCodeIdeUtils {
 
   async getUserSecret(key: string) {
     // Check if secret already exists in VS Code settings (global)
-    let secret = vscode.workspace.getConfiguration("continue").get(key);
+    let secret = vscode.workspace.getConfiguration("icoding").get(key);
     if (typeof secret !== "undefined" && secret !== null) {
       return secret;
     }
@@ -195,7 +195,7 @@ export class VsCodeIdeUtils {
 
     // Add secret to VS Code settings
     vscode.workspace
-      .getConfiguration("continue")
+      .getConfiguration("icoding")
       .update(key, secret, vscode.ConfigurationTarget.Global);
 
     return secret;

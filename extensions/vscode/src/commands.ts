@@ -17,7 +17,7 @@ import type { VsCodeWebviewProtocol } from "./webviewProtocol";
 function getFullScreenTab() {
   const tabs = vscode.window.tabGroups.all.flatMap((tabGroup) => tabGroup.tabs);
   return tabs.find((tab) =>
-    (tab.input as any)?.viewType?.endsWith("icoding.continueGUIView"),
+    (tab.input as any)?.viewType?.endsWith("icoding.iCodingGUIView"),
   );
 }
 
@@ -200,19 +200,19 @@ const commandsMap: (
         });
 
         if (!edit) {
-          vscode.commands.executeCommand("icoding.continueGUIView.focus");
+          vscode.commands.executeCommand("icoding.iCodingGUIView.focus");
         }
       },
       "icoding.focusContinueInput": async () => {
         if (!getFullScreenTab()) {
-          vscode.commands.executeCommand("icoding.continueGUIView.focus");
+          vscode.commands.executeCommand("icoding.iCodingGUIView.focus");
         }
         sidebar.webviewProtocol?.request("focusContinueInput", undefined);
         await addHighlightedCodeToContext(false, sidebar.webviewProtocol);
       },
       "icoding.focusContinueInputWithoutClear": async () => {
         if (!getFullScreenTab()) {
-          vscode.commands.executeCommand("icoding.continueGUIView.focus");
+          vscode.commands.executeCommand("icoding.iCodingGUIView.focus");
         }
         sidebar.webviewProtocol?.request(
           "focusContinueInputWithoutClear",
@@ -372,24 +372,24 @@ const commandsMap: (
       },
       "icoding.debugTerminal": async () => {
         const terminalContents = await ide.getTerminalContents();
-        vscode.commands.executeCommand("icoding.continueGUIView.focus");
+        vscode.commands.executeCommand("icoding.iCodingGUIView.focus");
         sidebar.webviewProtocol?.request("userInput", {
           input: `我有以下错误，你能帮忙解释一下如何修复吗？\n\n${terminalContents.trim()}`,
         });
       },
       "icoding.hideInlineTip": () => {
         vscode.workspace
-          .getConfiguration("continue")
+          .getConfiguration("icoding")
           .update("showInlineTip", false, vscode.ConfigurationTarget.Global);
       },
 
       // Commands without keyboard shortcuts
       "icoding.addModel": () => {
-        vscode.commands.executeCommand("icoding.continueGUIView.focus");
+        vscode.commands.executeCommand("icoding.iCodingGUIView.focus");
         sidebar.webviewProtocol?.request("addModel", undefined);
       },
       "icoding.openSettingsUI": () => {
-        vscode.commands.executeCommand("icoding.continueGUIView.focus");
+        vscode.commands.executeCommand("icoding.iCodingGUIView.focus");
         sidebar.webviewProtocol?.request("openSettings", undefined);
       },
       "icoding.sendMainUserInput": (text: string) => {
@@ -468,7 +468,7 @@ const commandsMap: (
 
         //create the full screen panel
         let panel = vscode.window.createWebviewPanel(
-          "icoding.continueGUIView",
+          "icoding.iCodingGUIView",
           "Continue",
           vscode.ViewColumn.One,
         );
@@ -499,7 +499,7 @@ const commandsMap: (
         firstUri: vscode.Uri,
         uris: vscode.Uri[],
       ) => {
-        vscode.commands.executeCommand("icoding.continueGUIView.focus");
+        vscode.commands.executeCommand("icoding.iCodingGUIView.focus");
 
         for (const uri of uris) {
           addEntireFileToContext(uri, false, sidebar.webviewProtocol);
@@ -523,7 +523,7 @@ const commandsMap: (
         completionProvider.accept(completionId);
       },
       "icoding.toggleTabAutocompleteEnabled": () => {
-        const config = vscode.workspace.getConfiguration("continue");
+        const config = vscode.workspace.getConfiguration("icoding");
         const enabled = config.get("enableTabAutocomplete");
         config.update(
           "enableTabAutocomplete",

@@ -9,7 +9,7 @@ import { VsCodeWebviewProtocol } from "./webviewProtocol";
 export class ContinueGUIWebviewViewProvider
   implements vscode.WebviewViewProvider
 {
-  public static readonly viewType = "icoding.continueGUIView";
+  public static readonly viewType = "icoding.iCodingGUIView";
   public webviewProtocol: VsCodeWebviewProtocol;
 
   resolveWebviewView(

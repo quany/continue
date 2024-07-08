@@ -74,7 +74,7 @@ class VsCodeIde implements IDE {
           .then(async (selection) => {
             if (selection === "使用 API 密钥 / 本地模型") {
               await vscode.commands.executeCommand(
-                "icoding.continueGUIView.focus",
+                "icoding.iCodingGUIView.focus",
               );
               (await this.vscodeWebviewProtocolPromise).request(
                 "openOnboarding",
@@ -235,7 +235,7 @@ class VsCodeIde implements IDE {
   async isTelemetryEnabled(): Promise<boolean> {
     return (
       (await vscode.workspace
-        .getConfiguration("continue")
+        .getConfiguration("icoding")
         .get("telemetryEnabled")) ?? true
     );
   }
@@ -505,7 +505,7 @@ class VsCodeIde implements IDE {
   }
 
   getIdeSettings(): IdeSettings {
-    const settings = vscode.workspace.getConfiguration("continue");
+    const settings = vscode.workspace.getConfiguration("icoding");
     const remoteConfigServerUrl = settings.get<string | undefined>(
       "remoteConfigServerUrl",
       undefined,
