@@ -202,7 +202,7 @@ class VsCodeIde implements IDE {
       version: vscode.version,
       remoteName: vscode.env.remoteName || "local",
       extensionVersion:
-        vscode.extensions.getExtension("icoding.continue")?.packageJSON
+        vscode.extensions.getExtension("icoding.icoding")?.packageJSON
           .version,
     });
   }

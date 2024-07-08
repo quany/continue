@@ -157,7 +157,7 @@
       {
         "command": "icoding.debugTerminal",
         "category": "iCoding",
-        "title": "Continue：调试终端",
+        "title": "iCoding：调试终端",
         "group": "iCoding"
       },
       {

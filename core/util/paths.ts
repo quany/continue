@@ -8,7 +8,7 @@ import { IdeType, SerializedContinueConfig } from "../index.js";
 
 export function getContinueGlobalPath(): string {
   // This is ~/.continue on mac/linux
-  const continuePath = path.join(os.homedir(), ".continue");
+  const continuePath = path.join(os.homedir(), ".icoding");
   if (!fs.existsSync(continuePath)) {
     fs.mkdirSync(continuePath);
   }

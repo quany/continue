@@ -1,21 +1,21 @@
-# 👋 Welcome to Continue
+# 👋 欢迎使用iCoding
 
-## ❗️ Before you get started
+## ❗️ 在你开始之前
 
-Continue is currently in the left sidebar, but we recommend moving it to the right. This way it won't cover your file explorer.
+继续当前在左侧边栏，但我们建议将其移动到右侧。这样可以避免遮挡文件资源管理器。
 
-You can move it back at any time. If you close the sidebar, it can be re-opened with <kbd>Cmd/Ctrl</kbd> + <kbd>L</kbd>.
+你可以随时将其移回。如果关闭了侧边栏，可以通过按下 <kbd>Cmd/Ctrl</kbd> + <kbd>L</kbd> 重新打开。
 
-![Move Continue to right sidebar](./sidebar.gif)
+![将继续移动到右侧边栏](./sidebar.gif)
 
-## 🔑 Most important shortcuts
+## 🔑 最重要的快捷键
 
-> If you'd prefer different keys, these shortcuts can be customized in VS Code settings.
+> 如果你更喜欢使用其他按键，可以在 VS Code 设置中自定义这些快捷键。
 
-<kbd>Cmd/Ctrl</kbd> + <kbd>L</kbd> = Select code
+<kbd>Cmd/Ctrl</kbd> + <kbd>L</kbd> = 选择代码
 
-<kbd>Cmd/Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> = Select code for follow-up
+<kbd>Cmd/Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> = 选择代码进行跟进
 
-<kbd>Cmd/Ctrl</kbd> + <kbd>I</kbd> = Quick edit
+<kbd>Cmd/Ctrl</kbd> + <kbd>I</kbd> = 快速编辑
 
-<kbd>Cmd/Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> = Automatically debug terminal
+<kbd>Cmd/Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> = 自动调试终端

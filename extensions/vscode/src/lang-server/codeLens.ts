@@ -179,8 +179,8 @@ class ConfigPyCodeLensProvider implements vscode.CodeLensProvider {
     const codeLenses: vscode.CodeLens[] = [];
 
     if (
-      !document.uri.fsPath.endsWith(".continue/config.json") &&
-      !document.uri.fsPath.endsWith(".continue\\config.json")
+      !document.uri.fsPath.endsWith(".icoding/config.json") &&
+      !document.uri.fsPath.endsWith(".icoding\\config.json")
     ) {
       return codeLenses;
     }

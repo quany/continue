@@ -9,44 +9,65 @@ import { getExtensionUri } from "../util/vscode";
 import { VsCodeContinueApi } from "./api";
 import { setupInlineTips } from "./inlineTips";
 
-let resolveVsCodeExtension = (_: VsCodeExtension): void => {};
+let resolveVsCodeExtension = (_: VsCodeExtension): void => { };
 export const vscodeExtensionPromise: Promise<VsCodeExtension> = new Promise(
   (resolve) => (resolveVsCodeExtension = resolve),
 );
 
-export async function activateExtension(context: vscode.ExtensionContext) {
-  // Add necessary files
-  getTsConfigPath();
+export async function activateExtension(context: vscode.ExtensionContext): Promise<any> {
+  try {
+    // Add necessary files
+    getTsConfigPath();
 
-  // Register commands and providers
-  registerQuickFixProvider();
-  setupInlineTips(context);
+    // Register commands and providers
+    registerQuickFixProvider();
+    setupInlineTips(context);
 
-  const vscodeExtension = new VsCodeExtension(context);
-  resolveVsCodeExtension(vscodeExtension);
+    const vscodeExtension = new VsCodeExtension(context);
+    resolveVsCodeExtension(vscodeExtension);
 
-  migrate("showWelcome_1", () => {
-    vscode.commands.executeCommand(
-      "markdown.showPreview",
-      vscode.Uri.file(
-        path.join(getExtensionUri().fsPath, "media", "welcome.md"),
-      ),
-    );
-  });
+    // Migrate using safe execution
+    migrate("showWelcome_1", () => safeExecuteCommand());
 
-  // Load Continue configuration
-  if (!context.globalState.get("hasBeenInstalled")) {
-    context.globalState.update("hasBeenInstalled", true);
-    Telemetry.capture("install", {
-      extensionVersion: getExtensionVersion(),
-    });
+    // Load Continue configuration with safe global state update
+    safeUpdateGlobalState(context);
+
+    const api = new VsCodeContinueApi(vscodeExtension);
+    const continuePublicApi = {
+      registerCustomContextProvider: api.registerCustomContextProvider.bind(api),
+    };
+
+    return continuePublicApi;
+  } catch (error) {
+    console.error("Failed to activate extension:", error);
+    // @ts-ignore
+    vscode.window.showErrorMessage(`Extension activation failed: ${error.message}`);
+    throw error; // Re-throw the error to ensure it's not silently swallowed
   }
+}
 
-  const api = new VsCodeContinueApi(vscodeExtension);
-  const continuePublicApi = {
-    registerCustomContextProvider: api.registerCustomContextProvider.bind(api),
-  };
+// Wrap command execution in a try-catch to handle potential errors
+function safeExecuteCommand() {
+  vscode.commands.executeCommand(
+    "markdown.showPreview",
+    vscode.Uri.file(
+      path.join(getExtensionUri().fsPath, "media", "welcome.md"),
+    ),
+  );
+}
 
-  // 'export' public api-surface
-  return continuePublicApi;
+// Safely update the global state with error handling
+function safeUpdateGlobalState(context: vscode.ExtensionContext) {
+  if (!context.globalState.get("hasBeenInstalled")) {
+    try {
+      context.globalState.update("hasBeenInstalled", true);
+      Telemetry.capture("install", {
+        extensionVersion: getExtensionVersion(),
+      });
+    } catch (error) {
+      console.error("Failed to update global state:", error);
+      // @ts-ignore
+      vscode.window.showErrorMessage(`Failed to update extension state: ${error.message}`);
+    }
+  }
 }

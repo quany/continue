@@ -327,7 +327,7 @@ function History() {
         </table>
         <br />
         <i className="text-sm ml-4">
-          所有会话数据都保存在 ~/.continue/sessions
+          所有会话数据都保存在 ~/.icoding/sessions
         </i>
       </div>
     </div>

@@ -359,8 +359,8 @@ const commandsMap: (
         );
       },
       "icoding.viewLogs": async () => {
-        // Open ~/.continue/icoding.log
-        const logFile = path.join(os.homedir(), ".continue", "icoding.log");
+        // Open ~/.icoding/icoding.log
+        const logFile = path.join(os.homedir(), ".icoding", "icoding.log");
         // Make sure the file/directory exist
         if (!fs.existsSync(logFile)) {
           fs.mkdirSync(path.dirname(logFile), { recursive: true });
