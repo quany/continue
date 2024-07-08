@@ -1,7 +1,7 @@
 {
   "name": "icoding",
   "icon": "media/pluginIcon.png",
-  "version": "0.9.148",
+  "version": "0.9.149",
   "repository": {
     "type": "git",
     "url": "https://github.com/quany/continue"
@@ -72,32 +72,32 @@
     "configuration": {
       "title": "iCoding",
       "properties": {
-        "continue.telemetryEnabled": {
+        "icoding.telemetryEnabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "iCoding 收集匿名的使用数据，去除个人身份信息，以帮助我们改进产品。了解更多信息请访问 [continue.dev › Telemetry](https://ic0ding.netlify.app/telemetry)。"
+          "markdownDescription": "iCoding 收集匿名的使用数据，去除个人身份信息，以帮助我们改进产品。了解更多信息请访问 [icoding.dev › Telemetry](https://ic0ding.netlify.app/telemetry)。"
         },
-        "continue.showInlineTip": {
+        "icoding.showInlineTip": {
           "type": "boolean",
           "default": true,
           "description": "显示使用 iCoding 键盘快捷键的内联建议（例如“Cmd/Ctrl L 选择代码，Cmd/Ctrl I 编辑”）。"
         },
-        "continue.enableTabAutocomplete": {
+        "icoding.enableTabAutocomplete": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "启用 iCoding 的 Tab 自动补全功能。阅读我们的使用指南了解配置和反馈共享：[continue.dev › 使用指南：Tab 自动补全](https://ic0ding.netlify.app/walkthroughs/tab-autocomplete)"
+          "markdownDescription": "启用 iCoding 的 Tab 自动补全功能。阅读我们的使用指南了解配置和反馈共享：[icoding.dev › 使用指南：Tab 自动补全](https://ic0ding.netlify.app/walkthroughs/tab-autocomplete)"
         },
-        "continue.remoteConfigServerUrl": {
+        "icoding.remoteConfigServerUrl": {
           "type": "string",
           "default": null,
           "markdownDescription": "如果您的团队已设置共享配置，请在此处输入服务器 URL，并在下方输入用户令牌以启用自动同步。"
         },
-        "continue.userToken": {
+        "icoding.userToken": {
           "type": "string",
           "default": null,
           "markdownDescription": "如果您的团队已设置共享配置，请在此处输入您的用户令牌，并在上方输入服务器 URL 以启用自动同步。"
         },
-        "continue.remoteConfigSyncPeriod": {
+        "icoding.remoteConfigSyncPeriod": {
           "type": "number",
           "default": 60,
           "description": "自动同步的时间间隔（分钟）。"
@@ -188,7 +188,7 @@
       {
         "command": "continue.selectFilesAsContext",
         "category": "iCoding",
-        "title": "Continue：选择文件作为上下文",
+        "title": "iCoding：选择文件作为上下文",
         "group": "iCoding"
       },
       {
